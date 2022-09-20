@@ -1,11 +1,13 @@
 import React from "react";
 import {FormHelperText, InputBase, InputBaseProps, Theme, useTheme} from "@mui/material";
+import {TypeTypography} from "../../../utils/theme";
 
-export interface AppInputProps extends Omit<InputBaseProps, ''> {
+export interface AppInputProps extends Omit<InputBaseProps, 'errors'> {
+    errors?: string | null | boolean;
 }
 
 export const AppInput = React.forwardRef(function AppInput(
-    {sx, fullWidth, error, ...props}: AppInputProps,
+    {sx, fullWidth, errors, ...props}: AppInputProps,
     ref: React.ForwardedRef<HTMLUListElement>
 ) {
     const theme = useTheme();
@@ -14,7 +16,6 @@ export const AppInput = React.forwardRef(function AppInput(
             <InputBase
                 ref={ref}
                 fullWidth={fullWidth}
-                error
                 sx={{
                     border: `2px solid ` + theme.color.gray10,
                     borderRadius: '12px',
@@ -38,7 +39,7 @@ export const AppInput = React.forwardRef(function AppInput(
                         // width: 'auto',
 
                         padding: '12px 16px',
-                        typography: 'label',
+                        typography: 'label' as TypeTypography,
                         // transition: theme.transitions.create([
                         //   'border-color',
                         //   'background-color',
@@ -78,14 +79,14 @@ export const AppInput = React.forwardRef(function AppInput(
                 // }
                 {...props}
             />
-            {error && (
+            {errors && (
                 <FormHelperText
                     sx={{
                         color: (theme: Theme) => theme.color.error,
                         mt: '12px',
                     }}
                 >
-                    {/*{errors === true ? 'This field is required.' : errors}*/}
+                    {errors === true ? 'This field is required.' : errors}
                 </FormHelperText>
             )}
         </>
