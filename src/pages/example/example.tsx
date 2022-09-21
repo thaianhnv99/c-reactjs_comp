@@ -1,5 +1,16 @@
 import './example.scss';
-import {Box, Divider, FormControlLabel, Grid, Radio, RadioGroup, Stack, Typography} from "@mui/material";
+import {
+    Box,
+    Button,
+    Checkbox,
+    Divider,
+    FormControlLabel,
+    Grid,
+    Radio,
+    RadioGroup,
+    Stack,
+    Typography
+} from "@mui/material";
 import {AppBox, AppDateRangePicker, AppInput} from "../../component/Base";
 import App from "../../App";
 import {TypeTypography} from "../../utils/theme";
@@ -7,6 +18,8 @@ import {useState} from "react";
 
 export function Example() {
     const [radioValueSelected, setRadioValueSelected] = useState<any>(null);
+    const [checked, setChecked] = useState([true, true, true]);
+
     return (<>
         <AppBox p={3}>
             <Stack spacing={3}>
@@ -274,8 +287,50 @@ export function Example() {
                 </RadioGroup>
 
                 <Divider>
-                    Radio
+                    Checkbox
                 </Divider>
+                <Box>
+                    <FormControlLabel control={<Checkbox defaultChecked/>} label={'Checked'}/>
+                    <FormControlLabel control={<Checkbox/>} label={'UnChecked'}/>
+                    <FormControlLabel control={<Checkbox sx={{
+                        '&.Mui-disabled': {color: '#B1B5C3'}
+                    }} checked disabled/>} label={'Checked, disabled'}/>
+                    <FormControlLabel control={<Checkbox sx={{
+                        '&.Mui-disabled': {color: '#B1B5C3'}
+                    }} disabled/>} label={'UnChecked, disabled'}/>
+                </Box>
+                <Box mt={'1rem'}>
+                    <FormControlLabel control={<Checkbox checked={checked[0] && checked[1] && checked[2]}
+                                                         onChange={(event) => {
+                                                             setChecked(prevState => prevState.map(item => item = event.target.checked))
+                                                         }}/>} label={'All'}/>
+                    <FormControlLabel control={<Checkbox checked={checked[0]}
+                                                         onChange={(event) => setChecked(prevState => {
+                                                             prevState[0] = event.target.checked;
+                                                             return [...prevState]
+                                                         })}/>}
+                                      label={'A'}/>
+                    <FormControlLabel control={<Checkbox checked={checked[1]}
+                                                         onChange={(event) => setChecked(prevState => {
+                                                             prevState[1] = event.target.checked;
+                                                             return [...prevState]
+                                                         })}/>}
+                                      label={'B'}/>
+                    <FormControlLabel control={<Checkbox checked={checked[2]}
+                                                         onChange={(event) => setChecked(prevState => {
+                                                             prevState[2] = event.target.checked;
+                                                             return [...prevState]
+                                                         })}/>}
+                                      label={'C'}/>
+                    <Button onClick={() => {
+                        const obj: any = {};
+                        checked[0] && (obj['a'] = 'A');
+                        checked[1] && (obj['b'] = 'B');
+                        checked[2] && (obj['c'] = 'C');
+
+                        console.log(obj)
+                    }}>Submit</Button>
+                </Box>
             </Stack>
         </AppBox>
     </>)
