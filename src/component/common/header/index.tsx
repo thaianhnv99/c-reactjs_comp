@@ -1,26 +1,40 @@
+import {AppBar, Box, Container, Toolbar, useTheme} from "@mui/material";
+import {Link} from 'react-router-dom';
+import Logo from 'src/assets/images/moodle-vector-logo.svg';
+
 export function Header() {
+    const theme = useTheme();
     return (
-        <></>
-    //     <Menu mode="horizontal" defaultSelectedKeys={['mail']}>
-    //     <Menu.Item key="mail" icon={<MailOutlined/>}>
-    //         Navigation One
-    //     </Menu.Item>
-    //     <Menu.SubMenu key="SubMenu" title="Navigation Two - Submenu" icon={<SettingOutlined/>}>
-    //         <Menu.Item key="two" icon={<AppstoreOutlined/>}>
-    //             Navigation Two
-    //         </Menu.Item>
-    //         <Menu.Item key="three" icon={<AppstoreOutlined/>}>
-    //             Navigation Three
-    //         </Menu.Item>
-    //         <Menu.ItemGroup title="Item Group">
-    //             <Menu.Item key="four" icon={<AppstoreOutlined/>}>
-    //                 Navigation Four
-    //             </Menu.Item>
-    //             <Menu.Item key="five" icon={<AppstoreOutlined/>}>
-    //                 Navigation Five
-    //             </Menu.Item>
-    //         </Menu.ItemGroup>
-    //     </Menu.SubMenu>
-    // </Menu>
+        <AppBar
+            position="static"
+            sx={{
+                bgcolor: theme.color.bg2,
+                border: 'none',
+            }}
+        >
+            <Container>
+                <Toolbar
+                    disableGutters
+                    sx={{
+                        height: '70px',
+                        padding: '0 20px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                    }}
+                >
+                    <Link to="/">
+                        <img
+                            src={Logo}
+                            alt=""
+                            style={{
+                                display: 'block',
+                                maxHeight: '50px',
+                            }}
+                        />
+                    </Link>
+                </Toolbar>
+            </Container>
+        </AppBar>
     )
 }

@@ -1,61 +1,282 @@
 import './example.scss';
-import {Divider} from "@mui/material";
-import {AppInput} from "../../component/Base";
+import {Box, Divider, FormControlLabel, Grid, Radio, RadioGroup, Stack, Typography} from "@mui/material";
+import {AppBox, AppDateRangePicker, AppInput} from "../../component/Base";
+import App from "../../App";
+import {TypeTypography} from "../../utils/theme";
+import {useState} from "react";
 
 export function Example() {
-    return <>
-        {/*<div className={'exampleContainer'}>*/}
-        {/*    <h1>Example</h1>*/}
-        {/*    <Divider>*/}
-        {/*        Typography*/}
-        {/*    </Divider>*/}
-        {/*    <Row justify='center'>*/}
-        {/*        <Col span={4}>*/}
-        {/*            <Title level={1}>H1. Antd</Title>*/}
-        {/*            <Title level={2}>H2. Antd</Title>*/}
-        {/*            <Title level={3}>H3. Antd</Title>*/}
-        {/*            <Title level={4}>H4. Antd</Title>*/}
-        {/*            <Title level={5}>H5. Antd</Title>*/}
-        {/*        </Col>*/}
-        {/*        <Col span={4}>*/}
-        {/*            <Title level={1} type="secondary">H1. (secondary)</Title>*/}
-        {/*            <Title level={2} type="success">H2. (success)</Title>*/}
-        {/*            <Title level={3} type="warning">H3. (warning)</Title>*/}
-        {/*            <Title level={4} type="danger">H4. (danger)</Title>*/}
-        {/*            <Title level={5} disabled>H5. (disabled)</Title>*/}
-        {/*        </Col>*/}
-        {/*        /!*<Col span={4}>*!/*/}
-        {/*        /!*    <Text code>Ant. (code)</Text><br/>*!/*/}
-        {/*        /!*    <Text strong>Ant. (strong)</Text><br/>*!/*/}
-        {/*        /!*    <Text editable>Ant. (editable)</Text><br/>*!/*/}
-        {/*        /!*    <Text mark>Ant. (mark)</Text><br/>*!/*/}
-        {/*        /!*    <Link href="https://github.com/" target="_blank">Ant. (link)</Link><br/>*!/*/}
-        {/*        /!*</Col>*!/*/}
-        {/*    </Row>*/}
+    const [radioValueSelected, setRadioValueSelected] = useState<any>(null);
+    return (<>
+        <AppBox p={3}>
+            <Stack spacing={3}>
+                <Divider>Typography</Divider>
+                <Grid container>
+                    <Grid item xs={4}>
+                        <Divider>Typography - REG</Divider>
+                        <Box sx={{width: '100%', maxWidth: 500}}>
+                            <Typography variant="h1" component="div" gutterBottom>
+                                Title 1
+                            </Typography>
+                            <Typography variant="h2" gutterBottom component="div">
+                                h2. Heading
+                            </Typography>
+                            <Typography variant="h3" gutterBottom component="div">
+                                h3. Heading
+                            </Typography>
+                            <Typography variant="h4" gutterBottom component="div">
+                                h4. Heading
+                            </Typography>
+                            <Typography variant="h5" gutterBottom component="div">
+                                h5. Heading
+                            </Typography>
+                            <Typography variant="h6" gutterBottom component="div">
+                                h6. Heading
+                            </Typography>
+                            <Typography variant="copy" gutterBottom component="div">
+                                copy
+                            </Typography>
+                            <Typography variant="body" gutterBottom component="div">
+                                body
+                            </Typography>
+                            <Typography variant="label" gutterBottom component="div">
+                                label
+                            </Typography>
+                            <Typography variant="caption" gutterBottom component="div">
+                                caption
+                            </Typography>
+                            <Typography variant="small" gutterBottom component="div">
+                                small
+                            </Typography>
+                        </Box>
+                    </Grid>
+                    <Grid item xs={4}>
+                        <Divider>Typography - MED</Divider>
+                        <Box sx={{width: '100%', maxWidth: 500}}>
+                            <Typography
+                                variant="h1"
+                                fontWeight="medium"
+                                component="div"
+                                gutterBottom
+                            >
+                                Title 1
+                            </Typography>
+                            <Typography
+                                variant="h2"
+                                fontWeight="medium"
+                                gutterBottom
+                                component="div"
+                            >
+                                h2. Heading
+                            </Typography>
+                            <Typography
+                                variant="h3"
+                                fontWeight="medium"
+                                gutterBottom
+                                component="div"
+                            >
+                                h3. Heading
+                            </Typography>
+                            <Typography
+                                variant="h4"
+                                fontWeight="medium"
+                                gutterBottom
+                                component="div"
+                            >
+                                h4. Heading
+                            </Typography>
+                            <Box
+                                // component='span'
+                                sx={{
+                                    typography: 'h5' as TypeTypography,
+                                    fontWeight: 'medium',
+                                }}
+                            >
+                                h5
+                            </Box>
+                            <Typography
+                                variant="h5"
+                                fontWeight="medium"
+                                gutterBottom
+                                component="div"
+                            >
+                                h5. Heading
+                            </Typography>
+                            <Typography
+                                variant="h6"
+                                fontWeight="medium"
+                                gutterBottom
+                                component="div"
+                            >
+                                h6. Heading
+                            </Typography>
+                            <Typography
+                                variant="copy"
+                                fontWeight="medium"
+                                gutterBottom
+                                component="div"
+                            >
+                                copy
+                            </Typography>
+                            <Typography
+                                variant="body"
+                                fontWeight="medium"
+                                gutterBottom
+                                component="div"
+                            >
+                                body
+                            </Typography>
+                            <Typography
+                                variant="label"
+                                fontWeight="medium"
+                                gutterBottom
+                                component="div"
+                            >
+                                label
+                            </Typography>
+                            <Typography
+                                variant="caption"
+                                fontWeight="medium"
+                                gutterBottom
+                                component="div"
+                            >
+                                caption
+                            </Typography>
+                            <Typography
+                                variant="small"
+                                fontWeight="medium"
+                                gutterBottom
+                                component="div"
+                            >
+                                small
+                            </Typography>
+                        </Box>
+                    </Grid>
+                    <Grid item xs={4}>
+                        <Divider>Typography - BOLD</Divider>
+                        <Box sx={{width: '100%', maxWidth: 500}}>
+                            <Typography
+                                variant="h1"
+                                fontWeight="bold"
+                                component="div"
+                                gutterBottom
+                            >
+                                Title 1
+                            </Typography>
+                            <Typography
+                                variant="h2"
+                                fontWeight="bold"
+                                gutterBottom
+                                component="div"
+                            >
+                                h2. Heading
+                            </Typography>
+                            <Typography
+                                variant="h3"
+                                fontWeight="bold"
+                                gutterBottom
+                                component="div"
+                            >
+                                h3. Heading
+                            </Typography>
+                            <Typography
+                                variant="h4"
+                                fontWeight="bold"
+                                gutterBottom
+                                component="div"
+                            >
+                                h4. Heading
+                            </Typography>
+                            <Typography
+                                variant="h5"
+                                fontWeight="bold"
+                                gutterBottom
+                                component="div"
+                            >
+                                h5. Heading
+                            </Typography>
+                            <Typography
+                                variant="h6"
+                                fontWeight="bold"
+                                gutterBottom
+                                component="div"
+                            >
+                                h6. Heading
+                            </Typography>
+                            <Typography
+                                variant="copy"
+                                fontWeight="bold"
+                                gutterBottom
+                                component="div"
+                            >
+                                copy
+                            </Typography>
+                            <Typography
+                                variant="body"
+                                fontWeight="bold"
+                                gutterBottom
+                                component="div"
+                            >
+                                body
+                            </Typography>
+                            <Typography
+                                variant="label"
+                                fontWeight="bold"
+                                gutterBottom
+                                component="div"
+                            >
+                                label
+                            </Typography>
+                            <Typography
+                                variant="caption"
+                                fontWeight="bold"
+                                gutterBottom
+                                component="div"
+                            >
+                                caption
+                            </Typography>
+                            <Typography
+                                variant="small"
+                                fontWeight="bold"
+                                gutterBottom
+                                component="div"
+                            >
+                                small
+                            </Typography>
+                        </Box>
+                    </Grid>
+                </Grid>
+                <Divider>
+                    Input
+                </Divider>
+                <AppInput/>
 
-        {/*    /!*Grid*!/*/}
-        {/*    <Divider orientation="center" plain>*/}
-        {/*        Grid*/}
-        {/*    </Divider>*/}
-        {/*    <Row>*/}
-        {/*        <Col span={6} offset={6}>*/}
-        {/*            col-6 col-offset-6*/}
-        {/*        </Col>*/}
-        {/*        <Col span={6} offset={6}>*/}
-        {/*            col-6 col-offset-6*/}
-        {/*        </Col>*/}
-        {/*    </Row>*/}
+                <Divider>
+                    DateRangePicker
+                </Divider>
+                <AppDateRangePicker/>
 
-        {/*    /!*Skeleton*!/*/}
-        {/*    <Divider orientation="center" plain>*/}
-        {/*        Skeleton*/}
-        {/*    </Divider>*/}
-        {/*    <Skeleton avatar paragraph={{rows: 4}} active/>*/}
-        {/*</div>*/}
+                <Divider>
+                    Radio
+                </Divider>
+                <RadioGroup
+                    aria-labelledby="demo-controlled-radio-buttons-group"
+                    name="controlled-radio-buttons-group"
+                    value={radioValueSelected}
+                    onChange={(event) => setRadioValueSelected(event.target.value)}
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                    }}
+                >
+                    <FormControlLabel value="a" control={<Radio/>} label="Catalogyo main Category"/>
+                    <FormControlLabel value="b" control={<Radio/>} label="Product"/>
+                </RadioGroup>
 
-        <Divider>
-            Input
-        </Divider>
-        <AppInput/>
-    </>
+                <Divider>
+                    Radio
+                </Divider>
+            </Stack>
+        </AppBox>
+    </>)
 }

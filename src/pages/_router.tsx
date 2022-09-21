@@ -7,7 +7,7 @@ import {Main} from "../component/common/main";
 export default function Router() {
     return (
         <BrowserRouter>
-            {/*<Header/>*/}
+            <Header/>
             <Main>
                 <Routes>
                     <Route path={'/'} element={<Example/>}></Route>
