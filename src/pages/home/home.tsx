@@ -26,7 +26,7 @@ export function Home() {
     }, []);
     return (
         <>
-        Home
+        Home update
         </>
         // <div className="homeContainer">
         //     <div>{title}</div>
