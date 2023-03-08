@@ -26,6 +26,7 @@ export function Home() {
     }, []);
     return (
         <>
+        Home
         </>
         // <div className="homeContainer">
         //     <div>{title}</div>
