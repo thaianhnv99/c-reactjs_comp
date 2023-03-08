@@ -9,5 +9,4 @@ phases:
       - yarn run build
   post_build:
     commands:
-      - aws s3 cp --recursive ./build s3://www.oncloudconsulting/
-      
+      - aws s3 cp --recursive ./build s3://my-pipeline-v1/
