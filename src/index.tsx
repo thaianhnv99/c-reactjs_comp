@@ -4,9 +4,9 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import Router from "./pages/_router";
 import {Provider} from "react-redux";
-import store from "./state/store";
+import store from "./states/store";
 import {ThemeProvider} from "@mui/material";
-import {theme} from "./utils/theme";
+import {theme} from "./shared/utils/theme";
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement

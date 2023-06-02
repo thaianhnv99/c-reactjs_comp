@@ -1,26 +1,30 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import { Home } from "./home/home";
 import { Example } from "./example/example";
-import { Header } from "../component/common/header";
-import { Main } from "../component/common/main";
+import { Header } from "../components/common/header";
+import { Main } from "../components/common/main";
 import SliderWrapper from "./slider/SliderWapper";
 import AccordionWrapper from "./comps/accordion/AccordionWrapper";
+import { Login, Register } from "./auth";
+import Layout from "src/components/common/layout/Layout";
 
 export default function Router() {
   return (
     <BrowserRouter>
-      <Header />
-      <Main>
-        <Routes>
-          <Route path={"/"} element={<Example />}></Route>
-          <Route path={"home"} element={<Home />}></Route>
-          <Route path={"example"} element={<Example />}></Route>
-          <Route path={"slider"} element={<SliderWrapper />}></Route>
-          <Route path={"comps"}>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/" element={<Example />}></Route>
+          <Route path="home" element={<Home />}></Route>
+          <Route path="example" element={<Example />}></Route>
+          <Route path="slider" element={<SliderWrapper />}></Route>
+          <Route path="comps">
             <Route path="accordion" element={<AccordionWrapper />} />
           </Route>
-        </Routes>
-      </Main>
+        </Route>
+
+        <Route path="login" element={<Login />}></Route>
+        <Route path="register" element={<Register />}></Route>
+      </Routes>
     </BrowserRouter>
   );
 }

@@ -1,4 +1,4 @@
-import Accordion from "src/component/Accordion/Accordion";
+import Accordion from "src/components/Accordion/Accordion";
 
 const AccordionWrapper = () => {
   return (

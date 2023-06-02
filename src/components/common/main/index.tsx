@@ -1,9 +1,9 @@
 import { Container } from "@mui/material";
-import { AppBox } from "../../Base";
+import { AppBox } from "../../base";
 
 export function Main({ children }: any) {
   return (
-    <AppBox color="gray10">
+    <AppBox>
       <Container sx={{ padding: "0 1rem", height: "100%" }}>
         {children}
       </Container>
