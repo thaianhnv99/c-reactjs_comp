@@ -2,22 +2,27 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
-import store from "./states/store";
 import { ThemeProvider } from "@mui/material";
 import { theme } from "./shared/utils/theme";
 import Router from "./pages/_router";
 import { BrowserRouter } from "react-router-dom";
+import { persistor, store } from "./states";
+import { PersistGate } from "redux-persist/integration/react";
+import { Toaster } from 'react-hot-toast';
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <Provider store={store}>
-    <ThemeProvider theme={theme}>
-      <BrowserRouter>
-        <Router />
-      </BrowserRouter>
-    </ThemeProvider>
+    <PersistGate loading={null} persistor={persistor}>
+      <ThemeProvider theme={theme}>
+        <Toaster position="top-right" reverseOrder={false}/>
+        <BrowserRouter>
+          <Router />
+        </BrowserRouter>
+      </ThemeProvider>
+    </PersistGate>
   </Provider>
 );
 

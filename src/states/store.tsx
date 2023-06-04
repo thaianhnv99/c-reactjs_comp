@@ -1,9 +1,32 @@
-import {combineReducers, configureStore, createStore} from "@reduxjs/toolkit";
-import infoReducer from './info/reducer'
+import { Action, ThunkAction, combineReducers, configureStore } from "@reduxjs/toolkit";
+import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
+import info from "./info/reducer";
+import auth from "./auth/reducer";
+import { persistReducer, persistStore } from "redux-persist";
 
-export default configureStore({
-    reducer: {
-        info: infoReducer
-    },
-    devTools: true,
+const rootReducer = combineReducers({
+  info,
+  auth,
 });
+
+const persisrConfig = {
+  key: "root",
+  storage,
+  whitelist: ['auth'], // only navigation will be persisted
+};
+
+const persistedReducer = persistReducer(persisrConfig, rootReducer);
+export const store = configureStore({
+  reducer: persistedReducer,
+});
+
+export const persistor = persistStore(store);
+
+export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>;
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  RootState,
+  unknown,
+  Action<string>
+>;

@@ -1,5 +1,5 @@
 import { apiClient } from "./apiClient";
-import { getAuthorization, setUserprofile } from "./authorization"
+import { getAuthorization, setUserProfile } from "./authorization"
 
 const refreshToken = async () => {
     const accessTokenOld = getAuthorization();
@@ -8,7 +8,7 @@ const refreshToken = async () => {
         const credentials = await apiClient.post<any>('123', { refreshToken: accessTokenOld });
 
         if (credentials) {
-            setUserprofile(credentials.data.user)
+            setUserProfile(credentials.data.user)
         }
 
         return credentials.data.token

@@ -6,6 +6,7 @@ import { useToggle } from "../../hooks/useToggle";
 import { Demo } from "./demo";
 import Cookie from "js-cookie";
 import Button from "@mui/material/Button";
+import { useAuth } from "src/states/auth/hook";
 
 export function Home() {
   const title = "Home for reactjs + ant design";
@@ -25,24 +26,15 @@ export function Home() {
     dispatch(fetchInfo());
   }, []);
 
-  const handleSet = () => {
-    Cookie.set("token", "12344354353", {
-      secure: true,
-      expires: 1,
-      sameSite: "strict",
-      path: "/",
-    });
-  };
+  const {
+    state: { loading },
+    logout,
+  } = useAuth();
   return (
     <>
       Home update v1
-      <Button onClick={handleSet}>Set cookie</Button>
-      <Button
-        onClick={() => {
-          console.log(Cookie.get("Authentication"));
-        }}
-      >
-        Log cookie
+      <Button variant="contained" onClick={logout}>
+        Logout{loading ? "..." : ""}
       </Button>
     </>
 

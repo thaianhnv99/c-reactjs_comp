@@ -66,3 +66,12 @@ interface User {
 interface AuthContext {
   user: User | null,
 }
+
+interface UserResponse extends User {
+  _id: string
+}
+
+interface UserProfileResponse {
+  user: User & { _id: string };
+  access_token: string
+}
