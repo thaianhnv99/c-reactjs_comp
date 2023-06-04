@@ -6,14 +6,12 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import useToken from "src/hooks/useToken";
-import { AuthServices } from "src/services";
+import { AuthServices } from "src/shared/services";
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const { setToken, token } = useToken();
 
   const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -21,19 +19,12 @@ const LoginPage = () => {
       email,
       password,
     };
-    console.log("🚀 ~ file: Login.tsx:15 ~ handleLogin ~ bodyReq:", bodyReq);
-
     try {
       const { data, status } = await AuthServices.login(bodyReq);
       if (data && status === 200) {
-        setToken("token");
         navigate("/home");
       }
-      console.log("data", data);
-    } catch (error) {
-      setToken("");
-      console.log("error", error);
-    }
+    } catch (error) {}
   };
   return (
     <form onSubmit={handleLogin}>

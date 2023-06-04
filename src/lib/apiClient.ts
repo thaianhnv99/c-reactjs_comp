@@ -4,9 +4,9 @@ import axios, {
   AxiosResponseHeaders,
   Method,
 } from "axios";
-// import { TFunction } from 'next-i18next';
 import qs from "qs";
 import { getAuthorizationHeader } from "./authorization";
+import Cookies from "js-cookie";
 
 function downloadAttachment(response: AxiosResponse, attachment: string) {
   const [, filename] = attachment.split("=");
@@ -56,41 +56,57 @@ export const setupAxios = () => {
     },
   });
 
-  // const axiosInterceptor = (store: ST, t: TFunction) => {
-  //   instance.interceptors.response.use(
-  //     function (response) {
-  //       const attachment = getAttachment(response.headers);
-  //       if (attachment) {
-  //         downloadAttachment(response, attachment);
-  //       }
+  instance.interceptors.request.use(
+    async (config) => {
+      const token = Cookies.get('Authentication');
+      if (token) {
+        config.headers = {
+          ...config.headers,
+          authorization: `Bearer ${token}`,
+        };
+      }
+      return config;
+    },
+    (error) => {
+      return Promise.reject(error);
+    }
+  );
 
-  //       return response;
-  //     },
-  //     function ({ response }) {
-  //       if (!response) {
-  //         return Promise.reject({
-  //           message: 'uncaught error',
-  //         });
-  //       }
-  //       if (response.status === 401 || response.status === 403) {
-  //         store.dispatch({ data: { displayAuthError: true }, type: '@COMMON/SET_DATA' });
-  //         return Promise.reject({
-  //           code: 'signOut',
-  //           message: t('MESAGE_AUTH_EXPIRED_SHORT'),
-  //         });
-  //       }
+  instance.interceptors.response.use(
+    (response) => response,
+    async (error) => {
+      const config = error?.config;
+      if (!config?.response) {
+        return Promise.reject({
+          message: 'uncaught error',
+        });
+      }
+      if (config?.response.status === 401 || !config?.sent) {
+        // config.sent = true;
+        // const token = await refreshToken()
 
-  //       if (response.status === 404) {
-  //         return Promise.reject({
-  //           code: response.status,
-  //           message: response.statusText,
-  //         });
-  //       }
+        // if (token) {
+        //   config.headers = {
+        //     ...config.headers,
+        //     authorization: `Bearer ${token?.accessToken}`,
+        //   };
+        // }
+        // return instance(config)
 
-  //       return Promise.reject(response.data);
-  //     }
-  //   );
-  // };
+        //redirect to /login
+
+      }
+
+      if (config?.response.status === 404) {
+        return Promise.reject({
+          code: config?.response.status,
+          message: config?.response.statusText,
+        });
+      }
+
+      return Promise.reject(error);
+    }
+  );
 
   const fetch = async <T>({
     method,

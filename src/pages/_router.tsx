@@ -1,17 +1,16 @@
-import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { Home } from "./home/home";
 import { Example } from "./example/example";
-import { Header } from "../components/common/header";
-import { Main } from "../components/common/main";
 import SliderWrapper from "./slider/SliderWapper";
 import AccordionWrapper from "./comps/accordion/AccordionWrapper";
 import { Login, Register } from "./auth";
 import Layout from "src/components/common/layout/Layout";
+import PrivateRouter from "./_privateRouter";
 
 export default function Router() {
   return (
-    <BrowserRouter>
-      <Routes>
+    <Routes>
+      <Route element={<PrivateRouter />}>
         <Route element={<Layout />}>
           <Route path="/" element={<Example />}></Route>
           <Route path="home" element={<Home />}></Route>
@@ -21,10 +20,10 @@ export default function Router() {
             <Route path="accordion" element={<AccordionWrapper />} />
           </Route>
         </Route>
+      </Route>
 
-        <Route path="login" element={<Login />}></Route>
-        <Route path="register" element={<Register />}></Route>
-      </Routes>
-    </BrowserRouter>
+      <Route path="login" element={<Login />}></Route>
+      <Route path="register" element={<Register />}></Route>
+    </Routes>
   );
 }

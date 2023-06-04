@@ -3,8 +3,9 @@ import { _increaseCount, fetchInfo } from "../../states";
 import { useEffect, useRef } from "react";
 import "./home.scss";
 import { useToggle } from "../../hooks/useToggle";
-import useClickOutside from "../../hooks/useClickOutside";
 import { Demo } from "./demo";
+import Cookie from "js-cookie";
+import Button from "@mui/material/Button";
 
 export function Home() {
   const title = "Home for reactjs + ant design";
@@ -18,13 +19,33 @@ export function Home() {
   const handleClickOutside = () => {
     console.log("123");
   };
-  useClickOutside(buttonRef, handleClickOutside);
+  // useClickOutside(buttonRef, handleClickOutside);
 
   useEffect(() => {
     dispatch(fetchInfo());
   }, []);
+
+  const handleSet = () => {
+    Cookie.set("token", "12344354353", {
+      secure: true,
+      expires: 1,
+      sameSite: "strict",
+      path: "/",
+    });
+  };
   return (
-    <>Home update v1</>
+    <>
+      Home update v1
+      <Button onClick={handleSet}>Set cookie</Button>
+      <Button
+        onClick={() => {
+          console.log(Cookie.get("Authentication"));
+        }}
+      >
+        Log cookie
+      </Button>
+    </>
+
     // <div className="homeContainer">
     //     <div>{title}</div>
     //     <div>

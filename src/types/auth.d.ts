@@ -58,3 +58,11 @@ interface Credentials {
 }
 
 type PartialCredentials = Partial<Credentials>;
+
+interface User {
+  email: string;
+  password: string
+}
+interface AuthContext {
+  user: User | null,
+}
