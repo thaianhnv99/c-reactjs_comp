@@ -4,17 +4,14 @@ import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import { FormEvent, useEffect, useState } from "react";
-import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { FormEvent, useState } from "react";
+import { Navigate } from "react-router-dom";
 import { useAuth } from "src/states/auth/hook";
 
 const LoginPage = () => {
-  const navigate = useNavigate();
   const {
-    state: { loading, userInfo, isAuth },
+    state: { loading, isAuth },
     login,
-    logout,
   } = useAuth();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -30,12 +27,9 @@ const LoginPage = () => {
     } catch (error) {}
   };
 
-  useEffect(() => {
-    if (isAuth) {
-      navigate("/home");
-    }
-  }, [isAuth, navigate]);
-  return (
+  return isAuth ? (
+    <Navigate to="/home" replace={true} />
+  ) : (
     <form onSubmit={handleLogin}>
       <Box height="100vh">
         <Box

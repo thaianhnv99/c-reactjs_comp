@@ -8,7 +8,7 @@ import Router from "./pages/_router";
 import { BrowserRouter } from "react-router-dom";
 import { persistor, store } from "./states";
 import { PersistGate } from "redux-persist/integration/react";
-import { Toaster } from 'react-hot-toast';
+import { Toaster } from "react-hot-toast";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -17,7 +17,7 @@ root.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
       <ThemeProvider theme={theme}>
-        <Toaster position="top-right" reverseOrder={false}/>
+        <Toaster position="top-right" reverseOrder={false} />
         <BrowserRouter>
           <Router />
         </BrowserRouter>
