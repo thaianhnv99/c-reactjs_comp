@@ -6,6 +6,7 @@ import AccordionWrapper from "./comps/accordion/AccordionWrapper";
 import { Login, Register } from "./auth";
 import Layout from "src/components/common/layout/Layout";
 import PrivateRouter from "./_privateRouter";
+import DataGrid from "./comps/data-grid/DataGrid";
 
 export default function Router() {
   return (
@@ -18,6 +19,7 @@ export default function Router() {
           <Route path="slider" element={<SliderWrapper />}></Route>
           <Route path="comps">
             <Route path="accordion" element={<AccordionWrapper />} />
+            <Route path="grid" element={<DataGrid />} />
           </Route>
         </Route>
       </Route>

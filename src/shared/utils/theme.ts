@@ -1,4 +1,4 @@
-import {createTheme} from "@mui/material";
+import { createTheme } from "@mui/material";
 import { ThemeOptions as ThemeOptionsOld } from '@mui/material/styles/createTheme';
 
 // Colors
@@ -315,6 +315,22 @@ const themeOptions: ThemeOptionsOld = {
             },
         },
 
+        MuiTable: {
+            styleOverrides: {
+                root: {
+                    borderRadius: 0
+                }
+            }
+        },
+
+        MuiTableCell: {
+            styleOverrides: {
+                root: {
+                    borderLeft: '1px solid #e0e0e0'
+                }
+            }
+        },
+
         MuiTab: {
             // styleOverrides: {
             //   root: {
@@ -438,4 +454,4 @@ declare module '@mui/material/Typography' {
 }
 
 // Create theme
-export const theme = createTheme({...themeCustoms, ...themeOptions});
+export const theme = createTheme({ ...themeCustoms, ...themeOptions });

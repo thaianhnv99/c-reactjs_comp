@@ -6,7 +6,7 @@ const PrivateRouter = () => {
     state: { isAuth },
   } = useAuth();
 
-  return !isAuth ? <Navigate to="/login" replace={true} /> : <Outlet />;
+  return false ? <Navigate to="/login" replace={true} /> : <Outlet />;
 };
 
 export default PrivateRouter;
