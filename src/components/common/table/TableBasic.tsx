@@ -5,60 +5,78 @@ import TableContainer from "@mui/material/TableContainer";
 import { useEffect, useState } from "react";
 
 interface ColumnProps<Item> {
-    field: keyof Item,
-    headerName: string,
-    groupBy?: string,
-    [key: string]: any
+  field?: string;
+  headerName: string;
+  section?: string;
+  column?: ColumnProps<Item>[];
 }
-
 interface TableBasicProps<Item> {
-    columns: ColumnProps<Item>[],
-    rows: Item[]
+  columns: ColumnProps<Item>[];
+  rows: Item[];
 }
 const TableBasic = <Item,>({ columns, rows }: TableBasicProps<Item>) => {
-    const [columnGroup, setColumnGroup] = useState([]);
-    useEffect(() => {
-        if (columns) {
-            //Map columns
-            const group = columns.reduce((result, currentValue) => {
-                if (currentValue?.groupBy) {
-                    return (result[currentValue?.groupBy] = result[currentValue?.groupBy] || []).push(currentValue)
-                }
-
-                return result;
-            }, {});
-
-            console.log('1111111111111', group);
-
+  const [columnGroup, setColumnGroup] = useState<ColumnProps<Item>[]>([]);
+  useEffect(() => {
+    if (columns) {
+      const data = columns.flatMap((item, index) => {
+        if (item.column?.length) {
+          return item.column.map((col) => ({ ...col, section: item.section }));
         }
-    }, [columns])
-    return (<>
-        <TableContainer component={Paper} square>
-            <Table stickyHeader sx={{ minWidth: 650 }}>
-                <TableHead>
-                    <TableRow>
-                        {
-                            columns.map((item, index) => {
-                                return <TableCell key={index}>{item.headerName}</TableCell>
-                            })
-                        }
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {
-                        rows.map((item, index) => {
-                            return <TableRow>
-                                {columns.map(col => {
-                                    return <TableCell key={index}>
-                                        {item[col.field] as string}
-                                    </TableCell>
-                                })}
-                            </TableRow>
-                        })}
-                </TableBody>
-            </Table>
-        </TableContainer>
-    </>);
-}
+        return [item];
+      });
+      console.log(data);
+
+      setColumnGroup(data);
+    }
+  }, [columns]);
+
+  return (
+    <>
+      <TableContainer component={Paper} square>
+        <Table stickyHeader sx={{ minWidth: 650 }}>
+          <TableHead>
+            {columns?.length && (
+              <TableRow>
+                {columns.map((item, index) => {
+                  return (
+                    <TableCell
+                      colSpan={item?.column?.length ?? -1}
+                      rowSpan={item?.column?.length ? -1 : 2}
+                      key={index}
+                    >
+                      {item.section ?? item.headerName}
+                    </TableCell>
+                  );
+                })}
+              </TableRow>
+            )}
+            <TableRow>
+              {columnGroup.map((item, index) => {
+                return item?.section ? (
+                  <TableCell key={index}>{item.headerName}</TableCell>
+                ) : null;
+              })}
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows.map((item: any, index) => {
+              return (
+                <TableRow key={index}>
+                  {columnGroup.map((col, i) => {
+                    return (
+                      <TableCell key={i}>
+                        {col?.field ? item[col?.field] : ""}
+                      </TableCell>
+                    );
+                  })}
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </>
+  );
+};
 
 export default TableBasic;
