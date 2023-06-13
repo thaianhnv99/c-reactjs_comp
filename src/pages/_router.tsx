@@ -7,6 +7,7 @@ import { Login, Register } from "./auth";
 import Layout from "src/components/common/layout/Layout";
 import PrivateRouter from "./_privateRouter";
 import DataGrid from "./comps/data-grid/DataGrid";
+import DateWrapper from "./comps/date/DateWrapper";
 
 export default function Router() {
   return (
@@ -20,6 +21,7 @@ export default function Router() {
           <Route path="comps">
             <Route path="accordion" element={<AccordionWrapper />} />
             <Route path="grid" element={<DataGrid />} />
+            <Route path="date" element={<DateWrapper />} />
           </Route>
         </Route>
       </Route>

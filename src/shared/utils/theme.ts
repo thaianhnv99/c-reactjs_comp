@@ -138,7 +138,9 @@ const themeOptions: ThemeOptionsOld = {
             main: themeCustoms.color.main,
         },
         secondary: {
-            main: themeCustoms.color.main,
+            light: themeCustoms.color.text,
+            main: themeCustoms.color.gray20,
+            contrastText: themeCustoms.color.gray100
         },
         info: {
             main: themeCustoms.color.notification,
@@ -229,7 +231,7 @@ const themeOptions: ThemeOptionsOld = {
                         color: '#B1B5C3',
                     },
                 },
-            },
+            }
         },
 
         MuiSkeleton: {
@@ -422,6 +424,16 @@ const themeOptions: ThemeOptionsOld = {
         // },
     },
 };
+
+declare module '@mui/material/styles' {
+    interface SimplePaletteColorOptions {
+        textMode?: string;
+    }
+
+    interface PaletteColor {
+        textMode?: string;
+    }
+}
 
 // Update for Typescript
 type CustomTheme = {
