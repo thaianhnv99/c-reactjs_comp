@@ -8,6 +8,8 @@ import Cookie from "js-cookie";
 import Button from "@mui/material/Button";
 import { useAuth } from "src/states/auth/hook";
 import Divider from "@mui/material/Divider";
+import useContextTheme from "src/hooks/useContextTheme";
+import { Typography } from "@mui/material";
 
 export function Home() {
   const title = "Home for reactjs + ant design";
@@ -37,7 +39,9 @@ export function Home() {
     console.log(count);
   };
 
-  console.log(count);
+  const context = useContextTheme();
+
+  console.log(context);
 
   return (
     <>
@@ -47,6 +51,9 @@ export function Home() {
       </Button>
       <Divider />
       <Button onClick={handleToggleCount}>Count {count}</Button>
+      <Divider>useTheme</Divider>
+      <Typography>{context.theme}</Typography>
+      <Button onClick={() => context.setTheme("black")}>Change theme</Button>
     </>
 
     // <div className="homeContainer">

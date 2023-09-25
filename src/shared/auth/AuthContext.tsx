@@ -1,6 +1,4 @@
 import { PropsWithChildren, createContext, useState } from "react";
-import { AuthServices } from "../services";
-import { AxiosResponse } from "axios";
 
 const AuthContext = createContext<AuthContext>({
   user: null,

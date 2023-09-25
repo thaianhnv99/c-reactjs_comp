@@ -1,9 +1,8 @@
 import { Container } from "@mui/material";
 import { AppBox } from "src/base";
 import SideBar from "./SideBar";
-import StarIcon from "src/icons/StarIcon";
 import { MenuItem } from "src/types";
-import AcademicCapIcon from "src/icons/AcademicCapIcon";
+import DocumentIcon from "src/icons/DocumentIcon";
 
 export function Main({ children }: any) {
   const menu = [
@@ -14,12 +13,37 @@ export function Main({ children }: any) {
         {
           title: "Home",
           url: "/home",
-          icon: <StarIcon />,
+          icon: <DocumentIcon />,
         },
         {
           title: "Example",
           url: "/example",
-          icon: <AcademicCapIcon />,
+          icon: <DocumentIcon />,
+        },
+        {
+          title: "Slider",
+          url: "/slider",
+          icon: <DocumentIcon />,
+        },
+        {
+          title: "Accordion",
+          url: "/accordion",
+          icon: <DocumentIcon />,
+        },
+        {
+          title: "Grid",
+          url: "/grid",
+          icon: <DocumentIcon />,
+        },
+        {
+          title: "Date",
+          url: "/date",
+          icon: <DocumentIcon />,
+        },
+        {
+          title: "List debounce",
+          url: "/list-debounce",
+          icon: <DocumentIcon />,
         },
       ],
     },
@@ -30,7 +54,7 @@ export function Main({ children }: any) {
         {
           title: "useTransition",
           url: "/transition",
-          icon: <AcademicCapIcon />,
+          icon: <DocumentIcon />,
         },
       ],
     },
@@ -40,13 +64,12 @@ export function Main({ children }: any) {
       sx={{
         display: "flex",
         minHeight: "calc(100vh)",
-        boxShadow: "0px 1px 2px #888888",
       }}
     >
-      <SideBar menu={menu} />
       <AppBox flex={1} p={2}>
         {children}
       </AppBox>
+      <SideBar menu={menu} />
     </Container>
   );
 }

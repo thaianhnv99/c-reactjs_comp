@@ -9,6 +9,7 @@ import { BrowserRouter } from "react-router-dom";
 import { persistor, store } from "./states";
 import { PersistGate } from "redux-persist/integration/react";
 import { Toaster } from "react-hot-toast";
+import ThemeContextProvider from "./shared/theme-context";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -17,10 +18,12 @@ root.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
       <ThemeProvider theme={theme}>
-        <Toaster position="top-right" reverseOrder={false} />
-        <BrowserRouter>
-          <Router />
-        </BrowserRouter>
+        <ThemeContextProvider>
+          <Toaster position="top-right" reverseOrder={false} />
+          <BrowserRouter>
+            <Router />
+          </BrowserRouter>
+        </ThemeContextProvider>
       </ThemeProvider>
     </PersistGate>
   </Provider>

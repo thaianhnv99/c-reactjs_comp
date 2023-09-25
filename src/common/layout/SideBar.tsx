@@ -6,7 +6,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import ListSubheader from "@mui/material/ListSubheader";
 import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { AppBox } from "src/base";
 import ExpandLessIcon from "src/icons/ExpandLessIcon";
 import ExpandMoreIcon from "src/icons/ExpandMoreIcon";
@@ -49,19 +49,13 @@ interface SideBarProps {
 }
 const SideBar = ({ menu }: SideBarProps) => {
   return (
-    <AppBox
-      display="flex"
-      flexDirection="column"
-      borderRight="1px solid #88888859"
-      maxWidth={360}
-      width="100%"
-    >
+    <AppBox display="flex" flexDirection="column" maxWidth={360} width="100%">
       <Box position="sticky" top={0}>
         {menu.map((item, index) => {
           if (item.isSub) {
             return (
               <List
-                key={index}
+                key={item.url || "" + index}
                 sx={{
                   width: "100%",
                   bgcolor: "background.paper",
@@ -74,9 +68,13 @@ const SideBar = ({ menu }: SideBarProps) => {
                 }
               >
                 {item.subItem && item.subItem.length > 0
-                  ? item.subItem.map((sub) => {
+                  ? item.subItem.map((sub, index) => {
                       return (
-                        <ListItemButton component={NavLink} to={sub?.url || ""}>
+                        <ListItemButton
+                          key={index}
+                          component={NavLink}
+                          to={sub?.url || ""}
+                        >
                           <ListItemIcon>{sub?.icon}</ListItemIcon>
                           <ListItemText primary={sub?.title} />
                         </ListItemButton>
@@ -87,7 +85,7 @@ const SideBar = ({ menu }: SideBarProps) => {
             );
           } else {
             return (
-              <ListItemButton key={index}>
+              <ListItemButton key={item.url || ""}>
                 <ListItemIcon>{item?.icon}</ListItemIcon>
                 <ListItemText primary={item?.title} />
               </ListItemButton>

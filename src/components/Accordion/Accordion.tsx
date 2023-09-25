@@ -46,7 +46,7 @@ const Accordion = ({}: AccordionProps) => {
             key={item.id}
             accordion={item}
             open={
-              trick === "multi" && isArray(itemExpan)
+              trick === "multi"
                 ? itemExpan.includes(item.id)
                 : itemExpan[0] === item.id
             }

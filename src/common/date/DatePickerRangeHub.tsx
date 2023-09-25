@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 const DatePickerRangeHub = () => {
   return (
     <Box py={4}>
-      <Box display="flex" alignItems="center" gap={2}>
+      <Box display="flex" alignItems="center" gap={2} flexWrap="wrap">
         <InputLabel>Query period</InputLabel>
         <TextField
           type="date"
