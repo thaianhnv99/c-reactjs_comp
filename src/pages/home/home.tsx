@@ -1,21 +1,22 @@
 import { useDispatch, useSelector } from "react-redux";
 import { _increaseCount, fetchInfo } from "../../states";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./home.scss";
 import { useToggle } from "../../hooks/useToggle";
 import { Demo } from "./demo";
 import Cookie from "js-cookie";
 import Button from "@mui/material/Button";
 import { useAuth } from "src/states/auth/hook";
+import Divider from "@mui/material/Divider";
 
 export function Home() {
   const title = "Home for reactjs + ant design";
-
   const dispatch = useDispatch();
   const { info } = useSelector((state: any) => state);
 
   const [open, setOpen] = useToggle(false);
   const buttonRef = useRef(null);
+  const [count, setCount] = useState(0);
 
   const handleClickOutside = () => {
     console.log("123");
@@ -30,12 +31,22 @@ export function Home() {
     state: { loading },
     logout,
   } = useAuth();
+
+  const handleToggleCount = () => {
+    setCount(count + 1);
+    console.log(count);
+  };
+
+  console.log(count);
+
   return (
     <>
       Home update v1
       <Button variant="contained" onClick={logout}>
         Logout{loading ? "..." : ""}
       </Button>
+      <Divider />
+      <Button onClick={handleToggleCount}>Count {count}</Button>
     </>
 
     // <div className="homeContainer">

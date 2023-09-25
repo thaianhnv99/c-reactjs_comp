@@ -1,4 +1,4 @@
-import TableBasic from "src/components/common/table/TableBasic";
+import TableBasic from "src/common/table/TableBasic";
 
 interface TColumn {
   field?: string;

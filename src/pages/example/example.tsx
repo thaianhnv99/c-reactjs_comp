@@ -11,7 +11,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { AppBox, AppDateRangePicker, AppInput } from "../../components/base";
+import { AppBox, AppDateRangePicker, AppInput } from "../../base";
 import { TypeTypography } from "../../shared/utils/theme";
 import { useRef, useState } from "react";
 

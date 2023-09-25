@@ -1,6 +1,6 @@
 import React from "react";
 import {FormHelperText, InputBase, InputBaseProps, Theme, useTheme} from "@mui/material";
-import {TypeTypography} from "../../../shared/utils/theme";
+import {TypeTypography} from "../../shared/utils/theme";
 
 export interface AppInputProps extends Omit<InputBaseProps, 'errors'> {
     errors?: string | null | boolean;

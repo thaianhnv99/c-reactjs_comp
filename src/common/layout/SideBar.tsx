@@ -1,0 +1,102 @@
+import Box from "@mui/material/Box";
+import Collapse from "@mui/material/Collapse";
+import List from "@mui/material/List";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import ListSubheader from "@mui/material/ListSubheader";
+import { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { AppBox } from "src/base";
+import ExpandLessIcon from "src/icons/ExpandLessIcon";
+import ExpandMoreIcon from "src/icons/ExpandMoreIcon";
+import StarIcon from "src/icons/StarIcon";
+import { MenuItem } from "src/types";
+
+interface MenuItemWrapperProps {
+  open: boolean;
+}
+export const MenuItemWrapper = ({ open }: MenuItemWrapperProps) => {
+  const [openWrapper, setOpenWrapper] = useState(open);
+  const handleClick = () => {
+    setOpenWrapper((prev) => !prev);
+  };
+  return (
+    <>
+      <ListItemButton onClick={handleClick}>
+        <ListItemIcon>
+          <StarIcon />
+        </ListItemIcon>
+        <ListItemText primary="Inbox" />
+        {openWrapper ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+      </ListItemButton>
+      <Collapse in={openWrapper} timeout="auto" unmountOnExit>
+        <List component="div" disablePadding>
+          <ListItemButton sx={{ pl: 4 }}>
+            <ListItemIcon>
+              <StarIcon />
+            </ListItemIcon>
+            <ListItemText primary="Starred" />
+          </ListItemButton>
+        </List>
+      </Collapse>
+    </>
+  );
+};
+
+interface SideBarProps {
+  menu: MenuItem[];
+}
+const SideBar = ({ menu }: SideBarProps) => {
+  return (
+    <AppBox
+      display="flex"
+      flexDirection="column"
+      borderRight="1px solid #88888859"
+      maxWidth={360}
+      width="100%"
+    >
+      <Box position="sticky" top={0}>
+        {menu.map((item, index) => {
+          if (item.isSub) {
+            return (
+              <List
+                key={index}
+                sx={{
+                  width: "100%",
+                  bgcolor: "background.paper",
+                }}
+                component="nav"
+                subheader={
+                  <ListSubheader component="div" id="nested-list-subheader">
+                    {item?.title}
+                  </ListSubheader>
+                }
+              >
+                {item.subItem && item.subItem.length > 0
+                  ? item.subItem.map((sub) => {
+                      return (
+                        <ListItemButton component={NavLink} to={sub?.url || ""}>
+                          <ListItemIcon>{sub?.icon}</ListItemIcon>
+                          <ListItemText primary={sub?.title} />
+                        </ListItemButton>
+                      );
+                    })
+                  : null}
+              </List>
+            );
+          } else {
+            return (
+              <ListItemButton key={index}>
+                <ListItemIcon>{item?.icon}</ListItemIcon>
+                <ListItemText primary={item?.title} />
+              </ListItemButton>
+            );
+          }
+        })}
+      </Box>
+    </AppBox>
+  );
+};
+
+export default SideBar;

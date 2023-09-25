@@ -1,4 +1,4 @@
-import DatePickerRangeHub from "src/components/common/date/DatePickerRangeHub";
+import DatePickerRangeHub from "src/common/date/DatePickerRangeHub";
 
 const DateWrapper = () => {
   return <DatePickerRangeHub />;

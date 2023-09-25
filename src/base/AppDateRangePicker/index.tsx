@@ -1,7 +1,6 @@
 import {DateRange, DateRangePicker} from '@mui/lab'
 import React from "react";
 import {Box, TextField} from "@mui/material";
-import {AppBox} from "../AppBox";
 
 export function AppDateRangePicker() {
     const [value, setValue] = React.useState<DateRange<Date>>([null, null]);

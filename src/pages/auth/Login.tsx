@@ -4,33 +4,41 @@ import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import { FormEvent, useState } from "react";
+import { useForm } from "react-hook-form";
 import { Navigate } from "react-router-dom";
 import { useAuth } from "src/states/auth/hook";
+import { authValidateSchema } from "src/types/user";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const LoginPage = () => {
   const {
     state: { loading, isAuth },
     login,
   } = useAuth();
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(authValidateSchema),
+  });
 
-  const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const bodyReq = {
-      email,
-      password,
-    };
-    try {
-      await login(bodyReq);
-    } catch (error) {}
+  const handleLogin = async () => {
+    console.log(getValues());
+
+    // if (!validResult.success) {
+    //   console.log(validResult.error.issues);
+    // }
+    // try {
+    //   await login(bodyReq);
+    // } catch (error) {}
   };
 
   return isAuth ? (
     <Navigate to="/home" replace={true} />
   ) : (
-    <form onSubmit={handleLogin}>
+    <form onSubmit={handleSubmit(handleLogin)}>
       <Box height="100vh">
         <Box
           sx={{
@@ -46,19 +54,43 @@ const LoginPage = () => {
           }}
         >
           <Typography variant="h3">Login</Typography>
-          <TextField
-            placeholder="Pls enter email"
-            size="small"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <TextField
-            placeholder="Pls enter password"
-            size="small"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <Box>
+            <TextField
+              placeholder="Pls enter email"
+              size="small"
+              fullWidth
+              {...register("username")}
+            />
+            {errors.username?.message && (
+              <Typography
+                variant="small"
+                color="red"
+                display="flex"
+                justifyContent="flex-end"
+              >
+                {errors.username.message.toString()}
+              </Typography>
+            )}
+          </Box>
+          <Box>
+            <TextField
+              placeholder="Pls enter password"
+              size="small"
+              type="password"
+              fullWidth
+              {...register("password")}
+            />
+            {errors.password?.message && (
+              <Typography
+                variant="small"
+                color="red"
+                display="flex"
+                justifyContent="flex-end"
+              >
+                {errors.password.message.toString()}
+              </Typography>
+            )}
+          </Box>
           <Box
             sx={{
               display: "flex",
