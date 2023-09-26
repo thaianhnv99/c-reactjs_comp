@@ -58,6 +58,17 @@ export function Main({ children }: any) {
         },
       ],
     },
+    {
+      title: "Lib",
+      isSub: true,
+      subItem: [
+        {
+          title: "React query",
+          url: "/react-query",
+          icon: <DocumentIcon />,
+        },
+      ],
+    },
   ] as MenuItem[];
   return (
     <Container

@@ -10,6 +10,7 @@ import DateWrapper from "./date/DateWrapper";
 import Transition from "src/components/demo/Transition";
 import Layout from "src/common/layout/Layout";
 import SearchList from "./debounce/SearchList";
+import List from "./react-query/List";
 
 export default function Router() {
   return (
@@ -25,6 +26,7 @@ export default function Router() {
           <Route path="grid" element={<DataGrid />} />
           <Route path="date" element={<DateWrapper />} />
           <Route path="list-debounce" element={<SearchList />} />
+          <Route path="react-query" element={<List />} />
         </Route>
       </Route>
 

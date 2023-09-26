@@ -417,13 +417,6 @@ const themeOptions: ThemeOptionsOld = {
         },
       },
     },
-    MuiSvgIcon: {
-      styleOverrides: {
-        root: {
-          fill: "none",
-        },
-      },
-    },
 
     // MuiTypography: {
     //   styleOverrides: {

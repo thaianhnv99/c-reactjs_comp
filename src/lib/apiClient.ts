@@ -7,6 +7,7 @@ import axios, {
 import qs from "qs";
 import { getAuthorizationHeader } from "./authorization";
 import Cookies from "js-cookie";
+import { sleep } from "src/shared/utils/util";
 
 function downloadAttachment(response: AxiosResponse, attachment: string) {
   const [, filename] = attachment.split("=");
@@ -58,7 +59,7 @@ export const setupAxios = () => {
 
   instance.interceptors.request.use(
     async (config) => {
-      const token = Cookies.get('Authentication');
+      const token = Cookies.get("Authentication");
       if (token) {
         config.headers = {
           ...config.headers,
@@ -73,18 +74,20 @@ export const setupAxios = () => {
   );
 
   instance.interceptors.response.use(
-    (response) => response,
+    async (response) => {
+      await sleep(2000);
+      return response;
+    },
     async (error) => {
       const config = error?.config;
       if (!config?.response) {
         return Promise.reject({
-          message: 'uncaught error',
+          message: "uncaught error",
         });
       }
       if (config?.response.status === 401 || !config?.sent) {
         // config.sent = true;
         // const token = await refreshToken()
-
         // if (token) {
         //   config.headers = {
         //     ...config.headers,
@@ -92,9 +95,7 @@ export const setupAxios = () => {
         //   };
         // }
         // return instance(config)
-
         //redirect to /login
-
       }
 
       if (config?.response.status === 404) {
