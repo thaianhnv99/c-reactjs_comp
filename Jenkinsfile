@@ -11,5 +11,13 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/thaianhnv99/c-reactjs_comp.git'
             }
         }
+        state('Build docker') {
+            steps {
+                withDockerRegistry(credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/') {
+                    sh 'docker build -t thainv99/c-reactjs-comp:v1 .'
+                    sh 'docker push thainv99/c-reactjs-comp:v1'
+                }
+            }
+        }
     }
 }
