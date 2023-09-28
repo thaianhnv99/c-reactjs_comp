@@ -8,7 +8,7 @@ pipeline {
         // }
         stage('Clone') {
             steps {
-                git 'https://github.com/thaianhnv99/c-reactjs_comp.git'
+                git branch: 'main', url: 'https://github.com/thaianhnv99/c-reactjs_comp.git'
             }
         }
     }
