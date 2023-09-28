@@ -13,9 +13,9 @@ pipeline {
         }
         stage('Build docker') {
             steps {
-                withDockerRegistry(credentialsId: 'docker-hub', url: 'https://hub.docker.com/') {
-                    sh 'docker build -t thainv99/c-reactjs-comp:v1 .'
-                    sh 'docker push thainv99/c-reactjs-comp:v1'
+                withDockerRegistry(credentialsId: 'docker-hub', url: '') {
+                    sh 'docker build -t thainv99/react-app:v1 .'
+                    sh 'docker push thainv99/react-app'
                 }
             }
         }
