@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent {
+        node {
+            label 'docker-pipeline'
+        }
+    }
     stages {
         // stage ('Git Checkout') {
         //     steps {
