@@ -10,7 +10,7 @@ import ReloadIcon from "src/icons/ReloadIcon";
 const List = () => {
   const [textSearch, setTextSearch] = useState<string>();
   const value = useDebounce(textSearch, 300);
-  const a = '123456'
+  const a = '123'
 
   const { data, isError, isLoading, isFetching, isSuccess, refetch } = useQuery(
     [POST_CACHE_KEY.GET_LIST],
