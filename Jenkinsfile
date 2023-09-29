@@ -1,7 +1,12 @@
 pipeline {
     agent {
+        // node {
+        //     label 'docker-pipeline'
+        // }
         docker {                     // We want to use docker for this
-            label 'pipeline'  // Use a node/agent with these labels
+            image 'alpine'           // The docker image to run in
+            label 'docker-pipeline'  // Use a node/agent with these labels
+            args '-u root:sudo'      // Add this to be root in the container
         }
     }
     stages {
