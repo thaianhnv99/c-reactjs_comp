@@ -1,9 +1,10 @@
 pipeline {
-    agent {
-        node {
-            label 'pipeline'
-        }
-    }
+    agent any
+    // agent {
+    //     node {
+    //         label 'pipeline'
+    //     }
+    // }
     stages {
         // stage ('Git Checkout') {
         //     steps {
