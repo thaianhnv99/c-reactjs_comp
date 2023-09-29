@@ -1,29 +1,30 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:lts-buster-slim'
-            args '-p 3000:3000'
-        }
-    }
-    environment {
-        CI = 'true'
-    }
+    agent any
     stages {
-        stage('Build') {
+        // stage ('Git Checkout') {
+        //     steps {
+        //         git branch: 'main', url: 'https://github.com/thaianhnv99/c-reactjs_comp.git'
+        //     }
+        // }
+        stage('Tooling versions') {
             steps {
-                sh 'npm install'
+                sh '''
+                docker --version
+                docker compose version
+                '''
             }
         }
-        stage('Test') {
+        stage('Clone') {
             steps {
-                sh './jenkins/scripts/test.sh'
+                git branch: 'main', url: 'https://github.com/thaianhnv99/c-reactjs_comp.git'
             }
         }
-        stage('Deliver') {
+        stage('Build docker') {
             steps {
-                sh './jenkins/scripts/deliver.sh'
-                input message: 'Finished using the web site? (Click "Proceed" to continue)'
-                sh './jenkins/scripts/kill.sh'
+                withDockerRegistry(credentialsId: 'docker', url: 'https://index.docker.io/v1/') {
+                    sh 'docker build -t thainv99/react-app:v1 .'
+                    sh 'docker push thainv99/react-app:v1'
+                }
             }
         }
     }
