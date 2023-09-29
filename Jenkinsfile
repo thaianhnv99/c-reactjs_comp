@@ -1,6 +1,8 @@
 pipeline {
     agent {
-        docker { image 'node:18.18.0-alpine3.18' }
+        node {
+            label 'docker-pipeline'
+        }
     }
     stages {
         // stage ('Git Checkout') {
@@ -22,9 +24,6 @@ pipeline {
             }
         }
         stage('Build docker') {
-            agent {
-                docker { image 'node:alpine' }
-            }
             steps {
                 withDockerRegistry(credentialsId: 'docker', url: 'https://index.docker.io/v1/') {
                     sh 'docker build -t thainv99/react-app:v1 .'
