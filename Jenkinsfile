@@ -3,7 +3,6 @@ pipeline {
         node {
             label 'docker-pipeline'
         }
-        docker { image 'node:16-alpine' }
     }
     stages {
         // stage ('Git Checkout') {
@@ -11,6 +10,9 @@ pipeline {
         //         git branch: 'main', url: 'https://github.com/thaianhnv99/c-reactjs_comp.git'
         //     }
         // }
+        agent {
+            docker { image 'node:16-alpine' }
+        }
         stage('Tooling versions') {
             steps {
                 sh '''
