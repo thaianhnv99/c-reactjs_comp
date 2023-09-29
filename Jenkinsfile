@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    environment {
-        DOCKERHUB_CREDENTIALS = credentials('dockerhub')
-    }
     stages {
         // stage ('Git Checkout') {
         //     steps {
@@ -16,17 +13,10 @@ pipeline {
         }
         stage('Build docker') {
             steps {
-                sh 'docker build -t thainv99/react-app:v1 .'
-            }
-        }
-        stage('Login') {
-            steps {
-                sh 'docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-            }
-        }
-        stage('Push docker') {
-            steps {
-                sh 'docker push thainv99/react-app:v1'
+                withDockerRegistry(credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/') {
+                    sh 'docker build -t thainv99/react-app:v1 .'
+                    sh 'docker push thainv99/react-app:v1'
+                }
             }
         }
     }
