@@ -1,5 +1,10 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'node:16-alpine' 
+            args '-p 3000:3000' 
+        }
+    }
     // agent {
     //     node {
     //         label 'pipeline'
@@ -22,14 +27,6 @@ pipeline {
         stage('Clone') {
             steps {
                 git branch: 'main', url: 'https://github.com/thaianhnv99/c-reactjs_comp.git'
-            }
-        }
-        stage('Build docker') {
-            steps {
-                withDockerRegistry(credentialsId: 'docker', url: 'https://index.docker.io/v1/') {
-                    sh 'docker build -t thainv99/react-app:v1 .'
-                    sh 'docker push thainv99/react-app:v1'
-                }
             }
         }
     }
