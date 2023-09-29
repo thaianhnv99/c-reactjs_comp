@@ -1,7 +1,8 @@
 pipeline {
     agent {
-        node {
-            label 'docker-pipeline'
+        docker {                     // We want to use docker for this
+            image 'alpine'           // The docker image to run in
+            label 'docker-pipeline'  // Use a node/agent with these labels
         }
     }
     stages {
