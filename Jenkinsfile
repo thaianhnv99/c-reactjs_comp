@@ -1,24 +1,30 @@
 pipeline {
-  agent any
-  tools {nodejs "latest"}
-  stages {
-    stage('preflight') {
-      steps {
-        echo sh(returnStdout: true, script: 'env')
-        sh 'node -v'
-      }
+    agent {
+        docker {
+            image 'node:lts-buster-slim'
+            args '-p 3000:3000'
+        }
     }
-    stage('build') {
-      steps {
-        sh 'npm --version'
-        sh 'git log --reverse -1'
-        sh 'npm install'
-      }
+    environment {
+        CI = 'true'
     }
-    stage('test') {
-      steps {
-        sh 'npm test'
-      }
+    stages {
+        stage('Build') {
+            steps {
+                sh 'npm install'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh './jenkins/scripts/test.sh'
+            }
+        }
+        stage('Deliver') {
+            steps {
+                sh './jenkins/scripts/deliver.sh'
+                input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                sh './jenkins/scripts/kill.sh'
+            }
+        }
     }
-  }
 }
