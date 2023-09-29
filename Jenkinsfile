@@ -1,15 +1,9 @@
 pipeline {
     agent {
-            node {
-                label 'docker-pipeline'
-            }
-            docker { image 'node:18.18.0-alpine3.18' }
+        node {
+            label 'docker-pipeline'
+        }
     }
-    // agent {
-    //     node {
-    //         label 'docker-pipeline'
-    //     }
-    // }
     stages {
         // stage ('Git Checkout') {
         //     steps {
