@@ -1,48 +1,24 @@
 pipeline {
-    agent any
-    // agent {
-    //     node {
-    //         label 'pipeline'
-    //     }
-    // }
-    stages {
-        // stage ('Git Checkout') {
-        //     steps {
-        //         git branch: 'main', url: 'https://github.com/thaianhnv99/c-reactjs_comp.git'
-        //     }
-        // }
-        stage('Tooling versions') {
-            steps {
-                sh '''
-                docker --version
-                docker compose version
-                node --version
-                '''
-            }
-        }
-        stage('Clone') {
-            steps {
-                git branch: 'main', url: 'https://github.com/thaianhnv99/c-reactjs_comp.git'
-            }
-        }
-        stage('Install Packages') {
-            steps {
-                sh 'npm install'
-            }
-        }
-        stage('Test and Build') {
-            parallel {
-                stage('Run Tests') {
-                    steps {
-                        sh 'yarn run test'
-                    }
-                }
-        stage('Create Build Artifacts') {
-            steps {
-                sh 'yarn run build'
-            }
-        }
-            }
-        }
+  agent any
+  tools {nodejs "latest"}
+  stages {
+    stage('preflight') {
+      steps {
+        echo sh(returnStdout: true, script: 'env')
+        sh 'node -v'
+      }
     }
+    stage('build') {
+      steps {
+        sh 'npm --version'
+        sh 'git log --reverse -1'
+        sh 'npm install'
+      }
+    }
+    stage('test') {
+      steps {
+        sh 'npm test'
+      }
+    }
+  }
 }
