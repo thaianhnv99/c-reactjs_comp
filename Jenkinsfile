@@ -27,7 +27,7 @@ pipeline {
         }
         stage('Install Packages') {
             steps {
-                sh 'yarn'
+                sh 'npm install'
             }
         }
         stage('Test and Build') {
