@@ -3,6 +3,7 @@ pipeline {
         node {
             label 'docker-pipeline'
         }
+        docker { image 'node:16-alpine' }
     }
     stages {
         // stage ('Git Checkout') {
