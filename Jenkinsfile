@@ -16,7 +16,7 @@ pipeline {
                 sh '''
                 docker --version
                 docker compose version
-                npm -v
+                node --version
                 '''
             }
         }
