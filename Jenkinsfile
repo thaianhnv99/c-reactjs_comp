@@ -1,8 +1,6 @@
 pipeline {
     agent {
-        node {
-            label 'pipeline'
-        }
+        label 'pipeline'
     }
     stages {
         // stage ('Git Checkout') {
