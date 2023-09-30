@@ -8,7 +8,7 @@ agent any
 stages {
 stage('Cloning our Git') {
 steps {
-git 'https://github.com/YourGithubAccount/YourGithubRepository.git'
+git branch: 'main', url: 'https://github.com/thaianhnv99/c-reactjs_comp.git'
 }
 }
 stage('Building our image') {
