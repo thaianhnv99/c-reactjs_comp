@@ -1,60 +1,36 @@
 pipeline {
-  agent {
-    docker {
-      image 'node:10-alpine'
-      args '-p 20001-20100:3000'
-    }
-  }
-  environment {
-    CI = 'true'
-    HOME = '.'
-    npm_config_cache = 'npm-cache'
-  }
-  stages {
-    stage('Install Packages') {
-      steps {
-        sh 'npm install'
-      }
-    }
-    stage('Test and Build') {
-      parallel {
-        stage('Run Tests') {
-          steps {
-            sh 'npm run test'
-          }
+    agent {
+        docker {
+            image 'node:10-alpine'
+            args '-p 20001-20100:3000'
         }
-        stage('Create Build Artifacts') {
-          steps {
-            sh 'npm run build'
-          }
-        }
-      }
     }
-    stage('Deployment') {
-      parallel {
-        stage('Staging') {
-          when {
-            branch 'staging'
-          }
-          steps {
-            withAWS(region:'us-east-2',credentials:'ecod-aws') {
-              s3Delete(bucket: 'ecod-s3-stage', path:'**/*')
-              s3Upload(bucket: 'ecod-s3-stage', workingDir:'build', includePathPattern:'**/*');
+    stages {
+        // stage ('Git Checkout') {
+        //     steps {
+        //         git branch: 'main', url: 'https://github.com/thaianhnv99/c-reactjs_comp.git'
+        //     }
+        // }
+        stage('Tooling versions') {
+            steps {
+                sh '''
+                docker --version
+                docker compose version
+                '''
             }
-          }
         }
-        stage('Production') {
-          when {
-            branch 'master'
-          }
-          steps {
-            withAWS(region:'us-east-2',credentials:'ecod-aws') {
-              s3Delete(bucket: 'ecod-s3-prod', path:'**/*')
-              s3Upload(bucket: 'ecod-s3-prod', workingDir:'build', includePathPattern:'**/*');
+        stage('Clone') {
+            steps {
+                git branch: 'main', url: 'https://github.com/thaianhnv99/c-reactjs_comp.git'
             }
-          }
         }
-      }
+        stage('Build docker') {
+            steps {
+                withDockerRegistry(credentialsId: 'docker', url: 'https://index.docker.io/v1/') {
+                    sh 'docker build -t thainv99/react-app:v1 .'
+                    sh 'docker push thainv99/react-app:v1'
+                }
+            }
+        }
     }
-  }
 }
