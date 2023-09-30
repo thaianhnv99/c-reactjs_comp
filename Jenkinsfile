@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label "agent1"
+        docker { image 'docker:latest' }
     }
     stages {
         // stage ('Git Checkout') {
