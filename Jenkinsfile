@@ -4,7 +4,7 @@ pipeline {
           {
             image 'maven:3-alpine'
             args '-u root -p 8081:8081 -v /var/run/docker.sock:/var/run/docker.sock  '
-         }
+        }
     }
     stages {
         // stage ('Git Checkout') {
