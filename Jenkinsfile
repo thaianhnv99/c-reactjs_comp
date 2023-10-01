@@ -2,9 +2,6 @@ pipeline {
     agent {
         label "inbound-agent"
     }
-    environment {
-        PATH = "$PATH:/path/to/nohup"
-    }
     stages {
         // stage ('Git Checkout') {
         //     steps {
