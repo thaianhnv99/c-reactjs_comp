@@ -13,7 +13,7 @@ pipeline {
         // }
         stage('Tooling versions') {
             steps {
-                sh '''
+                bat '''
                 docker --version
                 docker compose version
                 node -v
