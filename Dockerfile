@@ -1,25 +1,9 @@
-#Stage 1
-FROM node:alpine as builder
-
-WORKDIR /app
-
-COPY package*.json ./
-COPY yarn.lock ./
-
-RUN yarn
-
-COPY . .
-
-RUN yarn run build
-
-#Stage 2
-FROM nginx:1.21.4-alpine
-COPY --from=builder /app/build /usr/share/nginx/html
-
-RUN rm /etc/nginx/conf.d/default.conf 
-
-COPY cicd/config/nginx.conf /etc/nginx/nginx.conf
-COPY cicd/config/app.conf /etc/nginx/conf.d
-
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+FROM jenkins/inbound-agent
+USER root
+RUN apt-get update; \
+apt-get install -y wget; \
+wget https://download.docker.com/linux/static/stable/x86_64/docker-20.10.9.tgz; \
+tar zxvf docker-20.10.9.tgz; \
+cp -f docker/docker /usr/local/bin; \
+rm -fr docker-20.10.0.tgz docker; \
+apt-get purge -y wget
