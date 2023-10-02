@@ -2,6 +2,14 @@ pipeline {
     agent {
         label "inbound-agent"
     }
+    environment {
+        HOME = '.'
+        npm_config_cache = 'npm-cache'
+        YOUR_BUCKET_REGION = 'Global'
+        CREDENTIALS_FROM_JENKINS_SETUP = 'c-reactjs-comp-aws'
+        YOUR_BUCKET_NAME = 'c-reactjs-comp'
+    }
+
     stages {
         // stage ('Git Checkout') {
         //     steps {
@@ -27,6 +35,14 @@ pipeline {
                 withDockerRegistry(credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/') {
                     bat 'docker build -t thainv99/react-app:v1 .'
                     bat 'docker push thainv99/react-app:v1'
+                }
+            }
+        }
+        stage('Development') {
+            steps {
+                withAWS(region:${YOUR_BUCKET_REGION},credentials:${CREDENTIALS_FROM_JENKINS_SETUP}) {
+                    s3Delete(bucket: ${YOUR_BUCKET_NAME}, path:'**/*')
+                    s3Upload(bucket: ${YOUR_BUCKET_NAME}, workingDir:'build', includePathPattern:'**/*');
                 }
             }
         }
