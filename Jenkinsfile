@@ -21,6 +21,7 @@ pipeline {
                 docker --version
                 docker compose version
                 node -v
+                yarn -v
                 '''
             }
         }
