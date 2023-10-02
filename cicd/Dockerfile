@@ -10,7 +10,7 @@ RUN yarn
 
 COPY . .
 
-RUN yarn run build
+RUN yarn build
 
 #Stage 2
 FROM nginx:1.21.4-alpine
