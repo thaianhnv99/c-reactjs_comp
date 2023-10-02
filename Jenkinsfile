@@ -5,7 +5,7 @@ pipeline {
     environment {
         CI = 'false'
         HOME = '.'
-        YOUR_BUCKET_REGION = 'Global'
+        YOUR_BUCKET_REGION = 'us-east-1'
         CREDENTIALS_FROM_JENKINS_SETUP = 'c-reactjs-comp-aws'
         YOUR_BUCKET_NAME = 'c-reactjs-comp'
     }
