@@ -3,6 +3,7 @@ pipeline {
         label "inbound-agent"
     }
     environment {
+        CI = 'true'
         HOME = '.'
         YOUR_BUCKET_REGION = 'Global'
         CREDENTIALS_FROM_JENKINS_SETUP = 'c-reactjs-comp-aws'
