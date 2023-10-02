@@ -36,7 +36,8 @@ pipeline {
                     //     bat 'cd ./cicd & docker build -t thainv99/react-app:v1 .'
                     //     bat 'cd ./cicd & docker push thainv99/react-app:v1'
                     // }
-                    bat 'cd ./cicd & docker build -t thainv99/react-app:v1 .'
+                    bat 'cd C:/home/directory/workspace/c-reactjs-comp'
+                    bat 'docker build -t thainv99/react-app:v1 .'
                     bat 'docker push thainv99/react-app:v1'
                 }
             }
