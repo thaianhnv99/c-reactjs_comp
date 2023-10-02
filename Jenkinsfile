@@ -39,6 +39,11 @@ pipeline {
         //         }
         //     }
         // }
+        stage('Build') {
+            steps {
+                bat 'yarn run build'
+            }
+        }
         stage('Development') {
             steps {
                 withAWS(region:YOUR_BUCKET_REGION,credentials:CREDENTIALS_FROM_JENKINS_SETUP) {
