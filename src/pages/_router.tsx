@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { Home } from "./home/home";
 import { Example } from "./example/example";
 import SliderWrapper from "./slider/SliderWapper";
@@ -17,7 +17,7 @@ export default function Router() {
     <Routes>
       <Route element={<PrivateRouter />}>
         <Route element={<Layout />}>
-          <Route path="/" element={<Example />}></Route>
+          <Route path="/" element={<Navigate to="/home" />}></Route>
           <Route path="home" element={<Home />}></Route>
           <Route path="example" element={<Example />}></Route>
           <Route path="slider" element={<SliderWrapper />}></Route>
