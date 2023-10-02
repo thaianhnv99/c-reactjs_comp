@@ -32,15 +32,10 @@ pipeline {
         stage('Build docker') {
             steps {
                 withDockerRegistry(credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/') {
-                    // dir('/cicd') {
-                    //     bat 'cd ./cicd & docker build -t thainv99/react-app:v1 .'
-                    //     bat 'cd ./cicd & docker push thainv99/react-app:v1'
-                    // }
-                    bat '''
-                    cd C:/home/directory/workspace/c-reactjs-comp/cicd
-                    docker build -t thainv99/react-app:v1 .
-                    '''
-                    bat 'docker push thainv99/react-app:v1'
+                    dir('C:/home/directory/workspace/c-reactjs-comp/cicd') {
+                        bat 'docker build -t thainv99/react-app:v1 .'
+                        bat 'docker push thainv99/react-app:v1'
+                    }
                 }
             }
         }
