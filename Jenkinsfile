@@ -41,9 +41,9 @@ pipeline {
         stage('Development') {
             steps {
                 withAWS(region:YOUR_BUCKET_REGION,credentials:CREDENTIALS_FROM_JENKINS_SETUP) {
-                    s3Delete(bucket: YOUR_BUCKET_NAME path:'**/*')
-                    s3Upload acl: 'Private', bucket: 'c-reactjs-comp', cacheControl: '', excludePathPattern: '', file: '**/*', includePathPattern: '**/*', metadatas: [''], redirectLocation: '', sseAlgorithm: '', tags: '', text: '', workingDir: 'build'
-                    // s3Upload(bucket: YOUR_BUCKET_NAME, workingDir:'build', includePathPattern:'**/*');
+                    s3Delete(bucket: YOUR_BUCKET_NAME, path: '**/*')
+                    // s3Upload acl: 'Private', bucket: 'c-reactjs-comp', cacheControl: '', excludePathPattern: '', file: '**/*', includePathPattern: '**/*', metadatas: [''], redirectLocation: '', sseAlgorithm: '', tags: '', text: '', workingDir: 'build'
+                    s3Upload(bucket: YOUR_BUCKET_NAME, workingDir: 'build', includePathPattern: '**/*');
                 }
             }
         }
