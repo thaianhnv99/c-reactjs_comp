@@ -43,8 +43,7 @@ pipeline {
         // }
         stage('Build') {
             steps {
-                bat 'yarn'
-                bat 'yarn run build'
+                bat 'docker compose up'
             }
         }
         stage('Development') {
