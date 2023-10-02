@@ -1,7 +1,6 @@
 pipeline {
     agent {
         label "inbound-agent"
-        dockerfile true
     }
     stages {
         // stage ('Git Checkout') {
