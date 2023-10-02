@@ -42,6 +42,7 @@ pipeline {
         // }
         stage('Build') {
             steps {
+                bat 'yarn'
                 bat 'yarn run build'
             }
         }
