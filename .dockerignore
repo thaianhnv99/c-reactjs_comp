@@ -1,16 +1,8 @@
-# Versioning and metadata
-.git
+.git/
 .gitignore
+.next/                # Existing Next.js builds
 .dockerignore
-
-# Build dependencies
-dist.do
-node_modules
-
-# Environment (contains sensitive data)
-*.env
-
-# Misc
-.eslintrc.js
-.prettierrc
-README.md
+Dockerfile
+docker-compose.yml
+node_modules/         # Installed inside container
+nginx/
