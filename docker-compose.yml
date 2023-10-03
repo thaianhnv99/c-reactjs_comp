@@ -5,7 +5,6 @@ services:
     container_name: c-reactjs-comp
     build:
       context: ../
-      dockerfile: ./Dockerfile
     environment:
       - REACT_APP_API_END_POINT=http://localhost:3001
     ports:
