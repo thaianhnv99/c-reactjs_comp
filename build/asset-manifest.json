@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.0a7696bb.css",
+    "main.js": "/static/js/main.dc1dd5ad.js",
+    "static/js/787.c7871c38.chunk.js": "/static/js/787.c7871c38.chunk.js",
+    "static/media/moodle-vector-logo.svg": "/static/media/moodle-vector-logo.a2b516ed06c23cf5e1b7014a0857f0d6.svg",
+    "index.html": "/index.html",
+    "main.0a7696bb.css.map": "/static/css/main.0a7696bb.css.map",
+    "main.dc1dd5ad.js.map": "/static/js/main.dc1dd5ad.js.map",
+    "787.c7871c38.chunk.js.map": "/static/js/787.c7871c38.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0a7696bb.css",
+    "static/js/main.dc1dd5ad.js"
+  ]
+}
