@@ -57,7 +57,7 @@ pipeline {
         // }
         stage('Login to EC2 & build') {
             steps {
-                bat 'ssh -i C:/Users/Admin/Desktop/key_c_reactjs.pem ec2-user@54.159.155.25'
+                bat 'ssh -tt -i C:/Users/Admin/Desktop/key_c_reactjs.pem ec2-user@54.159.155.25'
                 bat 'cd c-reactjs-comp'
             }
         }
