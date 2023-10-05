@@ -47,12 +47,18 @@ pipeline {
                 bat 'yarn build'
             }
         }
-        stage('Development') {
+        // stage('Deploy to S3') {
+        //     steps {
+        //         withAWS(region:YOUR_BUCKET_REGION,credentials:CREDENTIALS_FROM_JENKINS_SETUP) {
+        //             s3Delete(bucket: YOUR_BUCKET_NAME, path: '**/*')
+        //             s3Upload(bucket: YOUR_BUCKET_NAME, workingDir: 'build', includePathPattern: '**/*');
+        //         }
+        //     }
+        // }
+        stage('Login to EC2 & build') {
             steps {
-                withAWS(region:YOUR_BUCKET_REGION,credentials:CREDENTIALS_FROM_JENKINS_SETUP) {
-                    s3Delete(bucket: YOUR_BUCKET_NAME, path: '**/*')
-                    s3Upload(bucket: YOUR_BUCKET_NAME, workingDir: 'build', includePathPattern: '**/*');
-                }
+                bat 'ssh -i C:/Users/Admin/Desktop/key_c_reactjs.pem ec2-user@54.159.155.25'
+                bat 'cd c-reactjs-comp'
             }
         }
     }
