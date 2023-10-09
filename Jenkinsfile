@@ -57,12 +57,12 @@ pipeline {
         // }
         stage('Login to EC2 & build') {
             steps {
-                sshagent(['54.159.155.25']) {
+                // sshagent(['54.159.155.25']) {
                     bat '''
-                    ssh -tt -i C:/Users/Admin/Desktop/key_c_reactjs.pem -o StrictHostKeyChecking=no ec2-user@ec2-54-159-155-25.compute-1.amazonaws.com
+                    ssh -tt -o StrictHostKeyChecking=no ec2-user@54.159.155.25
                     ls
                     '''
-                }
+                // }
             }
         }
     }
