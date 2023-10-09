@@ -57,7 +57,7 @@ pipeline {
         // }
         stage('Login to EC2 & build') {
             steps {
-                sshPublisher(publishers: [sshPublisherDesc(configName: 'ssh-server', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'mkdir /home/abc', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+                sshPublisher(publishers: [sshPublisherDesc(configName: 'ssh-server', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'sudo ls -a', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
                 // sshagent(['54.159.155.25']) {
                     // bat '''
                     // #!bin/bash
