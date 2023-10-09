@@ -58,8 +58,8 @@ pipeline {
         stage('Login to EC2 & build') {
             steps {
                 bat 'ssh -tt -i C:/Users/Admin/Desktop/key_c_reactjs.pem -o StrictHostKeyChecking=no ec2-user@54.159.155.25'
-                bat 'ls -a'
-                bat 'cd c-reactjs-comp'
+                sh 'ls'
+                // bat 'cd c-reactjs-comp'
             }
         }
     }
