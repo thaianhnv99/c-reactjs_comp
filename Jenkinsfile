@@ -57,7 +57,8 @@ pipeline {
         // }
         stage('Login to EC2 & build') {
             steps {
-                sshagent(credentials: ['54.159.155.25']) {
+                script {
+                    sshagent(credentials: ['54.159.155.25']) {
                         sh """
                             ssh -o StrictHostKeyChecking=no -i C:/Users/Admin/Desktop/key_c_reactjs.pem ec2-user@54.159.155.25 "echo \\\"${deploying}\\\" > deploy.sh && chmod +x deploy.sh && ./deploy.sh"
                         """                  
@@ -67,6 +68,7 @@ pipeline {
                     // ssh -tt -i C:/Users/Admin/Desktop/key_c_reactjs.pem -o StrictHostKeyChecking=no ec2-user@ec2-54-159-155-25.compute-1.amazonaws.com
                     // ls
                     // '''
+                }
             }
         }
     }
