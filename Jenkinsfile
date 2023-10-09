@@ -58,10 +58,10 @@ pipeline {
         stage('Login to EC2 & build') {
             steps {
                 // sshagent(['ssh-agent']) {
-                //     bat 'ssh -tt -o StrictHostKeyChecking=no ec2-user@54.159.155.25'
-                bat 'cat C:/Users/Admin/Desktop/key_c_reactjs.pem'
-                    bat 'ssh -tt -i C:/Users/Admin/Desktop/key_c_reactjs.pem ec2-user@54.159.155.25'
-                    bat 'ls -a'
+                    bat 'ssh -tt -o StrictHostKeyChecking=no ec2-user@54.159.155.25'
+                // bat 'cat C:/Users/Admin/Desktop/key_c_reactjs.pem'
+                    // bat 'ssh -tt -i C:/Users/Admin/Desktop/key_c_reactjs.pem ec2-user@54.159.155.25'
+                    // bat 'ls -a'
                     // bat 'cd c-reactjs-comp'
                 // }
                 
