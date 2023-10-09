@@ -59,7 +59,7 @@ pipeline {
             steps {
                 // sshagent(['54.159.155.25']) {
                     bat '''
-                    ssh -tt -o StrictHostKeyChecking=no ec2-user@54.159.155.25
+                    #!bin/bash
                     ls
                     '''
                 // }
