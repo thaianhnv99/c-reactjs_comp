@@ -23,7 +23,7 @@ pipeline {
                 docker compose version
                 node -v
                 yarn -v
-                ssh-agent
+                which ssh-agent
                 '''
             }
         }
