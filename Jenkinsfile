@@ -57,14 +57,11 @@ pipeline {
         // }
         stage('Login to EC2 & build') {
             steps {
-                withAWS(region:YOUR_BUCKET_REGION,credentials:CREDENTIALS_FROM_JENKINS_SETUP) {
-                    bat 'ssh -i "key_c_reactjs.pem" ec2-user@ec2-54-159-155-25.compute-1.amazonaws.com'
-                    bat 'ls -a'
-                }
                 // sshagent(['ssh-agent']) {
                 //     bat 'ssh -tt -o StrictHostKeyChecking=no ec2-user@54.159.155.25'
-                    // bat 'ssh -tt -i C:/Users/Admin/Desktop/key_c_reactjs.pem ec2-user@54.159.155.25'
-                    // bat 'ls -a'
+                bat 'cat C:/Users/Admin/Desktop/key_c_reactjs.pem'
+                    bat 'ssh -tt -i C:/Users/Admin/Desktop/key_c_reactjs.pem ec2-user@54.159.155.25'
+                    bat 'ls -a'
                     // bat 'cd c-reactjs-comp'
                 // }
                 
