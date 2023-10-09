@@ -57,13 +57,12 @@ pipeline {
         // }
         stage('Login to EC2 & build') {
             steps {
-                sshPublisher(publishers: [sshPublisherDesc(configName: 'ssh-server', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'sudo ls -a', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
-                // sshagent(['54.159.155.25']) {
-                    // bat '''
-                    // #!bin/bash
-                    // ls
-                    // '''
-                // }
+                sshagent(['54.159.155.25']) {
+                    bat '''
+                    ssh -tt -i C:/Users/Admin/Desktop/key_c_reactjs.pem -o StrictHostKeyChecking=no ec2-user@ec2-54-159-155-25.compute-1.amazonaws.com
+                    ls
+                    '''
+                }
             }
         }
     }
