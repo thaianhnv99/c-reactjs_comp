@@ -16,22 +16,22 @@ pipeline {
         //         git branch: 'main', url: 'https://github.com/thaianhnv99/c-reactjs_comp.git'
         //     }
         // }
-        stage('Tooling versions') {
-            steps {
-                bat '''
-                docker --version
-                docker compose version
-                node -v
-                yarn -v
-                which ssh-agent
-                '''
-            }
-        }
-        stage('Clone') {
-            steps {
-                git branch: 'main', url: 'https://github.com/thaianhnv99/c-reactjs_comp.git'
-            }
-        }
+        // stage('Tooling versions') {
+        //     steps {
+        //         bat '''
+        //         docker --version
+        //         docker compose version
+        //         node -v
+        //         yarn -v
+        //         which ssh-agent
+        //         '''
+        //     }
+        // }
+        // stage('Clone') {
+        //     steps {
+        //         git branch: 'main', url: 'https://github.com/thaianhnv99/c-reactjs_comp.git'
+        //     }
+        // }
         // stage('Build docker') {
         //     steps {
         //         withDockerRegistry(credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/') {
