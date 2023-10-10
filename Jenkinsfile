@@ -58,9 +58,9 @@ pipeline {
             steps {
                 script {
                     sshagent(credentials: ['54.159.155.25']) {
-                        sh """
-                            ssh -o StrictHostKeyChecking=no -i C:/Users/Admin/Desktop/key_c_reactjs.pem ec2-user@54.159.155.25 "echo \\\"${deploying}\\\" > deploy.sh && chmod +x deploy.sh && ./deploy.sh"
-                        """                  
+                        bat '''
+                            ssh -o StrictHostKeyChecking=no ec2-user@54.159.155.25
+                        '''                
                     }
                 // sshagent(['54.159.155.25']) {
                     // bat '''
