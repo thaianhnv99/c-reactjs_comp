@@ -59,8 +59,7 @@ pipeline {
                 script {
                     sshagent(credentials: ['54.159.155.25']) {
                         sh '''
-                            ssh -o StrictHostKeyChecking=no ec2-user@54.159.155.25
-                            ls -a
+                            ssh -o StrictHostKeyChecking=no ec2-user@54.159.155.25 touch abc.txt
                         '''                
                     }
                 // sshagent(['54.159.155.25']) {
