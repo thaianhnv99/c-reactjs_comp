@@ -23,16 +23,16 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/thaianhnv99/c-reactjs_comp.git'
             }
         }
-        // stage('Build docker') {
-        //     steps {
-        //         withDockerRegistry(credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/') {
-        //             // dir('C:/home/directory/workspace/c-reactjs-comp/cicd') {
-        //                 sh 'docker build -t thainv99/react-app:v1 .'
-        //                 sh 'docker push thainv99/react-app:v1'
-        //             // }
-        //         }
-        //     }
-        // }
+        stage('Build docker') {
+            steps {
+                withDockerRegistry(credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/') {
+                    // dir('C:/home/directory/workspace/c-reactjs-comp/cicd') {
+                        sh 'docker build -t thainv99/react-app:v1 .'
+                        sh 'docker push thainv99/react-app:v1'
+                    // }
+                }
+            }
+        }
         stage('Build') {
             steps {
                 nodejs('node.latest') {
@@ -58,7 +58,9 @@ pipeline {
                             ssh -tt -o StrictHostKeyChecking=no ec2-user@3.87.60.70 "
                             docker stop react-app
                             docker rm react-app
-                            docker rmi thainv99/react-app:v1"
+                            docker rmi thainv99/react-app:v1
+                            docker pull ${DOCKER_HUB}/${NAME_FRONTEND}:${DOCKER_TAG}
+                            docker run -d -p 80:80 --name ${NAME_FRONTEND} ${DOCKER_HUB}/${NAME_FRONTEND}:${DOCKER_TAG}"
                         '''                
                     }
                 }
