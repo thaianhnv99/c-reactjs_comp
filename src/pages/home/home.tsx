@@ -45,7 +45,7 @@ export function Home() {
 
   return (
     <>
-      Home update v8.3
+      Home update v8.5
       <Button variant="contained" onClick={logout}>
         Logout{loading ? "..." : ""}
       </Button>
