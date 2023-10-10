@@ -54,7 +54,8 @@ pipeline {
                             ssh -tt -o StrictHostKeyChecking=no ec2-user@54.159.155.25 "
                             cd c-reactjs_comp
                             git pull origin main
-                            docker-compose up -d"
+                            docker compose rm -s -f -v c-reactjs-comp
+                            docker-compose up -d c-reactjs-comp"
                         '''                
                     }
                 }
