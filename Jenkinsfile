@@ -32,7 +32,7 @@ pipeline {
         stage('Build') {
             steps {
                 nodejs('node.16') {
-                    sh 'npm -v'
+                    sh 'npm install yarn -g'
                     sh 'yarn'
                     sh 'yarn build'
                 }
