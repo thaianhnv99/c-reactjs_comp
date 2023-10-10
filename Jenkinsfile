@@ -49,19 +49,11 @@ pipeline {
         stage('Login to EC2 & build') {
             steps {
                 script {
-                    def deploying = "#!/bin/bash\n" +
-                        "cd c-reactjs_comp\n" +
-                        "git pull origin main\n" + 
-                        "ls -a" 
-                        // +
-                        // "docker run --name=${NAME_BACKEND} -dp 8081:80 ${DOCKER_HUB}/${NAME_BACKEND}:$DOCKER_TAG\n" +
-                        // "docker run --name=${NAME_FRONTEND} -dp 80:80 ${DOCKER_HUB}/${NAME_FRONTEND}:$DOCKER_TAG"
-
                     sshagent(credentials: ['54.159.155.25']) {
                         sh '''
                             ssh -tt -o StrictHostKeyChecking=no ec2-user@54.159.155.25 "
                             cd c-reactjs_comp
-                            touch abc.txt"
+                            git pull origin main"
                         '''                
                     }
                 }
