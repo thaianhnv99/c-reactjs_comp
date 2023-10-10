@@ -59,7 +59,9 @@ pipeline {
 
                     sshagent(credentials: ['54.159.155.25']) {
                         sh '''
-                            ssh -tt -o StrictHostKeyChecking=no ec2-user@54.159.155.25 "echo \\\"${deploying}\\\" > deploy.sh && chmod +x deploy.sh && ./deploy.sh"
+                            ssh -tt -o StrictHostKeyChecking=no ec2-user@54.159.155.25 <<EOF
+                            cd c-reactjs_comp
+                            touch abc.txt
                         '''                
                     }
                 }
