@@ -75,5 +75,3 @@ interface UserProfileResponse {
   user: User & { _id: string };
   access_token: string
 }
-
-//adsds

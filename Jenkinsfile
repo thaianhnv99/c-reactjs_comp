@@ -51,15 +51,11 @@ pipeline {
                 script {
                     sshagent(credentials: ['54.159.155.25']) {
                         sh '''
-                            ssh -o StrictHostKeyChecking=no ec2-user@54.159.155.25 touch abc.txt
+                            ssh -o StrictHostKeyChecking=no ec2-user@54.159.155.25 
+                            cd c-reactjs_comp
+                            touch abc.txt
                         '''                
                     }
-                    // sshagent(['54.159.155.25']) {
-                    // bat '''
-                    // ssh -tt -i C:/Users/Admin/Desktop/key_c_reactjs.pem -o StrictHostKeyChecking=no ec2-user@ec2-54-159-155-25.compute-1.amazonaws.com
-                    // ls
-                    // '''
-                    // }
                 }
             }
         }
