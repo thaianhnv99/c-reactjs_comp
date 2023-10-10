@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        label "inbound-agent"
+    }
     environment {
         CI = 'false'
         HOME = '.'
