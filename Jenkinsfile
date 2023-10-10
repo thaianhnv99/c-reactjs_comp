@@ -56,8 +56,9 @@ pipeline {
                     sshagent(credentials: ['54.159.155.25']) {
                         sh '''
                             ssh -tt -o StrictHostKeyChecking=no ec2-user@3.87.60.70 "
-                            docker rm $(docker ps -aq)
-                            docker rmi $(docker images -q)
+                            docker kill '$(docker ps -q)'
+                            docker rm '$(docker ps -aq)'
+                            docker rmi '$(docker images -q)'
                             docker pull thainv99/react-app:v1"
                         '''                
                     }
