@@ -50,11 +50,12 @@ pipeline {
             steps {
                 script {
                     def deploying = "#!/bin/bash\n" +
-                        "docker rm -f ${NAME_BACKEND} ${NAME_FRONTEND}\n" +
-                        "docker pull ${DOCKER_HUB}/${NAME_BACKEND}:$DOCKER_TAG\n" +
-                        "docker pull ${DOCKER_HUB}/${NAME_FRONTEND}:$DOCKER_TAG\n" +
-                        "docker run --name=${NAME_BACKEND} -dp 8081:80 ${DOCKER_HUB}/${NAME_BACKEND}:$DOCKER_TAG\n" +
-                        "docker run --name=${NAME_FRONTEND} -dp 80:80 ${DOCKER_HUB}/${NAME_FRONTEND}:$DOCKER_TAG"
+                        "cd c-reactjs_comp\n" +
+                        "git pull origin main\n" + 
+                        "ls -a" 
+                        // +
+                        // "docker run --name=${NAME_BACKEND} -dp 8081:80 ${DOCKER_HUB}/${NAME_BACKEND}:$DOCKER_TAG\n" +
+                        // "docker run --name=${NAME_FRONTEND} -dp 80:80 ${DOCKER_HUB}/${NAME_FRONTEND}:$DOCKER_TAG"
 
                     sshagent(credentials: ['54.159.155.25']) {
                         sh '''
