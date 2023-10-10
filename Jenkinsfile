@@ -21,6 +21,7 @@ pipeline {
                 sh '''
                 docker --version
                 docker compose version
+                node -v
                 yarn -v
                 '''
             }
@@ -30,16 +31,16 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/thaianhnv99/c-reactjs_comp.git'
             }
         }
-        stage('Build docker') {
-            steps {
-                withDockerRegistry(credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/') {
-                    // dir('C:/home/directory/workspace/c-reactjs-comp/cicd') {
-                        sh 'docker build -t thainv99/react-app:v1 .'
-                        sh 'docker push thainv99/react-app:v1'
-                    // }
-                }
-            }
-        }
+        // stage('Build docker') {
+        //     steps {
+        //         withDockerRegistry(credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/') {
+        //             // dir('C:/home/directory/workspace/c-reactjs-comp/cicd') {
+        //                 sh 'docker build -t thainv99/react-app:v1 .'
+        //                 sh 'docker push thainv99/react-app:v1'
+        //             // }
+        //         }
+        //     }
+        // }
         // stage('Build') {
         //     steps {
         //         bat 'yarn'
