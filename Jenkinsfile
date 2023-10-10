@@ -59,7 +59,7 @@ pipeline {
 
                     sshagent(credentials: ['54.159.155.25']) {
                         sh '''
-                            ssh -o StrictHostKeyChecking=no -i key_c_reactjs ec2-user@54.159.155.25 "echo \\\"${deploying}\\\" > deploy.sh && chmod +x deploy.sh && ./deploy.sh"
+                            ssh -tt -o StrictHostKeyChecking=no -i key_c_reactjs ec2-user@54.159.155.25 "echo pwd && sudo -i -u root && cd /opt/docker/web && echo pwd"
                         '''                
                     }
                 }
