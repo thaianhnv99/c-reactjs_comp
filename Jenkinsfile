@@ -52,6 +52,8 @@ pipeline {
                     sshagent(credentials: ['54.159.155.25']) {
                         sh '''
                             ssh -o StrictHostKeyChecking=no ec2-user@54.159.155.25 ls
+                            ssh -o StrictHostKeyChecking=no ec2-user@54.159.155.25 cd c-reactjs_comp
+                            ssh -o StrictHostKeyChecking=no ec2-user@54.159.155.25 touch abc.txt
                         '''                
                     }
                 }
