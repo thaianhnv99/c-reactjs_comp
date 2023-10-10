@@ -31,7 +31,7 @@ pipeline {
         // }
         stage('Build') {
             steps {
-                nodejs('node.16') {
+                nodejs('node.latest') {
                     sh 'npm install yarn -g'
                     sh 'yarn'
                     sh 'yarn build'
