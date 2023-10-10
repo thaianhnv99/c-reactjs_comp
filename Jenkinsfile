@@ -58,7 +58,7 @@ pipeline {
             steps {
                 script {
                     sshagent(credentials: ['54.159.155.25']) {
-                        bat '''
+                        sh '''
                             ssh -o StrictHostKeyChecking=no ec2-user@54.159.155.25
                             ls -a
                         '''                
