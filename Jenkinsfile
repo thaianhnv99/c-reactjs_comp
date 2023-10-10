@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        label "inbound-agent"
+    }
     environment {
         CI = 'false'
         HOME = '.'
@@ -14,32 +16,31 @@ pipeline {
         //         git branch: 'main', url: 'https://github.com/thaianhnv99/c-reactjs_comp.git'
         //     }
         // }
-        // stage('Tooling versions') {
-        //     steps {
-        //         bat '''
-        //         docker --version
-        //         docker compose version
-        //         node -v
-        //         yarn -v
-        //         which ssh-agent
-        //         '''
-        //     }
-        // }
-        // stage('Clone') {
-        //     steps {
-        //         git branch: 'main', url: 'https://github.com/thaianhnv99/c-reactjs_comp.git'
-        //     }
-        // }
-        // stage('Build docker') {
-        //     steps {
-        //         withDockerRegistry(credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/') {
-        //             // dir('C:/home/directory/workspace/c-reactjs-comp/cicd') {
-        //                 bat 'docker build -t thainv99/react-app:v1 .'
-        //                 bat 'docker push thainv99/react-app:v1'
-        //             // }
-        //         }
-        //     }
-        // }
+        stage('Tooling versions') {
+            steps {
+                bat '''
+                docker --version
+                docker compose version
+                node -v
+                yarn -v
+                '''
+            }
+        }
+        stage('Clone') {
+            steps {
+                git branch: 'main', url: 'https://github.com/thaianhnv99/c-reactjs_comp.git'
+            }
+        }
+        stage('Build docker') {
+            steps {
+                withDockerRegistry(credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/') {
+                    // dir('C:/home/directory/workspace/c-reactjs-comp/cicd') {
+                        bat 'docker build -t thainv99/react-app:v1 .'
+                        bat 'docker push thainv99/react-app:v1'
+                    // }
+                }
+            }
+        }
         // stage('Build') {
         //     steps {
         //         bat 'yarn'
