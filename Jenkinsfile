@@ -14,16 +14,6 @@ pipeline {
         //         git branch: 'main', url: 'https://github.com/thaianhnv99/c-reactjs_comp.git'
         //     }
         // }
-        stage('Tooling versions') {
-            steps {
-                sh '''
-                docker --version
-                docker compose version
-                node -v
-                yarn -v
-                '''
-            }
-        }
         stage('Clone') {
             steps {
                 git branch: 'main', url: 'https://github.com/thaianhnv99/c-reactjs_comp.git'
@@ -39,12 +29,15 @@ pipeline {
         //         }
         //     }
         // }
-        // stage('Build') {
-        //     steps {
-        //         bat 'yarn'
-        //         bat 'yarn build'
-        //     }
-        // }
+        stage('Build') {
+            steps {
+                nodejs('node.16') {
+                    sh 'npm -v'
+                    sh 'yarn'
+                    sh 'yarn build'
+                }
+            }
+        }
         // stage('Deploy to S3') {
         //     steps {
         //         withAWS(region:YOUR_BUCKET_REGION,credentials:CREDENTIALS_FROM_JENKINS_SETUP) {
