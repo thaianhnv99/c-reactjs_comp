@@ -56,7 +56,8 @@ pipeline {
                     sshagent(credentials: ['54.159.155.25']) {
                         sh '''
                             ssh -tt -o StrictHostKeyChecking=no ec2-user@3.87.60.70 "
-                            docker system prune -a -f
+                            docker stop $(docker ps -a -q)
+                            docker rm $(docker ps -a -q)
                             docker pull ${DOCKER_HUB}/${NAME_FRONTEND}:${DOCKER_TAG}
                             docker run -d -p 80:80 --name ${NAME_FRONTEND} ${DOCKER_HUB}/${NAME_FRONTEND}:${DOCKER_TAG}"
                         '''                
