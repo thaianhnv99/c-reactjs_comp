@@ -34,7 +34,7 @@ pipeline {
                 nodejs('node.latest') {
                     sh 'npm install yarn -g'
                     sh 'yarn'
-                    sh 'yarn build'
+                    // sh 'yarn build'
                 }
             }
         }
