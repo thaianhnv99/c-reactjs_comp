@@ -6,6 +6,10 @@ pipeline {
         YOUR_BUCKET_REGION = 'us-east-1'
         CREDENTIALS_FROM_JENKINS_SETUP = 'c-reactjs-comp-aws'
         YOUR_BUCKET_NAME = 'c-reactjs-comp'
+
+        DOCKER_HUB = 'thainv99'
+        NAME_FRONTEND = 'react-app'
+        DOCKER_TAG = 'v1'
     }
 
     stages {
@@ -19,16 +23,16 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/thaianhnv99/c-reactjs_comp.git'
             }
         }
-        // stage('Build docker') {
-        //     steps {
-        //         withDockerRegistry(credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/') {
-        //             // dir('C:/home/directory/workspace/c-reactjs-comp/cicd') {
-        //                 sh 'docker build -t thainv99/react-app:v1 .'
-        //                 sh 'docker push thainv99/react-app:v1'
-        //             // }
-        //         }
-        //     }
-        // }
+        stage('Build docker') {
+            steps {
+                withDockerRegistry(credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/') {
+                    // dir('C:/home/directory/workspace/c-reactjs-comp/cicd') {
+                        sh 'docker build -t thainv99/react-app:v1 .'
+                        sh 'docker push thainv99/react-app:v1'
+                    // }
+                }
+            }
+        }
         stage('Build') {
             steps {
                 nodejs('node.latest') {
@@ -46,16 +50,15 @@ pipeline {
         //         }
         //     }
         // }
-        stage('Login to EC2 & build') {
+        stage('Login to EC2 & build by docker') {
             steps {
                 script {
                     sshagent(credentials: ['54.159.155.25']) {
                         sh '''
-                            ssh -tt -o StrictHostKeyChecking=no ec2-user@54.159.155.25 "
-                            cd c-reactjs_comp
-                            git pull origin main
-                            docker-compose down
-                            docker-compose up -d"
+                            ssh -tt -o StrictHostKeyChecking=no ec2-user@3.87.60.70 "
+                            docker rm -f ${NAME_FRONTEND}
+                            docker pull ${DOCKER_HUB}/${NAME_FRONTEND}:$DOCKER_TAG
+                            docker run --name=${NAME_FRONTEND} -dp 80:80 ${DOCKER_HUB}/${NAME_FRONTEND}:$DOCKER_TAG"
                         '''                
                     }
                 }
