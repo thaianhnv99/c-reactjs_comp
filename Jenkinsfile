@@ -58,8 +58,7 @@ pipeline {
                             ssh -tt -o StrictHostKeyChecking=no ec2-user@3.87.60.70 "
                             docker rm $(docker ps -aq)
                             docker rmi $(docker images -q)
-                            docker pull ${DOCKER_HUB}/${NAME_FRONTEND}:${DOCKER_TAG}
-                            docker run -d -p 80:80 --name ${NAME_FRONTEND} ${DOCKER_HUB}/${NAME_FRONTEND}:${DOCKER_TAG}"
+                            docker pull thainv99/react-app:v1"
                         '''                
                     }
                 }
