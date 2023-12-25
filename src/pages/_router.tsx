@@ -1,6 +1,5 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { Home } from "./home/home";
-import { Example } from "./example/example";
 import SliderWrapper from "./slider/SliderWapper";
 import AccordionWrapper from "./accordion/AccordionWrapper";
 import { Login, Register } from "./auth";
@@ -11,6 +10,7 @@ import Transition from "src/components/demo/Transition";
 import Layout from "src/common/layout/Layout";
 import SearchList from "./debounce/SearchList";
 import List from "./react-query/List";
+import { Example } from "./example/Example";
 
 export default function Router() {
   return (

@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import { AppBox, AppDateRangePicker, AppInput } from "../../base";
 import { TypeTypography } from "../../shared/utils/theme";
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 export function Example() {
   const [radioValueSelected, setRadioValueSelected] = useState<any>(null);

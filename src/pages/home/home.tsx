@@ -3,31 +3,24 @@ import { _increaseCount, fetchInfo } from "../../states";
 import { useEffect, useRef, useState } from "react";
 import "./home.scss";
 import { useToggle } from "../../hooks/useToggle";
-import { Demo } from "./demo";
 import Cookie from "js-cookie";
 import Button from "@mui/material/Button";
 import { useAuth } from "src/states/auth/hook";
 import Divider from "@mui/material/Divider";
 import useContextTheme from "src/hooks/useContextTheme";
 import { Typography } from "@mui/material";
+import HomeWrapper from "./HomeWrapper";
 
 export function Home() {
-  const title = "Home for reactjs + ant design";
   const dispatch = useDispatch();
   const { info } = useSelector((state: any) => state);
 
-  const [open, setOpen] = useToggle(false);
-  const buttonRef = useRef(null);
   const [count, setCount] = useState(0);
-
-  const handleClickOutside = () => {
-    console.log("123");
-  };
   // useClickOutside(buttonRef, handleClickOutside);
 
   useEffect(() => {
     dispatch(fetchInfo());
-  }, []);
+  }, [dispatch]);
 
   const {
     state: { loading },
@@ -54,6 +47,11 @@ export function Home() {
       <Divider>useTheme</Divider>
       <Typography>{context.theme}</Typography>
       <Button onClick={() => context.setTheme("black")}>Change theme</Button>
+      <HomeWrapper title="wrapper">
+        <HomeWrapper.Item title="Item 1" />
+        <HomeWrapper.Item title="Item 2" />
+        <HomeWrapper.Item title="Item 3" />
+      </HomeWrapper>
     </>
 
     // <div className="homeContainer">
