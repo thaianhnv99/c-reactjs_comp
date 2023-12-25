@@ -67,6 +67,11 @@ export function Main({ children }: any) {
           url: "/react-query",
           icon: <DocumentIcon />,
         },
+        {
+          title: "SWR",
+          url: "/swr",
+          icon: <DocumentIcon />,
+        },
       ],
     },
   ] as MenuItem[];

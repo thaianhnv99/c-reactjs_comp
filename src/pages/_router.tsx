@@ -11,6 +11,7 @@ import Layout from "src/common/layout/Layout";
 import SearchList from "./debounce/SearchList";
 import List from "./react-query/List";
 import { Example } from "./example/Example";
+import SWR from "./swr/SWR";
 
 export default function Router() {
   return (
@@ -27,6 +28,7 @@ export default function Router() {
           <Route path="date" element={<DateWrapper />} />
           <Route path="list-debounce" element={<SearchList />} />
           <Route path="react-query" element={<List />} />
+          <Route path="swr" element={<SWR />} />
         </Route>
       </Route>
 
