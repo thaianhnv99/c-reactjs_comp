@@ -1,6 +1,13 @@
-import { ChangeEvent, useDeferredValue, useState, useTransition } from "react";
+import {
+  ChangeEvent,
+  useDeferredValue,
+  useState,
+  useTransition,
+  useMemo,
+} from "react";
 import VirtualizedList from "./VirtualizedList";
 import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
 
 const dummyProducts = () => {
   const products = [];
@@ -30,23 +37,30 @@ function ProductList({ products }: { products: string[] }) {
 
 const Transition = () => {
   const [isPending, startTransition] = useTransition();
+  const [searchTerm, setSearchTerm] = useState("");
   const [filterTerm, setFilterTerm] = useState("");
 
-  const filteredProducts = filterProducts(filterTerm);
-
-  console.log("triggle", filteredProducts);
+  const filteredProducts = useMemo(() => {
+    return filterProducts(filterTerm);
+  }, [filterTerm]);
 
   function updateFilterHandler(event: ChangeEvent<HTMLInputElement>) {
+    //Hàm này sẽ chạy đồng thời
+    setSearchTerm(event.target.value);
+
     startTransition(() => {
+      //set độ ưu tiên thấp hơn sau hàm `setSearchTerm`
       setFilterTerm(event.target.value);
     });
     // setFilterTerm(event.target.value);
   }
 
   return (
-    <div id="app">
-      <input type="text" onChange={updateFilterHandler} />
-      {isPending && <p>Updating List...</p>}
+    <Box id="app">
+      <Stack direction="row" spacing={2}>
+        <input type="text" value={searchTerm} onChange={updateFilterHandler} />
+        {isPending && <p>Updating List...</p>}
+      </Stack>
       {/* <ProductList products={filteredProducts} /> */}
       <Box height="400px">
         <VirtualizedList
@@ -58,7 +72,7 @@ const Transition = () => {
           }}
         />
       </Box>
-    </div>
+    </Box>
   );
 };
 
