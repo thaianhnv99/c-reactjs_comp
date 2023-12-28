@@ -6,10 +6,13 @@ import {
   Divider,
   FormControlLabel,
   Grid,
+  InputBase,
   Radio,
   RadioGroup,
   Stack,
+  TextField,
   Typography,
+  styled,
 } from "@mui/material";
 import { AppBox, AppDateRangePicker, AppInput } from "../../base";
 import { TypeTypography } from "../../shared/utils/theme";
@@ -384,8 +387,180 @@ export function Example() {
               Submit
             </Button>
           </Box>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: ".5rem",
+            }}
+          >
+            <FormControlLabel
+              sx={{
+                position: "relative",
+                flexDirection: "row-reverse",
+              }}
+              slotProps={{
+                typography: {
+                  sx: {
+                    borderRadius: "6px",
+                    border: "1px solid transparent",
+                    backgroundColor: "#ff00000d",
+                    transition:
+                      "background-color .15s ease,border-color .15s ease",
+                    paddingRight: "50px",
+                  },
+                },
+              }}
+              control={
+                <Checkbox
+                  defaultChecked
+                  sx={{
+                    position: "absolute",
+                    "&.Mui-checked": {
+                      "& + .MuiFormControlLabel-label": {
+                        backgroundColor: "#fb090921",
+                        border: "1px solid red",
+                      },
+                    },
+                  }}
+                />
+              }
+              label={
+                <Box padding="12px" flex={1}>
+                  <Typography>Label</Typography>
+                  <Typography variant="caption">Content</Typography>
+                </Box>
+              }
+            />
+            <Stack
+              component="label"
+              direction="row-reverse"
+              alignItems="center"
+              justifyContent="space-between"
+              sx={{
+                position: "relative",
+                width: "100%",
+                "& .Mui-checked": {
+                  "& + .abc": {
+                    backgroundColor: "#fb090921",
+                    border: "1px solid red",
+                  },
+                },
+              }}
+            >
+              <Checkbox
+                sx={{
+                  position: "absolute",
+                }}
+              />
+              <Box
+                padding="12px"
+                flex={1}
+                className="abc"
+                sx={{
+                  borderRadius: "6px",
+                  border: "1px solid transparent",
+                  backgroundColor: "#ff00000d",
+                  transition:
+                    "background-color .15s ease,border-color .15s ease",
+                  userSelect: "none",
+                  cursor: "pointer",
+                  paddingRight: "50px",
+                }}
+              >
+                <Typography>Label</Typography>
+                <Typography variant="caption">Content</Typography>
+              </Box>
+            </Stack>
+          </Box>
+          <Box>
+            <Box
+              component="label"
+              sx={{
+                display: "inline-flex",
+                position: "relative",
+                "& input[type=checkbox]:checked": {
+                  "&:after": {
+                    transform: "translateX(2.5em)",
+                  },
+                  "& ~ .icon-en": {
+                    opacity: 0,
+                    transform: "translateX(-0.75em) scale(0.75)",
+                  },
+                  "& ~ .icon-vn": {
+                    opacity: 1,
+                    transform: "translateX(-1.75em)",
+                    transitionDelay: "0.15s",
+                  },
+                },
+                "& .icon-switch": {
+                  position: "absolute",
+                  fontSize: "1em",
+                  top: "0.375em",
+                  right: "0.375em",
+                  transition: "opacity 0.15s, transform 0.15s",
+                  userSelect: "none",
+                },
+                "& .icon-en": {
+                  transitionDelay: "0.15s",
+                  right: "0.6em",
+                },
+                "& .icon-vn": {
+                  opacity: 0,
+                  transform: "translateX(-0.75em) scale(0.75)",
+                  transitionDelay: "0.15s",
+                },
+              }}
+            >
+              <CustomizedSwitch />
+              <Typography component="span" className="icon-switch icon-vn">
+                VN
+              </Typography>
+              <Typography component="span" className="icon-switch icon-en">
+                EN
+              </Typography>
+            </Box>
+          </Box>
         </Stack>
       </AppBox>
     </>
   );
 }
+
+const CustomizedSwitch = styled((props) => (
+  <input type="checkbox" {...props} />
+))`
+  appearance: none;
+  padding: 0;
+  margin: 0;
+  width: 5em;
+  height: 2.5em;
+  border-radius: 2em;
+  box-shadow: 0 0 0 0.125em hsla(223, 90%, 50%, 0),
+    0.125em 0.125em 0.25em hsla(223, 90%, 10%, 0.2);
+  cursor: pointer;
+
+  :before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    background-color: antiquewhite;
+  }
+  :after {
+    content: "";
+    position: absolute;
+    width: 1.75em;
+    height: 1.75em;
+    top: 0.375em;
+    left: 0.375em;
+
+    border-radius: 50%;
+    background-color: gray;
+    z-index: 2;
+    transition: background-color 0.3s cubic-bezier(0.76, 0.05, 0.24, 0.95),
+      transform 0.3s cubic-bezier(0.76, 0.05, 0.24, 0.95);
+  }
+`;

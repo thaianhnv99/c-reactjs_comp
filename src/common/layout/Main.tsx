@@ -56,6 +56,10 @@ export function Main({ children }: any) {
           url: "/transition",
           icon: <DocumentIcon />,
         },
+        {
+          title: "useTransition",
+          url: "/tr"
+        }
       ],
     },
     {
