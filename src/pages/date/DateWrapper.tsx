@@ -1,7 +1,7 @@
-import DatePickerRangeHub from "src/common/date/DatePickerRangeHub";
+import DatePickerRangeHub from 'src/common/date/DatePickerRangeHub'
 
 const DateWrapper = () => {
-  return <DatePickerRangeHub />;
-};
+  return <DatePickerRangeHub />
+}
 
-export default DateWrapper;
+export default DateWrapper

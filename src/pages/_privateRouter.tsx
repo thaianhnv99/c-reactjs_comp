@@ -1,14 +1,14 @@
-import { Navigate, Outlet } from "react-router-dom";
-import { useAuth } from "src/states/auth/hook";
+import { Navigate, Outlet } from 'react-router-dom'
+import { useAuth } from 'src/states/auth/hook'
 
 const PrivateRouter = () => {
   const {
-    state: { isAuth },
-  } = useAuth();
+    state: { isAuth }
+  } = useAuth()
 
-  console.log('page private and check auth');
-  
-  return false ? <Navigate to="/login" replace={true} /> : <Outlet />;
-};
+  console.log('page private and check auth')
 
-export default PrivateRouter;
+  return !isAuth ? <Navigate to='/login' replace={true} /> : <Outlet />
+}
+
+export default PrivateRouter

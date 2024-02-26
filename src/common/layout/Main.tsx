@@ -1,89 +1,90 @@
-import { Container } from "@mui/material";
-import { AppBox } from "src/base";
-import SideBar from "./SideBar";
-import { MenuItem } from "src/types";
-import DocumentIcon from "src/icons/DocumentIcon";
+import { Container } from '@mui/material'
+import { AppBox } from 'src/base'
+import SideBar from './SideBar'
+import { type MenuItem } from 'src/types'
+import DocumentIcon from 'src/icons/DocumentIcon'
+import { type ReactNode } from 'react'
 
-export function Main({ children }: any) {
+type MainProps = {
+  children: ReactNode
+}
+
+export function Main({ children }: MainProps) {
   const menu = [
     {
-      title: "Component",
+      title: 'Component',
       isSub: true,
       subItem: [
         {
-          title: "Home",
-          url: "/home",
-          icon: <DocumentIcon />,
+          title: 'Home',
+          url: '/home',
+          icon: <DocumentIcon />
         },
         {
-          title: "Example",
-          url: "/example",
-          icon: <DocumentIcon />,
+          title: 'Example',
+          url: '/example',
+          icon: <DocumentIcon />
         },
         {
-          title: "Slider",
-          url: "/slider",
-          icon: <DocumentIcon />,
+          title: 'Slider',
+          url: '/slider',
+          icon: <DocumentIcon />
         },
         {
-          title: "Accordion",
-          url: "/accordion",
-          icon: <DocumentIcon />,
+          title: 'Accordion',
+          url: '/accordion',
+          icon: <DocumentIcon />
         },
         {
-          title: "Grid",
-          url: "/grid",
-          icon: <DocumentIcon />,
+          title: 'Grid',
+          url: '/grid',
+          icon: <DocumentIcon />
         },
         {
-          title: "Date",
-          url: "/date",
-          icon: <DocumentIcon />,
+          title: 'Date',
+          url: '/date',
+          icon: <DocumentIcon />
         },
         {
-          title: "List debounce",
-          url: "/list-debounce",
-          icon: <DocumentIcon />,
-        },
-      ],
-    },
-    {
-      title: "Hooks",
-      isSub: true,
-      subItem: [
-        {
-          title: "useTransition",
-          url: "/transition",
-          icon: <DocumentIcon />,
-        },
-        {
-          title: "useTransition",
-          url: "/tr"
+          title: 'List debounce',
+          url: '/list-debounce',
+          icon: <DocumentIcon />
         }
-      ],
+      ]
     },
     {
-      title: "Lib",
+      title: 'Hooks',
       isSub: true,
       subItem: [
         {
-          title: "React query",
-          url: "/react-query",
-          icon: <DocumentIcon />,
+          title: 'useTransition',
+          url: '/transition',
+          icon: <DocumentIcon />
+        }
+      ]
+    },
+    {
+      title: 'Lib',
+      isSub: true,
+      subItem: [
+        {
+          title: 'React query',
+          url: '/react-query',
+          icon: <DocumentIcon />
         },
         {
-          title: "SWR",
-          url: "/swr",
-          icon: <DocumentIcon />,
-        },
-      ],
-    },
-  ] as MenuItem[];
+          title: 'SWR',
+          url: '/swr',
+          icon: <DocumentIcon />
+        }
+      ]
+    }
+  ] as MenuItem[]
   return (
     <Container
       sx={{
-        display: "flex",
-        minHeight: "calc(100vh)",
+        display: 'flex',
+        minHeight: 'calc(100vh)'
       }}
     >
       <AppBox flex={1} p={2}>
@@ -91,5 +92,5 @@ export function Main({ children }: any) {
       </AppBox>
       <SideBar menu={menu} />
     </Container>
-  );
+  )
 }

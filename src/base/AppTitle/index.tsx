@@ -1,11 +1,10 @@
-interface ITitleProps {
-    children?: any,
-}
+// interface ITitleProps {
+//   children?: ReactNode
+// }
 
-export function AppTitle({children}: ITitleProps) {
-
-    // const {Title} = Typography
-    // return (
-    // <Title level={level}></Title>
-    // )
+export function AppTitle() {
+  // const {Title} = Typography
+  // return (
+  // <Title level={level}></Title>
+  // )
 }
