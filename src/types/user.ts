@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import { z } from 'zod';
 
 // Validation rules
 export const userValidationSchema = z.object({
@@ -7,13 +7,13 @@ export const userValidationSchema = z.object({
   email: z.string().email(),
   emailVerifiedAt: z.date(),
   createdAt: z.date(),
-  updatedAt: z.date()
-})
+  updatedAt: z.date(),
+});
 
 export const authValidateSchema = z.object({
   username: z.string().min(1, { message: 'Required' }),
-  password: z.string().trim().min(6, { message: 'Nhập ký tự lớn hơn 6' })
-})
+  password: z.string().trim().min(6, { message: 'Nhập ký tự lớn hơn 6' }),
+});
 
-export type User = z.infer<typeof userValidationSchema>
-export type Auth = z.infer<typeof authValidateSchema>
+export type User = z.infer<typeof userValidationSchema>;
+export type Auth = z.infer<typeof authValidateSchema>;

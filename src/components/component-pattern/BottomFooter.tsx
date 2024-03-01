@@ -1,5 +1,5 @@
 const BottomFooter = () => {
-  return <></>
-}
+  return <></>;
+};
 
-export default BottomFooter
+export default BottomFooter;

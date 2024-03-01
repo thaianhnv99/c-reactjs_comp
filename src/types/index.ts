@@ -1,9 +1,9 @@
-import { type ReactNode } from 'react'
+import { type ReactNode } from 'react';
 
 export interface MenuItem {
-  title: string
-  url?: string
-  icon?: ReactNode
-  isSub?: boolean
-  subItem?: MenuItem[]
+  title: string;
+  url?: string;
+  icon?: ReactNode;
+  isSub?: boolean;
+  subItem?: MenuItem[];
 }

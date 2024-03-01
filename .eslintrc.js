@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const path = require('path')
+const path = require('path');
 module.exports = {
   extends: [
     // Chúng ta sẽ dùng các rule mặc định từ các plugin mà chúng ta đã cài.
@@ -12,27 +12,27 @@ module.exports = {
     // Disable các rule mà eslint xung đột với prettier.
     // Để cái này ở dưới để nó override các rule phía trên!.
     'eslint-config-prettier',
-    'prettier'
+    'prettier',
   ],
   plugins: ['prettier'],
   settings: {
     react: {
       // Nói eslint-plugin-react tự động biết version của React.
-      version: 'detect'
+      version: 'detect',
     },
     // Nói ESLint cách xử lý các import
     'import/resolver': {
       node: {
         paths: [path.resolve(__dirname)],
-        extensions: ['.js', '.jsx', '.ts', '.tsx']
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },
       typescript: {
-        project: path.resolve(__dirname, './tsconfig.json')
-      }
-    }
+        project: path.resolve(__dirname, './tsconfig.json'),
+      },
+    },
   },
   env: {
-    node: true
+    node: true,
   },
   rules: {
     // Tắt rule yêu cầu import React trong file jsx
@@ -41,22 +41,41 @@ module.exports = {
     'react/jsx-no-target-blank': 'warn',
     '@typescript-eslint/consistent-type-imports': [
       'error',
-      { prefer: 'type-imports', fixStyle: 'inline-type-imports' }
+      { prefer: 'type-imports', fixStyle: 'inline-type-imports' },
     ],
     // Tăng cường một số rule prettier (copy từ file .prettierrc qua)
     'prettier/prettier': [
       'warn',
       {
-        arrowParens: 'always',
-        semi: false,
-        trailingComma: 'none',
+        // arrowParens: 'always',
+        // semi: false,
+        // trailingComma: 'none',
+        // tabWidth: 2,
+        // endOfLine: 'auto',
+        // useTabs: false,
+        // singleQuote: true,
+        // printWidth: 120,
+        // jsxSingleQuote: true
+
+        printWidth: 100,
         tabWidth: 2,
-        endOfLine: 'auto',
         useTabs: false,
+        semi: true,
         singleQuote: true,
-        printWidth: 120,
-        jsxSingleQuote: true
-      }
-    ]
-  }
-}
+        quoteProps: 'as-needed',
+        jsxSingleQuote: false,
+        trailingComma: 'es5',
+        bracketSpacing: true,
+        bracketSameLine: false,
+        arrowParens: 'always',
+        requirePragma: false,
+        insertPragma: false,
+        proseWrap: 'preserve',
+        htmlWhitespaceSensitivity: 'css',
+        vueIndentScriptAndStyle: false,
+        endOfLine: 'lf',
+        embeddedLanguageFormatting: 'auto',
+      },
+    ],
+  },
+};

@@ -1,74 +1,77 @@
-type LoginErrorCode = 'INITIALIZED_PASSWORD' | 'PASSWORD_HAS_EXPIRED' | 'ID_PASSWORD_DOES_NOT_MATCH'
+type LoginErrorCode =
+  | 'INITIALIZED_PASSWORD'
+  | 'PASSWORD_HAS_EXPIRED'
+  | 'ID_PASSWORD_DOES_NOT_MATCH';
 
 interface AuthToken {
-  access_token: string
-  refresh_token: string
+  access_token: string;
+  refresh_token: string;
 }
 
 interface StaffInfo {
-  id: number
-  username: string
-  name: string
-  staffgroup: number
+  id: number;
+  username: string;
+  name: string;
+  staffgroup: number;
 }
 
 interface AuthenticationResponse extends Partial<AuthToken> {
-  detail?: string
-  error_code?: LoginErrorCode
-  staff?: StaffInfo
-  isError?: boolean
+  detail?: string;
+  error_code?: LoginErrorCode;
+  staff?: StaffInfo;
+  isError?: boolean;
 }
 
 interface LoginForm {
-  username: string
-  password: string
-  service_name: string
+  username: string;
+  password: string;
+  service_name: string;
 }
 
 interface ChangePasswordForm {
-  old_password: string
-  new_password: string
-  confirm_new_password: string
+  old_password: string;
+  new_password: string;
+  confirm_new_password: string;
 }
 
-type ChangePasswordProps = Pick<AuthenticationResponse, 'staff' | 'detail'>
+type ChangePasswordProps = Pick<AuthenticationResponse, 'staff' | 'detail'>;
 
-type ChangePasswordSuccess = Pick<AuthenticationResponse, 'detail'> & { ok: true }
+type ChangePasswordSuccess = Pick<AuthenticationResponse, 'detail'> & { ok: true };
 
 interface ChangePasswordError {
-  ok: false
-  old_password?: string[]
-  new_password?: string[]
+  ok: false;
+  old_password?: string[];
+  new_password?: string[];
 }
 
-type ChangePasswordResponse = ChangePasswordSuccess | ChangePasswordError
+type ChangePasswordResponse = ChangePasswordSuccess | ChangePasswordError;
 
 interface Credentials {
-  base_url: string
-  exp: number
-  iat: number
-  platform: string
-  role: string
-  staff_group_id: string
-  sub_id: string
-  user_id: string
+  base_url: string;
+  exp: number;
+  iat: number;
+  platform: string;
+  role: string;
+  staff_group_id: string;
+  sub_id: string;
+  user_id: string;
 }
 
-type PartialCredentials = Partial<Credentials>
+type PartialCredentials = Partial<Credentials>;
 
 interface User {
-  email: string
-  password: string
+  email: string;
+  password: string;
 }
 interface AuthContext {
-  user: User | null
+  user: User | null;
 }
 
 interface UserResponse extends User {
-  _id: string
+  _id: string;
 }
 
 interface UserProfileResponse {
-  user: User & { _id: string }
-  access_token: string
+  user: User & { _id: string };
+  access_token: string;
 }

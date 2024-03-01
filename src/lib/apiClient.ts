@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import axios, { type AxiosRequestConfig, type AxiosResponse, type Method } from 'axios'
+import axios, { type AxiosRequestConfig, type AxiosResponse, type Method } from 'axios';
 // import {type AxiosResponseHeaders} from 'axios';
-import qs from 'qs'
-import { getAuthorizationHeader } from './authorization'
-import Cookies from 'js-cookie'
-import { sleep } from 'src/shared/utils/util'
+import qs from 'qs';
+import { getAuthorizationHeader } from './authorization';
+import Cookies from 'js-cookie';
+import { sleep } from 'src/shared/utils/util';
 
 // function downloadAttachment(response: AxiosResponse, attachment: string) {
 //   const [, filename] = attachment.split('=')
@@ -36,45 +36,46 @@ export const setupAxios = () => {
     headers: {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Credentials': 'true'
+      'Access-Control-Allow-Credentials': 'true',
     },
     paramsSerializer(params) {
       return qs.stringify(params, {
         arrayFormat: 'comma',
         skipNulls: true,
         allowDots: true,
-        filter: (prefix, value) => (value !== undefined && value !== null && value !== '' ? value : undefined)
-      })
-    }
-  })
+        filter: (prefix, value) =>
+          value !== undefined && value !== null && value !== '' ? value : undefined,
+      });
+    },
+  });
 
   instance.interceptors.request.use(
     async (config) => {
-      const token = Cookies.get('Authentication')
+      const token = Cookies.get('Authentication');
       if (token) {
         config.headers = {
           ...config.headers,
-          authorization: `Bearer ${token}`
-        }
+          authorization: `Bearer ${token}`,
+        };
       }
-      return config
+      return config;
     },
     (error) => {
-      return Promise.reject(error)
+      return Promise.reject(error);
     }
-  )
+  );
 
   instance.interceptors.response.use(
     async (response) => {
-      await sleep(2000)
-      return response
+      await sleep(2000);
+      return response;
     },
     async (error) => {
-      const config = error?.config
+      const config = error?.config;
       if (!config?.response) {
         return Promise.reject({
-          message: 'uncaught error'
-        })
+          message: 'uncaught error',
+        });
       }
       if (config?.response.status === 401 || !config?.sent) {
         // config.sent = true;
@@ -92,24 +93,32 @@ export const setupAxios = () => {
       if (config?.response.status === 404) {
         return Promise.reject({
           code: config?.response.status,
-          message: config?.response.statusText
-        })
+          message: config?.response.statusText,
+        });
       }
 
-      return Promise.reject(error)
+      return Promise.reject(error);
     }
-  )
+  );
 
-  const fetch = async <T>({ method, url, options }: { method: Method; url: string; options?: AxiosRequestConfig }) => {
+  const fetch = async <T>({
+    method,
+    url,
+    options,
+  }: {
+    method: Method;
+    url: string;
+    options?: AxiosRequestConfig;
+  }) => {
     const response = (await instance({
       method,
       url,
       ...options,
-      headers: { Authorization: getAuthorizationHeader() }
-    })) as AxiosResponse<T>
+      headers: { Authorization: getAuthorizationHeader() },
+    })) as AxiosResponse<T>;
 
-    return response
-  }
+    return response;
+  };
 
   const apiClient = {
     get: <T>(url: string, params?: any, options?: AxiosRequestConfig) =>
@@ -118,8 +127,8 @@ export const setupAxios = () => {
         url,
         options: {
           ...options,
-          params
-        }
+          params,
+        },
       }),
     post: <T>(url: string, data: any, options?: AxiosRequestConfig) =>
       fetch<T>({
@@ -127,8 +136,8 @@ export const setupAxios = () => {
         url,
         options: {
           ...options,
-          data
-        }
+          data,
+        },
       }),
     patch: <T>(url: string, data: any, options?: AxiosRequestConfig) =>
       fetch<T>({
@@ -136,8 +145,8 @@ export const setupAxios = () => {
         url,
         options: {
           ...options,
-          data
-        }
+          data,
+        },
       }),
     put: <T>(url: string, data: any, options?: AxiosRequestConfig) =>
       fetch<T>({
@@ -145,8 +154,8 @@ export const setupAxios = () => {
         url,
         options: {
           ...options,
-          data
-        }
+          data,
+        },
       }),
     delete: <T>(url: string, params?: any, options?: AxiosRequestConfig) =>
       fetch<T>({
@@ -154,12 +163,12 @@ export const setupAxios = () => {
         url,
         options: {
           ...options,
-          params
-        }
-      })
-  }
+          params,
+        },
+      }),
+  };
 
-  return { apiClient }
-}
+  return { apiClient };
+};
 
-export const { apiClient } = setupAxios()
+export const { apiClient } = setupAxios();

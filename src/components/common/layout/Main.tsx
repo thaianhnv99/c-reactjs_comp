@@ -1,13 +1,13 @@
-import { Container } from '@mui/material'
-import { AppBox } from 'src/base'
-import SideBar from './SideBar'
-import { type MenuItem } from 'src/types'
-import DocumentIcon from 'src/icons/DocumentIcon'
-import { type ReactNode } from 'react'
+import { Container } from '@mui/material';
+import { AppBox } from 'src/components/base';
+import SideBar from './SideBar';
+import { type MenuItem } from 'src/types';
+import DocumentIcon from 'src/icons/DocumentIcon';
+import { type ReactNode } from 'react';
 
 type MainProps = {
-  children: ReactNode
-}
+  children: ReactNode;
+};
 
 export function Main({ children }: MainProps) {
   const menu = [
@@ -18,39 +18,44 @@ export function Main({ children }: MainProps) {
         {
           title: 'Home',
           url: '/home',
-          icon: <DocumentIcon />
+          icon: <DocumentIcon />,
         },
         {
           title: 'Example',
           url: '/example',
-          icon: <DocumentIcon />
+          icon: <DocumentIcon />,
         },
         {
           title: 'Slider',
           url: '/slider',
-          icon: <DocumentIcon />
+          icon: <DocumentIcon />,
         },
         {
           title: 'Accordion',
           url: '/accordion',
-          icon: <DocumentIcon />
+          icon: <DocumentIcon />,
         },
         {
           title: 'Grid',
           url: '/grid',
-          icon: <DocumentIcon />
+          icon: <DocumentIcon />,
         },
         {
           title: 'Date',
           url: '/date',
-          icon: <DocumentIcon />
+          icon: <DocumentIcon />,
         },
         {
           title: 'List debounce',
           url: '/list-debounce',
-          icon: <DocumentIcon />
-        }
-      ]
+          icon: <DocumentIcon />,
+        },
+        {
+          title: 'Toast',
+          url: '/toast',
+          icon: <DocumentIcon />,
+        },
+      ],
     },
     {
       title: 'Hooks',
@@ -59,9 +64,9 @@ export function Main({ children }: MainProps) {
         {
           title: 'useTransition',
           url: '/transition',
-          icon: <DocumentIcon />
-        }
-      ]
+          icon: <DocumentIcon />,
+        },
+      ],
     },
     {
       title: 'Lib',
@@ -70,21 +75,21 @@ export function Main({ children }: MainProps) {
         {
           title: 'React query',
           url: '/react-query',
-          icon: <DocumentIcon />
+          icon: <DocumentIcon />,
         },
         {
           title: 'SWR',
           url: '/swr',
-          icon: <DocumentIcon />
-        }
-      ]
-    }
-  ] as MenuItem[]
+          icon: <DocumentIcon />,
+        },
+      ],
+    },
+  ] as MenuItem[];
   return (
     <Container
       sx={{
         display: 'flex',
-        minHeight: 'calc(100vh)'
+        minHeight: 'calc(100vh)',
       }}
     >
       <AppBox flex={1} p={2}>
@@ -92,5 +97,5 @@ export function Main({ children }: MainProps) {
       </AppBox>
       <SideBar menu={menu} />
     </Container>
-  )
+  );
 }

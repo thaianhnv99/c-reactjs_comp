@@ -1,7 +1,7 @@
-import Accordion from 'src/components/Accordion/Accordion'
+import Accordion from 'src/components/Accordion/Accordion';
 
 const AccordionWrapper = () => {
-  return <Accordion />
-}
+  return <Accordion />;
+};
 
-export default AccordionWrapper
+export default AccordionWrapper;

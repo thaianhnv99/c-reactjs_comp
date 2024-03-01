@@ -1,17 +1,17 @@
-import React from 'react'
-import { FormHelperText, InputBase, type InputBaseProps, useTheme } from '@mui/material'
-import { type TypeTypography } from '../../shared/utils/theme'
+import React from 'react';
+import { FormHelperText, InputBase, type InputBaseProps, useTheme } from '@mui/material';
+import { type TypeTypography } from 'src/shared/utils/theme';
 
 export interface AppInputProps extends Omit<InputBaseProps, 'errors'> {
-  errors?: string | null | boolean
+  errors?: string | null | boolean;
 }
 
 export const AppInput = React.forwardRef(function AppInput(
   { sx, fullWidth, errors, ...props }: AppInputProps,
   ref: React.ForwardedRef<HTMLUListElement>
 ) {
-  const theme = useTheme()
-  const colors = theme.color || {}
+  const theme = useTheme();
+  const colors = theme.color || {};
   return (
     <>
       <InputBase
@@ -24,10 +24,10 @@ export const AppInput = React.forwardRef(function AppInput(
           transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
           transitionDuration: '0.2s',
           '&:hover': {
-            borderColor: colors.gray30
+            borderColor: colors.gray30,
           },
           '&:focus-within': {
-            borderColor: colors.gray100
+            borderColor: colors.gray100,
           },
 
           'label + &': {
@@ -51,19 +51,19 @@ export const AppInput = React.forwardRef(function AppInput(
               // boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
               // borderColor: theme.palette.primary.main,
               ':hover::-webkit-input-placeholder': {
-                /* Chrome/Opera/Safari */ color: colors.gray60
+                /* Chrome/Opera/Safari */ color: colors.gray60,
               },
               ':hover::-moz-placeholder': {
-                /* Firefox 19+ */ color: colors.gray60
-              }
+                /* Firefox 19+ */ color: colors.gray60,
+              },
             },
 
             '&::placeholder': {
               color: colors.gray30,
-              opacity: 1
-            }
+              opacity: 1,
+            },
           },
-          ...sx
+          ...sx,
         }}
         // startAdornment={
         //     !isNormal && (
@@ -84,12 +84,12 @@ export const AppInput = React.forwardRef(function AppInput(
         <FormHelperText
           sx={{
             color: colors.error,
-            mt: '12px'
+            mt: '12px',
           }}
         >
           {errors === true ? 'This field is required.' : errors}
         </FormHelperText>
       )}
     </>
-  )
-})
+  );
+});

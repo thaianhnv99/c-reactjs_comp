@@ -1,14 +1,14 @@
-import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
-import { type PostItem } from 'src/api/postApi'
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import { type PostItem } from 'src/api/postApi';
 
 const PostItemUI = ({ post }: { post: PostItem }) => {
   return (
     <Box>
-      <Typography variant='h5'>{post.title}</Typography>
-      <Typography variant='caption'>{post.body}</Typography>
+      <Typography variant="h5">{post.title}</Typography>
+      <Typography variant="caption">{post.body}</Typography>
     </Box>
-  )
-}
+  );
+};
 
-export default PostItemUI
+export default PostItemUI;

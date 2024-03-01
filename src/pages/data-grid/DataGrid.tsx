@@ -129,7 +129,7 @@ const DataGrid = () => {
   //   //         }),
   //   // },
   // ]
-  return <>{/* <TableBasic columns={columns} rows={row} /> */}</>
-}
+  return <>{/* <TableBasic columns={columns} rows={row} /> */}</>;
+};
 
-export default DataGrid
+export default DataGrid;

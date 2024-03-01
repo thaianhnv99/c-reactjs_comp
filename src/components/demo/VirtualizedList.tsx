@@ -1,22 +1,22 @@
-import ListItem from '@mui/material/ListItem'
-import ListItemText from '@mui/material/ListItemText'
-import { FixedSizeList, type FixedSizeListProps, type ListChildComponentProps } from 'react-window'
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import { FixedSizeList, type FixedSizeListProps, type ListChildComponentProps } from 'react-window';
 
 function renderRow(props: ListChildComponentProps) {
-  const { index, style, data } = props
+  const { index, style, data } = props;
 
   return (
-    <ListItem style={style} key={index} component='div' disablePadding>
+    <ListItem style={style} key={index} component="div" disablePadding>
       {/* <ListItemButton> */}
       <ListItemText primary={data[index]} />
       {/* </ListItemButton> */}
     </ListItem>
-  )
+  );
 }
 
 interface VirtualizedListProps<T> {
-  listProps?: Partial<FixedSizeListProps>
-  data: T[]
+  listProps?: Partial<FixedSizeListProps>;
+  data: T[];
 }
 const VirtualizedList = <T,>({ data, listProps }: VirtualizedListProps<T>) => {
   return (
@@ -31,7 +31,7 @@ const VirtualizedList = <T,>({ data, listProps }: VirtualizedListProps<T>) => {
     >
       {renderRow}
     </FixedSizeList>
-  )
-}
+  );
+};
 
-export default VirtualizedList
+export default VirtualizedList;

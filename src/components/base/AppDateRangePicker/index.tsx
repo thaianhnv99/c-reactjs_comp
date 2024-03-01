@@ -1,16 +1,16 @@
-import { type DateRange, DateRangePicker } from '@mui/lab'
-import React from 'react'
-import { Box, TextField } from '@mui/material'
+import { type DateRange, DateRangePicker } from '@mui/lab';
+import React from 'react';
+import { Box, TextField } from '@mui/material';
 
 export function AppDateRangePicker() {
-  const [value, setValue] = React.useState<DateRange<Date>>([null, null])
+  const [value, setValue] = React.useState<DateRange<Date>>([null, null]);
 
   return (
-    <Box width='500px'>
+    <Box width="500px">
       <DateRangePicker
         value={value}
         onChange={(newValue: DateRange<Date>) => {
-          setValue(newValue)
+          setValue(newValue);
         }}
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         renderInput={(startProps: any, endProps: any) => (
@@ -22,5 +22,5 @@ export function AppDateRangePicker() {
         )}
       />
     </Box>
-  )
+  );
 }

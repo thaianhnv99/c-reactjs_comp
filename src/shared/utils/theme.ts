@@ -1,10 +1,10 @@
-import { createTheme } from '@mui/material'
-import { type ThemeOptions as ThemeOptionsOld } from '@mui/material/styles/createTheme'
+import { createTheme } from '@mui/material';
+import { type ThemeOptions as ThemeOptionsOld } from '@mui/material/styles/createTheme';
 
 // Colors
 const themeCustoms = {
   size: {
-    menu: '256px'
+    menu: '256px',
   },
   color: {
     // Color Brand
@@ -61,7 +61,7 @@ const themeCustoms = {
     // ===================== Border =====================
 
     // ===================== BoxShadow =====================
-    boxShadow: '0px 16px 64px -11px rgba(31, 47, 70, 0.15)'
+    boxShadow: '0px 16px 64px -11px rgba(31, 47, 70, 0.15)',
   },
   typography: {
     fontSize: 16,
@@ -73,51 +73,51 @@ const themeCustoms = {
     // Size, lineHeight
     h1: {
       fontSize: 64,
-      lineHeight: '72px'
+      lineHeight: '72px',
     },
     h2: {
       fontSize: 48,
-      lineHeight: '56px'
+      lineHeight: '56px',
     },
     h3: {
       fontSize: 40,
-      lineHeight: '48px'
+      lineHeight: '48px',
     },
     h4: {
       fontSize: 32,
-      lineHeight: '40px'
+      lineHeight: '40px',
     },
     h5: {
       fontSize: 24,
-      lineHeight: '32px'
+      lineHeight: '32px',
     },
     h6: {
       fontSize: 20,
-      lineHeight: '28px'
+      lineHeight: '28px',
     },
     copy: {
       fontSize: 18,
-      lineHeight: '26px'
+      lineHeight: '26px',
     },
     body: {
       fontSize: 16,
-      lineHeight: '24px'
+      lineHeight: '24px',
     },
     label: {
       fontSize: 14,
-      lineHeight: '22px'
+      lineHeight: '22px',
     },
     caption: {
       fontSize: 12,
-      lineHeight: '20px'
+      lineHeight: '20px',
     },
     small: {
       fontSize: 10,
-      lineHeight: '16px'
-    }
-  }
+      lineHeight: '16px',
+    },
+  },
   // } as TypographyOptions | ((palette: Palette) => TypographyOptions),
-}
+};
 
 // Override style Mui
 const themeOptions: ThemeOptionsOld = {
@@ -129,48 +129,48 @@ const themeOptions: ThemeOptionsOld = {
       sm: 600,
       md: 900,
       lg: 1160,
-      xl: 1536
-    }
+      xl: 1536,
+    },
   },
   //
   palette: {
     primary: {
-      main: themeCustoms.color.main
+      main: themeCustoms.color.main,
     },
     secondary: {
       light: themeCustoms.color.text,
       main: themeCustoms.color.gray20,
-      contrastText: themeCustoms.color.gray100
+      contrastText: themeCustoms.color.gray100,
     },
     info: {
-      main: themeCustoms.color.notification
+      main: themeCustoms.color.notification,
     },
     error: {
-      main: themeCustoms.color.error
+      main: themeCustoms.color.error,
     },
     warning: {
-      main: themeCustoms.color.warning
+      main: themeCustoms.color.warning,
     },
     success: {
-      main: themeCustoms.color.success
-    }
+      main: themeCustoms.color.success,
+    },
   },
   //
   components: {
     MuiList: {
       styleOverrides: {
         root: {
-          background: themeCustoms.color.bg
-        }
-      }
+          background: themeCustoms.color.bg,
+        },
+      },
     },
     MuiLink: {
       styleOverrides: {
         root: {
           color: themeCustoms.color.notification,
-          textDecorationColor: themeCustoms.color.notification
-        }
-      }
+          textDecorationColor: themeCustoms.color.notification,
+        },
+      },
     },
     MuiCssBaseline: {
       styleOverrides: {
@@ -190,17 +190,17 @@ const themeOptions: ThemeOptionsOld = {
         // '*': {
         //   boxSizing: 'border-box',
         // },
-      }
+      },
     },
     MuiContainer: {
       defaultProps: {
         // fixed: false,
         disableGutters: true,
-        maxWidth: 'lg'
+        maxWidth: 'lg',
       },
       styleOverrides: {
         fixed: {
-          maxWidth: 'auto'
+          maxWidth: 'auto',
         },
         root: {
           // maxWidth: '1120px!important',
@@ -215,8 +215,8 @@ const themeOptions: ThemeOptionsOld = {
           // '@media (min-width: 1536px)': {
           //   maxWidth: '1200px',
           // },
-        }
-      }
+        },
+      },
     },
 
     MuiButtonBase: {
@@ -228,24 +228,24 @@ const themeOptions: ThemeOptionsOld = {
           },
 
           '&.Mui-disabled': {
-            color: '#B1B5C3'
-          }
-        }
-      }
+            color: '#B1B5C3',
+          },
+        },
+      },
     },
 
     MuiSkeleton: {
       defaultProps: {
-        animation: 'wave'
+        animation: 'wave',
       },
 
       styleOverrides: {
         wave: {
           '&::after': {
-            animation: 'animation-wiooy9 1s linear 0s infinite'
-          }
-        }
-      }
+            animation: 'animation-wiooy9 1s linear 0s infinite',
+          },
+        },
+      },
     },
 
     MuiCheckbox: {
@@ -253,33 +253,33 @@ const themeOptions: ThemeOptionsOld = {
         root: {
           color: themeCustoms.color.main,
           '&&&:hover': {
-            background: 'none'
+            background: 'none',
           },
           '&.Mui-checked': {
-            color: themeCustoms.color.main
-          }
-        }
-      }
+            color: themeCustoms.color.main,
+          },
+        },
+      },
     },
 
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
           '& .MuiOutlinedInput-notchedOutline': {
-            borderColor: '#E6E8EC'
+            borderColor: '#E6E8EC',
           },
           '&:hover': {
             '& .MuiOutlinedInput-notchedOutline': {
-              borderColor: '#E6E8EC'
-            }
+              borderColor: '#E6E8EC',
+            },
           },
 
           '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
             borderColor: '#E6E8EC',
-            borderWidth: 1
-          }
-        }
-      }
+            borderWidth: 1,
+          },
+        },
+      },
     },
 
     MuiInputBase: {
@@ -292,8 +292,8 @@ const themeOptions: ThemeOptionsOld = {
           // '&:after': {
           //   border: 'none !important',
           // },
-        }
-      }
+        },
+      },
     },
 
     MuiAppBar: {
@@ -304,33 +304,33 @@ const themeOptions: ThemeOptionsOld = {
           boxShadow: 'none',
           borderBottom: '1px solid',
           borderColor: themeCustoms.color.gray20,
-          marginTop: '0px'
-        }
-      }
+          marginTop: '0px',
+        },
+      },
     },
 
     MuiTabs: {
       styleOverrides: {
         indicator: {
           // backgroundColor: themeColors.color.main,
-        }
-      }
+        },
+      },
     },
 
     MuiTable: {
       styleOverrides: {
         root: {
-          borderRadius: 0
-        }
-      }
+          borderRadius: 0,
+        },
+      },
     },
 
     MuiTableCell: {
       styleOverrides: {
         root: {
-          borderLeft: '1px solid #e0e0e0'
-        }
-      }
+          borderLeft: '1px solid #e0e0e0',
+        },
+      },
     },
 
     MuiTab: {
@@ -358,23 +358,23 @@ const themeOptions: ThemeOptionsOld = {
             },
             '&.Mui-selected': {
               // backgroundColor: themeColors.color.hover,
-            }
-          }
+            },
+          },
         },
         rounded: {
           marginTop: '10px',
           borderRadius: '12px',
-          boxShadow: themeCustoms.color.boxShadow
-        }
-      }
+          boxShadow: themeCustoms.color.boxShadow,
+        },
+      },
     },
 
     MuiMenuItem: {
       styleOverrides: {
         root: {
-          fontSize: 14
-        }
-      }
+          fontSize: 14,
+        },
+      },
     },
 
     MuiToolbar: {
@@ -383,15 +383,15 @@ const themeOptions: ThemeOptionsOld = {
           minHeight: '72px !important',
 
           '@media (min-width: 900px)': {
-            minHeight: '70px !important'
-          }
-        }
-      }
+            minHeight: '70px !important',
+          },
+        },
+      },
     },
 
     MuiRadio: {
       defaultProps: {
-        size: 'small'
+        size: 'small',
       },
       styleOverrides: {
         root: {
@@ -399,13 +399,13 @@ const themeOptions: ThemeOptionsOld = {
 
           '&+.MuiFormControlLabel-label': {
             fontWeight: 500,
-            color: themeCustoms.color.gray100
+            color: themeCustoms.color.gray100,
           },
           '&.Mui-checked+.MuiFormControlLabel-label': {
-            color: themeCustoms.color.main
-          }
-        }
-      }
+            color: themeCustoms.color.main,
+          },
+        },
+      },
     },
 
     MuiBadge: {
@@ -413,55 +413,55 @@ const themeOptions: ThemeOptionsOld = {
         dot: {
           minWidth: '16px',
           height: '16px',
-          borderRadius: '50%'
-        }
-      }
-    }
+          borderRadius: '50%',
+        },
+      },
+    },
 
     // MuiTypography: {
     //   styleOverrides: {
     //   },
     // },
-  }
-}
+  },
+};
 
 declare module '@mui/material/styles' {
   interface SimplePaletteColorOptions {
-    textMode?: string
+    textMode?: string;
   }
 
   interface PaletteColor {
-    textMode?: string
+    textMode?: string;
   }
 }
 
 // Update for Typescript
 type CustomTheme = {
-  [Key in keyof typeof themeCustoms]: (typeof themeCustoms)[Key]
-}
+  [Key in keyof typeof themeCustoms]: (typeof themeCustoms)[Key];
+};
 declare module '@mui/material/styles/createTheme' {
   interface Theme extends CustomTheme {}
 
   interface ThemeOptions extends CustomTheme {}
 }
 
-export type TypeTypography = keyof typeof themeCustoms.typography
+export type TypeTypography = keyof typeof themeCustoms.typography;
 
 declare module '@mui/material/Typography' {
   interface TypographyPropsVariantOverrides {
-    body1: false
-    body2: false
-    button: false
-    overline: false
-    subtitle1: false
-    subtitle2: false
+    body1: false;
+    body2: false;
+    button: false;
+    overline: false;
+    subtitle1: false;
+    subtitle2: false;
     //
-    copy: true
-    body: true
-    label: true
-    small: true
+    copy: true;
+    body: true;
+    label: true;
+    small: true;
   }
 }
 
 // Create theme
-export const theme = createTheme({ ...themeCustoms, ...themeOptions })
+export const theme = createTheme({ ...themeCustoms, ...themeOptions });

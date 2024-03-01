@@ -1,39 +1,39 @@
-import { PersonAdd, Settings } from '@mui/icons-material'
-import Avatar from '@mui/material/Avatar'
-import Box from '@mui/material/Box'
-import Divider from '@mui/material/Divider'
-import IconButton from '@mui/material/IconButton'
-import ListItemIcon from '@mui/material/ListItemIcon'
-import Menu from '@mui/material/Menu'
-import MenuItem from '@mui/material/MenuItem'
-import { useState } from 'react'
-import LogoutIcon from 'src/icons/LogoutIcon.tsx'
-import UserIcon from 'src/icons/UserIcon'
-import { useNavigate } from 'react-router-dom'
+import { PersonAdd, Settings } from '@mui/icons-material';
+import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
+import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import { useState } from 'react';
+import LogoutIcon from 'src/icons/LogoutIcon.tsx';
+import UserIcon from 'src/icons/UserIcon';
+import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {
-  const navigate = useNavigate()
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
-  const open = Boolean(anchorEl)
+  const navigate = useNavigate();
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget)
-  }
+    setAnchorEl(event.currentTarget);
+  };
   const handleClose = () => {
-    setAnchorEl(null)
-  }
+    setAnchorEl(null);
+  };
 
   const handleLogout = () => {
-    navigate('/login')
-  }
+    navigate('/login');
+  };
 
   return (
     <Box>
-      <IconButton onClick={handleClick} size='large' sx={{ ml: 2 }}>
-        <UserIcon color='primary' />
+      <IconButton onClick={handleClick} size="large" sx={{ ml: 2 }}>
+        <UserIcon color="primary" />
       </IconButton>
       <Menu
         anchorEl={anchorEl}
-        id='account-menu'
+        id="account-menu"
         open={open}
         onClose={handleClose}
         onClick={handleClose}
@@ -47,7 +47,7 @@ const Profile = () => {
               width: 32,
               height: 32,
               ml: -0.5,
-              mr: 1
+              mr: 1,
             },
             '&:before': {
               content: '""',
@@ -59,12 +59,12 @@ const Profile = () => {
               height: 10,
               bgcolor: 'background.paper',
               transform: 'translateY(-50%) rotate(45deg)',
-              zIndex: 0
+              zIndex: 0,
             },
             '& .MuiList-root': {
-              borderRadius: '5px'
-            }
-          }
+              borderRadius: '5px',
+            },
+          },
         }}
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
@@ -78,13 +78,13 @@ const Profile = () => {
         <Divider />
         <MenuItem onClick={handleClose}>
           <ListItemIcon>
-            <PersonAdd fontSize='small' />
+            <PersonAdd fontSize="small" />
           </ListItemIcon>
           Add another account
         </MenuItem>
         <MenuItem onClick={handleClose}>
           <ListItemIcon>
-            <Settings fontSize='small' />
+            <Settings fontSize="small" />
           </ListItemIcon>
           Settings
         </MenuItem>
@@ -92,7 +92,7 @@ const Profile = () => {
           <ListItemIcon>
             <LogoutIcon
               sx={{
-                transform: 'rotate(180deg)'
+                transform: 'rotate(180deg)',
               }}
             />
           </ListItemIcon>
@@ -100,7 +100,7 @@ const Profile = () => {
         </MenuItem>
       </Menu>
     </Box>
-  )
-}
+  );
+};
 
-export default Profile
+export default Profile;

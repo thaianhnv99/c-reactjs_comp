@@ -1,5 +1,5 @@
-import { Box, Button, FormLabel } from '@mui/material'
-import { Bottom } from 'src/components/component-pattern/Bottom'
+import { Box, Button, FormLabel } from '@mui/material';
+import { Bottom } from 'src/components/component-pattern/Bottom';
 
 export function Demo({ name, change }: { name: string; change: (name: string) => void }) {
   return (
@@ -11,5 +11,5 @@ export function Demo({ name, change }: { name: string; change: (name: string) =>
         123
       </Bottom>
     </Box>
-  )
+  );
 }

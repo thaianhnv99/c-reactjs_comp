@@ -1,7 +1,7 @@
-import { type ReactNode } from 'react'
+import { type ReactNode } from 'react';
 
 const BottomBody = ({ children }: { children: ReactNode }) => {
-  return <>{children}</>
-}
+  return <>{children}</>;
+};
 
-export default BottomBody
+export default BottomBody;

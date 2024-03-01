@@ -1,4 +1,4 @@
-import './example.scss'
+import './example.scss';
 import {
   Box,
   Button,
@@ -10,15 +10,15 @@ import {
   RadioGroup,
   Stack,
   Typography,
-  styled
-} from '@mui/material'
-import { AppBox, AppDateRangePicker, AppInput } from '../../base'
-import { type TypeTypography } from '../../shared/utils/theme'
-import { useState } from 'react'
+  styled,
+} from '@mui/material';
+import { AppBox, AppDateRangePicker, AppInput } from '../../components/base';
+import { type TypeTypography } from '../../shared/utils/theme';
+import { useState } from 'react';
 
 export function Example() {
-  const [radioValueSelected, setRadioValueSelected] = useState<string>('')
-  const [checked, setChecked] = useState([true, true, true])
+  const [radioValueSelected, setRadioValueSelected] = useState<string>('');
+  const [checked, setChecked] = useState([true, true, true]);
 
   return (
     <>
@@ -29,37 +29,37 @@ export function Example() {
             <Grid item xs={4}>
               <Divider>Typography - REG</Divider>
               <Box sx={{ width: '100%', maxWidth: 500 }}>
-                <Typography variant='h1' component='div' gutterBottom>
+                <Typography variant="h1" component="div" gutterBottom>
                   Title 1
                 </Typography>
-                <Typography variant='h2' gutterBottom component='div'>
+                <Typography variant="h2" gutterBottom component="div">
                   h2. Heading
                 </Typography>
-                <Typography variant='h3' gutterBottom component='div'>
+                <Typography variant="h3" gutterBottom component="div">
                   h3. Heading
                 </Typography>
-                <Typography variant='h4' gutterBottom component='div'>
+                <Typography variant="h4" gutterBottom component="div">
                   h4. Heading
                 </Typography>
-                <Typography variant='h5' gutterBottom component='div'>
+                <Typography variant="h5" gutterBottom component="div">
                   h5. Heading
                 </Typography>
-                <Typography variant='h6' gutterBottom component='div'>
+                <Typography variant="h6" gutterBottom component="div">
                   h6. Heading
                 </Typography>
-                <Typography variant='copy' gutterBottom component='div'>
+                <Typography variant="copy" gutterBottom component="div">
                   copy
                 </Typography>
-                <Typography variant='body' gutterBottom component='div'>
+                <Typography variant="body" gutterBottom component="div">
                   body
                 </Typography>
-                <Typography variant='label' gutterBottom component='div'>
+                <Typography variant="label" gutterBottom component="div">
                   label
                 </Typography>
-                <Typography variant='caption' gutterBottom component='div'>
+                <Typography variant="caption" gutterBottom component="div">
                   caption
                 </Typography>
-                <Typography variant='small' gutterBottom component='div'>
+                <Typography variant="small" gutterBottom component="div">
                   small
                 </Typography>
               </Box>
@@ -67,46 +67,46 @@ export function Example() {
             <Grid item xs={4}>
               <Divider>Typography - MED</Divider>
               <Box sx={{ width: '100%', maxWidth: 500 }}>
-                <Typography variant='h1' fontWeight='medium' component='div' gutterBottom>
+                <Typography variant="h1" fontWeight="medium" component="div" gutterBottom>
                   Title 1
                 </Typography>
-                <Typography variant='h2' fontWeight='medium' gutterBottom component='div'>
+                <Typography variant="h2" fontWeight="medium" gutterBottom component="div">
                   h2. Heading
                 </Typography>
-                <Typography variant='h3' fontWeight='medium' gutterBottom component='div'>
+                <Typography variant="h3" fontWeight="medium" gutterBottom component="div">
                   h3. Heading
                 </Typography>
-                <Typography variant='h4' fontWeight='medium' gutterBottom component='div'>
+                <Typography variant="h4" fontWeight="medium" gutterBottom component="div">
                   h4. Heading
                 </Typography>
                 <Box
                   // component='span'
                   sx={{
                     typography: 'h5' as TypeTypography,
-                    fontWeight: 'medium'
+                    fontWeight: 'medium',
                   }}
                 >
                   h5
                 </Box>
-                <Typography variant='h5' fontWeight='medium' gutterBottom component='div'>
+                <Typography variant="h5" fontWeight="medium" gutterBottom component="div">
                   h5. Heading
                 </Typography>
-                <Typography variant='h6' fontWeight='medium' gutterBottom component='div'>
+                <Typography variant="h6" fontWeight="medium" gutterBottom component="div">
                   h6. Heading
                 </Typography>
-                <Typography variant='copy' fontWeight='medium' gutterBottom component='div'>
+                <Typography variant="copy" fontWeight="medium" gutterBottom component="div">
                   copy
                 </Typography>
-                <Typography variant='body' fontWeight='medium' gutterBottom component='div'>
+                <Typography variant="body" fontWeight="medium" gutterBottom component="div">
                   body
                 </Typography>
-                <Typography variant='label' fontWeight='medium' gutterBottom component='div'>
+                <Typography variant="label" fontWeight="medium" gutterBottom component="div">
                   label
                 </Typography>
-                <Typography variant='caption' fontWeight='medium' gutterBottom component='div'>
+                <Typography variant="caption" fontWeight="medium" gutterBottom component="div">
                   caption
                 </Typography>
-                <Typography variant='small' fontWeight='medium' gutterBottom component='div'>
+                <Typography variant="small" fontWeight="medium" gutterBottom component="div">
                   small
                 </Typography>
               </Box>
@@ -114,37 +114,37 @@ export function Example() {
             <Grid item xs={4}>
               <Divider>Typography - BOLD</Divider>
               <Box sx={{ width: '100%', maxWidth: 500 }}>
-                <Typography variant='h1' fontWeight='bold' component='div' gutterBottom>
+                <Typography variant="h1" fontWeight="bold" component="div" gutterBottom>
                   Title 1
                 </Typography>
-                <Typography variant='h2' fontWeight='bold' gutterBottom component='div'>
+                <Typography variant="h2" fontWeight="bold" gutterBottom component="div">
                   h2. Heading
                 </Typography>
-                <Typography variant='h3' fontWeight='bold' gutterBottom component='div'>
+                <Typography variant="h3" fontWeight="bold" gutterBottom component="div">
                   h3. Heading
                 </Typography>
-                <Typography variant='h4' fontWeight='bold' gutterBottom component='div'>
+                <Typography variant="h4" fontWeight="bold" gutterBottom component="div">
                   h4. Heading
                 </Typography>
-                <Typography variant='h5' fontWeight='bold' gutterBottom component='div'>
+                <Typography variant="h5" fontWeight="bold" gutterBottom component="div">
                   h5. Heading
                 </Typography>
-                <Typography variant='h6' fontWeight='bold' gutterBottom component='div'>
+                <Typography variant="h6" fontWeight="bold" gutterBottom component="div">
                   h6. Heading
                 </Typography>
-                <Typography variant='copy' fontWeight='bold' gutterBottom component='div'>
+                <Typography variant="copy" fontWeight="bold" gutterBottom component="div">
                   copy
                 </Typography>
-                <Typography variant='body' fontWeight='bold' gutterBottom component='div'>
+                <Typography variant="body" fontWeight="bold" gutterBottom component="div">
                   body
                 </Typography>
-                <Typography variant='label' fontWeight='bold' gutterBottom component='div'>
+                <Typography variant="label" fontWeight="bold" gutterBottom component="div">
                   label
                 </Typography>
-                <Typography variant='caption' fontWeight='bold' gutterBottom component='div'>
+                <Typography variant="caption" fontWeight="bold" gutterBottom component="div">
                   caption
                 </Typography>
-                <Typography variant='small' fontWeight='bold' gutterBottom component='div'>
+                <Typography variant="small" fontWeight="bold" gutterBottom component="div">
                   small
                 </Typography>
               </Box>
@@ -158,17 +158,17 @@ export function Example() {
 
           <Divider>Radio</Divider>
           <RadioGroup
-            aria-labelledby='demo-controlled-radio-buttons-group'
-            name='controlled-radio-buttons-group'
+            aria-labelledby="demo-controlled-radio-buttons-group"
+            name="controlled-radio-buttons-group"
             value={radioValueSelected}
             onChange={(event) => setRadioValueSelected(event.target.value)}
             sx={{
               display: 'flex',
-              flexDirection: 'row'
+              flexDirection: 'row',
             }}
           >
-            <FormControlLabel value='a' control={<Radio />} label='Catalogyo main Category' />
-            <FormControlLabel value='b' control={<Radio />} label='Product' />
+            <FormControlLabel value="a" control={<Radio />} label="Catalogyo main Category" />
+            <FormControlLabel value="b" control={<Radio />} label="Product" />
           </RadioGroup>
 
           <Divider>Checkbox</Divider>
@@ -179,7 +179,7 @@ export function Example() {
               control={
                 <Checkbox
                   sx={{
-                    '&.Mui-disabled': { color: '#B1B5C3' }
+                    '&.Mui-disabled': { color: '#B1B5C3' },
                   }}
                   checked
                   disabled
@@ -191,7 +191,7 @@ export function Example() {
               control={
                 <Checkbox
                   sx={{
-                    '&.Mui-disabled': { color: '#B1B5C3' }
+                    '&.Mui-disabled': { color: '#B1B5C3' },
                   }}
                   disabled
                 />
@@ -205,7 +205,9 @@ export function Example() {
                 <Checkbox
                   checked={checked[0] && checked[1] && checked[2]}
                   onChange={(event) => {
-                    setChecked((prevState) => prevState.map((item) => item === event.target.checked))
+                    setChecked((prevState) =>
+                      prevState.map((item) => item === event.target.checked)
+                    );
                   }}
                 />
               }
@@ -217,8 +219,8 @@ export function Example() {
                   checked={checked[0]}
                   onChange={(event) =>
                     setChecked((prevState) => {
-                      prevState[0] = event.target.checked
-                      return [...prevState]
+                      prevState[0] = event.target.checked;
+                      return [...prevState];
                     })
                   }
                 />
@@ -231,8 +233,8 @@ export function Example() {
                   checked={checked[1]}
                   onChange={(event) =>
                     setChecked((prevState) => {
-                      prevState[1] = event.target.checked
-                      return [...prevState]
+                      prevState[1] = event.target.checked;
+                      return [...prevState];
                     })
                   }
                 />
@@ -245,8 +247,8 @@ export function Example() {
                   checked={checked[2]}
                   onChange={(event) =>
                     setChecked((prevState) => {
-                      prevState[2] = event.target.checked
-                      return [...prevState]
+                      prevState[2] = event.target.checked;
+                      return [...prevState];
                     })
                   }
                 />
@@ -255,7 +257,7 @@ export function Example() {
             />
             <Button
               onClick={() => {
-                console.log(checked)
+                console.log(checked);
               }}
             >
               Submit
@@ -266,13 +268,13 @@ export function Example() {
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
-              gap: '.5rem'
+              gap: '.5rem',
             }}
           >
             <FormControlLabel
               sx={{
                 position: 'relative',
-                flexDirection: 'row-reverse'
+                flexDirection: 'row-reverse',
               }}
               slotProps={{
                 typography: {
@@ -281,9 +283,9 @@ export function Example() {
                     border: '1px solid transparent',
                     backgroundColor: '#ff00000d',
                     transition: 'background-color .15s ease,border-color .15s ease',
-                    paddingRight: '50px'
-                  }
-                }
+                    paddingRight: '50px',
+                  },
+                },
               }}
               control={
                 <Checkbox
@@ -293,44 +295,44 @@ export function Example() {
                     '&.Mui-checked': {
                       '& + .MuiFormControlLabel-label': {
                         backgroundColor: '#fb090921',
-                        border: '1px solid red'
-                      }
-                    }
+                        border: '1px solid red',
+                      },
+                    },
                   }}
                 />
               }
               label={
-                <Box padding='12px' flex={1}>
+                <Box padding="12px" flex={1}>
                   <Typography>Label</Typography>
-                  <Typography variant='caption'>Content</Typography>
+                  <Typography variant="caption">Content</Typography>
                 </Box>
               }
             />
             <Stack
-              component='label'
-              direction='row-reverse'
-              alignItems='center'
-              justifyContent='space-between'
+              component="label"
+              direction="row-reverse"
+              alignItems="center"
+              justifyContent="space-between"
               sx={{
                 position: 'relative',
                 width: '100%',
                 '& .Mui-checked': {
                   '& + .abc': {
                     backgroundColor: '#fb090921',
-                    border: '1px solid red'
-                  }
-                }
+                    border: '1px solid red',
+                  },
+                },
               }}
             >
               <Checkbox
                 sx={{
-                  position: 'absolute'
+                  position: 'absolute',
                 }}
               />
               <Box
-                padding='12px'
+                padding="12px"
                 flex={1}
-                className='abc'
+                className="abc"
                 sx={{
                   borderRadius: '6px',
                   border: '1px solid transparent',
@@ -338,33 +340,33 @@ export function Example() {
                   transition: 'background-color .15s ease,border-color .15s ease',
                   userSelect: 'none',
                   cursor: 'pointer',
-                  paddingRight: '50px'
+                  paddingRight: '50px',
                 }}
               >
                 <Typography>Label</Typography>
-                <Typography variant='caption'>Content</Typography>
+                <Typography variant="caption">Content</Typography>
               </Box>
             </Stack>
           </Box>
           <Box>
             <Box
-              component='label'
+              component="label"
               sx={{
                 display: 'inline-flex',
                 position: 'relative',
                 '& input[type=checkbox]:checked': {
                   '&:after': {
-                    transform: 'translateX(2.5em)'
+                    transform: 'translateX(2.5em)',
                   },
                   '& ~ .icon-en': {
                     opacity: 0,
-                    transform: 'translateX(-0.75em) scale(0.75)'
+                    transform: 'translateX(-0.75em) scale(0.75)',
                   },
                   '& ~ .icon-vn': {
                     opacity: 1,
                     transform: 'translateX(-1.75em)',
-                    transitionDelay: '0.15s'
-                  }
+                    transitionDelay: '0.15s',
+                  },
                 },
                 '& .icon-switch': {
                   position: 'absolute',
@@ -372,24 +374,24 @@ export function Example() {
                   top: '0.375em',
                   right: '0.375em',
                   transition: 'opacity 0.15s, transform 0.15s',
-                  userSelect: 'none'
+                  userSelect: 'none',
                 },
                 '& .icon-en': {
                   transitionDelay: '0.15s',
-                  right: '0.6em'
+                  right: '0.6em',
                 },
                 '& .icon-vn': {
                   opacity: 0,
                   transform: 'translateX(-0.75em) scale(0.75)',
-                  transitionDelay: '0.15s'
-                }
+                  transitionDelay: '0.15s',
+                },
               }}
             >
               <CustomizedSwitch />
-              <Typography component='span' className='icon-switch icon-vn'>
+              <Typography component="span" className="icon-switch icon-vn">
                 VN
               </Typography>
-              <Typography component='span' className='icon-switch icon-en'>
+              <Typography component="span" className="icon-switch icon-en">
                 EN
               </Typography>
             </Box>
@@ -397,10 +399,10 @@ export function Example() {
         </Stack>
       </AppBox>
     </>
-  )
+  );
 }
 
-const CustomizedSwitch = styled((props) => <input type='checkbox' {...props} />)`
+const CustomizedSwitch = styled((props) => <input type="checkbox" {...props} />)`
   appearance: none;
   padding: 0;
   margin: 0;
@@ -435,4 +437,4 @@ const CustomizedSwitch = styled((props) => <input type='checkbox' {...props} />)
       background-color 0.3s cubic-bezier(0.76, 0.05, 0.24, 0.95),
       transform 0.3s cubic-bezier(0.76, 0.05, 0.24, 0.95);
   }
-`
+`;
