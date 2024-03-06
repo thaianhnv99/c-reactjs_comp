@@ -12,9 +12,10 @@ import {
   Typography,
   styled,
 } from '@mui/material';
-import { AppBox, AppDateRangePicker, AppInput } from '../../components/base';
+import { AppBox, AppDateRangePicker } from '../../components/base';
 import { type TypeTypography } from '../../shared/utils/theme';
 import { useState } from 'react';
+import Inputs from 'src/components/inputs/Inputs';
 
 export function Example() {
   const [radioValueSelected, setRadioValueSelected] = useState<string>('');
@@ -151,7 +152,7 @@ export function Example() {
             </Grid>
           </Grid>
           <Divider>Input</Divider>
-          <AppInput />
+          <Inputs />
 
           <Divider>DateRangePicker</Divider>
           <AppDateRangePicker />

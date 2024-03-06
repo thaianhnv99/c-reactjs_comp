@@ -7,12 +7,13 @@ import { Login, Register } from './auth';
 import DataGrid from './data-grid/DataGrid';
 import DateWrapper from './date/DateWrapper';
 import Transition from 'src/components/demo/Transition';
-import Layout from 'src/components/common/layout/Layout';
+import Layout from 'src/components/layout/Layout';
 import SearchList from './debounce/SearchList';
 import List from './react-query/List';
 import { Example } from './example/example';
 import SWR from './swr/SWR';
 import Toast from './toast/Toast';
+import IconsPage from './icons/Icons';
 
 export default function Router() {
   return (
@@ -31,6 +32,7 @@ export default function Router() {
         <Route path="react-query" element={<List />} />
         <Route path="swr" element={<SWR />} />
         <Route path="toast" element={<Toast />} />
+        <Route path="icons" element={<IconsPage />} />
       </Route>
       {/* </Route> */}
 

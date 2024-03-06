@@ -11,6 +11,7 @@ import { AppBox } from 'src/components/base';
 import ExpandLessIcon from 'src/icons/ExpandLessIcon';
 import ExpandMoreIcon from 'src/icons/ExpandMoreIcon';
 import StarIcon from 'src/icons/StarIcon';
+import IconUI from 'src/icons';
 import { type MenuItem } from 'src/types';
 
 interface MenuItemWrapperProps {
@@ -52,7 +53,7 @@ const SideBar = ({ menu }: SideBarProps) => {
     <AppBox display="flex" flexDirection="column" maxWidth={360} width="100%">
       <Box position="sticky" top={0}>
         {menu.map((item, index) => {
-          if (item.isSub) {
+          if (!item.url) {
             return (
               <List
                 key={item.url || '' + index}
@@ -67,22 +68,24 @@ const SideBar = ({ menu }: SideBarProps) => {
                   </ListSubheader>
                 }
               >
-                {item.subItem && item.subItem.length > 0
-                  ? item.subItem.map((sub, index) => {
-                      return (
-                        <ListItemButton key={index} component={NavLink} to={sub?.url || ''}>
-                          <ListItemIcon>{sub?.icon}</ListItemIcon>
-                          <ListItemText primary={sub?.title} />
-                        </ListItemButton>
-                      );
-                    })
-                  : null}
+                {item.subItem?.map((sub, index) => {
+                  return (
+                    <ListItemButton key={index} component={NavLink} to={sub?.url || ''}>
+                      <ListItemIcon>
+                        <IconUI name={sub.icon} />
+                      </ListItemIcon>
+                      <ListItemText primary={sub?.title} />
+                    </ListItemButton>
+                  );
+                })}
               </List>
             );
           } else {
             return (
-              <ListItemButton key={item.url || ''}>
-                <ListItemIcon>{item?.icon}</ListItemIcon>
+              <ListItemButton key={item.url || ''} component={NavLink} to={item.url}>
+                <ListItemIcon>
+                  <IconUI name={item.icon || 'icon_document'} />
+                </ListItemIcon>
                 <ListItemText primary={item?.title} />
               </ListItemButton>
             );

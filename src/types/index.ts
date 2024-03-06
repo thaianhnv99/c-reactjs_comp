@@ -1,9 +1,9 @@
-import { type ReactNode } from 'react';
+import { type IconNames } from 'src/icons/icons';
 
+export type SubItems = Required<Omit<MenuItem, 'subItem'>>;
 export interface MenuItem {
   title: string;
   url?: string;
-  icon?: ReactNode;
-  isSub?: boolean;
-  subItem?: MenuItem[];
+  subItem?: SubItems[];
+  icon?: IconNames;
 }
