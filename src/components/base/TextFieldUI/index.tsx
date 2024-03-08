@@ -1,4 +1,4 @@
-import React, { type ReactElement, type ForwardedRef } from 'react';
+import React, { type ReactElement, type ForwardedRef, useMemo } from 'react';
 import TextFieldBase, { type TextFieldBaseProps } from './TextFieldBase';
 import FormHelperText from '@mui/material/FormHelperText';
 import { type SxProps, useTheme } from '@mui/material/styles';
@@ -17,17 +17,27 @@ function TextFieldUI(
 ): ReactElement {
   const theme = useTheme();
   const colors = theme.color;
+
+  const messages = useMemo(() => {
+    if (!error) {
+      return helperText;
+    }
+    if (typeof error === 'boolean') {
+      return 'This field is required.';
+    }
+    return error;
+  }, [error, helperText]);
   return (
     <Box width={fullWidth ? '100%' : 'unset'} sx={sxContainer} {...containerProps}>
       <TextFieldBase ref={outerRef} error={error} fullWidth={fullWidth} sx={sx} {...props} />
-      {error && (
+      {(error || helperText) && (
         <FormHelperText
           sx={{
-            color: colors.error,
+            color: error ? colors.error : helperText ? colors.gray30 : 'inherit',
             mt: '4px',
           }}
         >
-          {typeof error === 'boolean' ? 'This field is required.' : error ?? helperText}
+          {messages}
         </FormHelperText>
       )}
     </Box>

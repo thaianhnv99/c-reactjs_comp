@@ -21,17 +21,20 @@ export type TextFieldBaseProps = Omit<InputBaseProps, 'error' | 'size' | 'type'>
   variant?: TextFieldVariant;
   type?: TextFieldType;
   error?: string | null | boolean;
+  suffix?: string;
 };
+
 function TextFieldBase(
   {
     sx,
-    size,
     error,
-    variant = 'outlined',
     value,
     disabled,
     readOnly,
     type,
+    suffix,
+    size = 'medium',
+    variant = 'outlined',
     onChange,
     ...props
   }: TextFieldBaseProps,
@@ -118,12 +121,6 @@ function TextFieldBase(
           // width: 'auto',
           padding: 0,
           minWidth: '120px',
-          height: size === 'small' ? '48px' : size === 'medium' ? '56px' : '64px',
-          typography: (size === 'small'
-            ? 'label'
-            : size === 'medium'
-              ? 'body'
-              : 'copy') as TypeTypography,
           // transition: theme.transitions.create([
           //   'border-color',
           //   'background-color',
@@ -132,11 +129,13 @@ function TextFieldBase(
           '&::placeholder': {
             color: '#0000004d',
           },
+          height: size === 'small' ? '48px' : size === 'medium' ? '56px' : '64px',
+          typography:
+            size === 'small' ? 'label' : size === 'medium' ? 'body' : ('copy' as TypeTypography),
         },
         ...(variant === 'contained'
           ? {
               backgroundColor: '#f7f7f7',
-              border: `1px solid transparent`,
               '&:hover': {
                 borderColor: 'none',
                 backgroundColor: '#ededed',
@@ -146,12 +145,12 @@ function TextFieldBase(
               },
             }
           : {
-              border: `1px solid ` + (error ? colors.error : colors.gray20),
+              boxShadow: 'inset 0 0 0 1px ' + (error ? colors.error : 'rgba(0,0,0,0.1)'),
               '&:hover': {
-                borderColor: error ? colors.error : colors.gray30,
+                boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.4)',
               },
               '&:focus-within': {
-                borderColor: error ? colors.error : colors.gray50,
+                boxShadow: 'inset 0 0 0 1px ' + (error ? colors.error : 'rgba(0,0,0,0.4)'),
               },
             }),
         ...sx,
@@ -177,13 +176,14 @@ function TextFieldBase(
         )
       }
       endAdornment={
-        isShowClearBtn ? (
-          <InputAdornment
-            position="end"
-            sx={{
-              marginRight: '12px',
-            }}
-          >
+        <InputAdornment
+          position="end"
+          sx={{
+            marginRight: '8px',
+            height: 'auto',
+          }}
+        >
+          {isShowClearBtn ? (
             <Box
               onMouseDown={handleClear}
               sx={{
@@ -204,14 +204,28 @@ function TextFieldBase(
                 color: colors.gray10,
                 fontSize: '10px',
                 cursor: 'pointer',
+                margin: '0 4px',
               }}
             >
               x
             </Box>
-          </InputAdornment>
-        ) : (
-          <Box component="span" padding="0 6px"></Box>
-        )
+          ) : null}
+          {suffix ? (
+            <Box
+              sx={{
+                margin: '0 4px',
+                userSelect: 'none',
+                typography: (size === 'small'
+                  ? 'caption'
+                  : size === 'medium'
+                    ? 'label'
+                    : 'body') as TypeTypography,
+              }}
+            >
+              {suffix}
+            </Box>
+          ) : null}
+        </InputAdornment>
       }
       {...props}
     />

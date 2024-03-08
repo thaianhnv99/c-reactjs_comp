@@ -10,24 +10,22 @@ const Inputs = () => {
   const [value, setValue] = useState('123');
   const [isDisabled, setIsDisabled] = useState(false);
   const [hasError, setHasError] = useState(false);
+  const [suffix, setSuffix] = useState('');
 
   const [variant, setVariant] = useState<TextFieldVariant>('outlined');
 
   const innerRef = useRef<HTMLInputElement>(null);
   return (
     <Box>
-      <TextField />
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'flex-end',
-          gap: '10px',
-        }}
-      >
+      <TextField placeholder="TextField default of MUI" />
+      {/* Option size */}
+      <Stack direction="row" spacing={2}>
         <TextFieldUI ref={innerRef} placeholder="Default + small" size="small" />
         <TextFieldUI placeholder="Default + medium" size="medium" />
         <TextFieldUI placeholder="Default + large" size="large" />
-      </Box>
+      </Stack>
+
+      {/* Default + small + onChange */}
       <TextFieldUI
         placeholder="Default + small"
         size="small"
@@ -35,6 +33,8 @@ const Inputs = () => {
         value={value}
         onChange={(e) => setValue(e.target.value)}
       />
+
+      {/* Default + small + fullWidth */}
       <Stack direction="row" spacing={2} mt={2}>
         <TextFieldUI
           placeholder="Default + small + fullWidth"
@@ -52,17 +52,28 @@ const Inputs = () => {
         <Button onClick={() => setValue((prev) => prev + Math.random().toString())}>Set</Button>
         <Button onClick={() => setValue('')}>Clear</Button>
       </Stack>
+
+      {/* Default + error */}
       <Stack direction="row" spacing={2} alignItems="center" mt={2}>
         <TextFieldUI
-          placeholder="Default + error"
-          error
+          placeholder="Small + helperText"
+          size="small"
+          helperText="Caption detail"
           value={value}
+          onChange={(e) => setValue(e.target.value)}
+        />
+        <TextFieldUI
+          placeholder="Medium + error"
+          value={value}
+          error
           onChange={(e) => setValue(e.target.value)}
         />
         <TextFieldUI placeholder="Default + small + error" size="small" error={hasError} />
         <Button onClick={() => setHasError((prev) => !prev)}>Set error</Button>
       </Stack>
-      <Stack direction="row" spacing={2}>
+
+      {/* Default + small + disabled */}
+      <Stack direction="row" spacing={2} mt={2}>
         <TextFieldUI
           placeholder="Default + small + disabled"
           size="small"
@@ -82,12 +93,13 @@ const Inputs = () => {
           {isDisabled ? 'Enable' : 'Disable'}
         </Button>
       </Stack>
+
+      {/* Search + small + variant + fullWidth */}
       <Stack direction="row" spacing={2} mt={2}>
         <TextFieldUI
-          placeholder="Search + small + disabled"
+          placeholder="Search + small + variant + fullWidth"
           size="small"
           type="search"
-          disabled={isDisabled}
           variant={variant}
           fullWidth
         />
@@ -97,6 +109,31 @@ const Inputs = () => {
         >
           {variant}
         </Button>
+      </Stack>
+
+      {/* Search + small + suffix */}
+      <Stack direction="row" spacing={2} mt={2}>
+        <TextFieldUI
+          placeholder="Search + small"
+          size="small"
+          suffix={suffix}
+          value={suffix}
+          fullWidth
+          onChange={(e) => setSuffix(e.target.value)}
+        />
+        <TextFieldUI
+          placeholder="Search + medium + fullWidth"
+          size="medium"
+          suffix={suffix}
+          fullWidth
+        />
+        <TextFieldUI
+          placeholder="Search + large + fullWidth"
+          size="large"
+          type="search"
+          suffix={suffix}
+          fullWidth
+        />
       </Stack>
     </Box>
   );
