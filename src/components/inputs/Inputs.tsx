@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import TextFieldUI from '../base/TextFieldUI';
 import { type TextFieldVariant } from '../base/TextFieldUI/type';
+import { useForm, useWatch } from 'react-hook-form';
 
 const Inputs = () => {
   const [value, setValue] = useState('123');
@@ -15,8 +16,19 @@ const Inputs = () => {
   const [variant, setVariant] = useState<TextFieldVariant>('outlined');
 
   const innerRef = useRef<HTMLInputElement>(null);
+
+  const { register, control } = useForm({
+    defaultValues: {
+      a: '',
+    },
+  });
+
+  const { a } = useWatch({ control });
+  console.log(a);
+
   return (
     <Box>
+      <TextFieldUI {...register('a')} />
       <TextField placeholder="TextField default of MUI" />
       {/* Option size */}
       <Stack direction="row" spacing={2}>

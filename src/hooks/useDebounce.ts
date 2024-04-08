@@ -5,11 +5,13 @@ export const useDebounce = <T>(value: T, debounceTime: number) => {
 
   useEffect(() => {
     const time = setTimeout(() => {
-      setValueDebounce(value);
+      if (value !== valueDebounce) {
+        setValueDebounce(value);
+      }
     }, debounceTime);
 
     return () => clearTimeout(time);
-  }, [debounceTime, value]);
+  }, [debounceTime, value, valueDebounce]);
 
   return valueDebounce;
 };

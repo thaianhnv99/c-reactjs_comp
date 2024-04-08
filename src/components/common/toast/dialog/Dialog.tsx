@@ -24,6 +24,7 @@ const Dialog = () => {
   const handleCloseDialog = () => {
     closeDialog();
   };
+
   return (
     <Box>
       <Button onClick={handleOpenDialog}>Open dialog</Button>

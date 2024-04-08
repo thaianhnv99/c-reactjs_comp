@@ -14,6 +14,8 @@ import { Example } from './example/example';
 import SWR from './swr/SWR';
 import Toast from './toast/Toast';
 import IconsPage from './icons/Icons';
+import ScrollUI from 'src/components/scroll/ScrollUI';
+import PaginationUI from 'src/components/base/Pagination/PaginationUI';
 
 export default function Router() {
   return (
@@ -33,6 +35,8 @@ export default function Router() {
         <Route path="swr" element={<SWR />} />
         <Route path="toast" element={<Toast />} />
         <Route path="icons" element={<IconsPage />} />
+        <Route path="scroll" element={<ScrollUI />} />
+        <Route path="pagination" element={<PaginationUI />} />
       </Route>
       {/* </Route> */}
 
