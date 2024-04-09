@@ -22,6 +22,7 @@ export type TextFieldBaseProps = Omit<InputBaseProps, 'error' | 'size' | 'type'>
   type?: TextFieldType;
   error?: string | null | boolean;
   suffix?: string;
+  isShowClear?: boolean;
 };
 
 function TextFieldBase(
@@ -35,6 +36,7 @@ function TextFieldBase(
     suffix,
     size = 'medium',
     variant = 'outlined',
+    isShowClear = false,
     onChange,
     ...props
   }: TextFieldBaseProps,
@@ -49,13 +51,13 @@ function TextFieldBase(
   const isSearch = type === 'search';
 
   const [isShowClearBtn, setIsShowClearBtn] = useState(false);
-  const [isFocus, setIsFocus] = useState(false);
+  // const [isFocus, setIsFocus] = useState(false);
   const [isDisabled, setIsDisabled] = useState(disabled);
-  const [isStyleDisabled, setIsStyleDisabled] = useState(disabled || readOnly);
+  // const [isStyleDisabled, setIsStyleDisabled] = useState(disabled || readOnly);
 
   useEffect(() => {
     setIsDisabled(disabled);
-    setIsStyleDisabled(disabled || readOnly);
+    // setIsStyleDisabled(disabled || readOnly);
   }, [disabled, readOnly]);
 
   useEffect(() => {
@@ -65,39 +67,34 @@ function TextFieldBase(
   }, [value, type, disabled]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    console.log('change');
-
     onChange?.(e);
     setIsShowClearBtn(e.target.value.length > 0);
   };
 
   const handleFocus = () => {
     setIsShowClearBtn((innerRef.current?.value ?? '').length > 0);
-    setIsFocus(true);
+    // setIsFocus(true);
   };
 
   const handleBlur = () => {
     if (type !== 'search') {
       setIsShowClearBtn(false);
     }
-    setIsFocus(false);
+    // setIsFocus(false);
   };
 
   const handleClear = (e: MouseEvent<HTMLElement>) => {
     e.preventDefault();
     e.stopPropagation();
-
     if (!innerRef.current) return;
     setNativeValue(innerRef.current, '');
     innerRef.current.focus();
-
     const event = new Event('change', { bubbles: true });
     innerRef.current.dispatchEvent(event);
   };
 
   useClickOutside([containerRef], handleBlur, true);
 
-  console.log('isFocus', isFocus, isStyleDisabled, variant);
   return (
     <InputBase
       ref={containerRef}
@@ -183,7 +180,7 @@ function TextFieldBase(
             height: 'auto',
           }}
         >
-          {isShowClearBtn ? (
+          {isShowClear && isShowClearBtn ? (
             <Box
               onMouseDown={handleClear}
               sx={{

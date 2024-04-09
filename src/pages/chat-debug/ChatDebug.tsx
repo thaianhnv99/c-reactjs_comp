@@ -1,15 +1,16 @@
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import Stack from '@mui/material/Stack';
+import { useEffect, useRef, useState } from 'react';
 import { fetchSeachListByTitle, type PostItem } from 'src/api/postApi';
 import useKeepScrollPosition from 'src/hooks/useKeepScrollPosition';
 import useOnScreen from 'src/hooks/useOnScreen';
+import MessageItem from './MessageItem';
+import ChatFooter from './ChatFooter';
 
 const ChatDebug = () => {
   const [messages, setMessages] = useState<PostItem[]>([]);
   const refFirstMessage = useRef<HTMLDivElement>(null);
   const isIntersecting = useOnScreen(refFirstMessage);
-
   const { containerRef: refContainerMessageBox, scrollToBottom } = useKeepScrollPosition([
     messages,
   ]);
@@ -23,15 +24,15 @@ const ChatDebug = () => {
     }
   };
 
-  const sentMessage = () => {
+  const sentMessage = (message: string) => {
     //Push message by socket
     scrollToBottom('auto');
     setTimeout(() => {
       const newMessageEmit: PostItem = {
-        body: 'New',
+        body: message,
         id: Math.floor(Math.random() * 1000000),
-        title: 'new',
-        userId: 2,
+        title: message,
+        userId: Math.floor(Math.random() * 1000000),
       };
       setMessages((old) => [...old, newMessageEmit]);
     }, 100);
@@ -43,32 +44,32 @@ const ChatDebug = () => {
     }
   }, [isIntersecting]);
 
-  useLayoutEffect(() => {
-    console.log('useLayoutEffect');
-  });
-
-  useMemo(() => {
-    console.log('useMemo');
-  }, []);
   return (
     <Box>
-      <Box ref={refContainerMessageBox} height={500} overflow="auto">
-        <Box ref={refFirstMessage} />
-        {messages.map((message) => {
-          return (
-            <Box
+      <Stack
+        direction="column"
+        justifyContent="space-between"
+        height={500}
+        width={500}
+        sx={{
+          boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
+          borderRadius: '12px',
+        }}
+      >
+        <Box ref={refContainerMessageBox} overflow="auto">
+          <Box ref={refFirstMessage} />
+          {messages.map((message) => (
+            <MessageItem
               key={message.id + Math.random()}
+              content={`${message.id}-${message.title}`}
               sx={{
-                padding: '5px 0 5px 0',
+                px: 1.5,
               }}
-            >
-              {`${message.id}-${message.title}`}
-            </Box>
-          );
-        })}
-      </Box>
-
-      <Button onClick={sentMessage}>Sent</Button>
+            />
+          ))}
+        </Box>
+        <ChatFooter sentMessage={sentMessage} />
+      </Stack>
     </Box>
   );
 };
