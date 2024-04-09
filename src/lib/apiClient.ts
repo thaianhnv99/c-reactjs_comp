@@ -32,7 +32,6 @@ import { sleep } from 'src/shared/utils/util';
 export const setupAxios = () => {
   const instance = axios.create({
     baseURL: process.env.REACT_APP_API_END_POINT,
-    withCredentials: true,
     headers: {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
@@ -67,7 +66,7 @@ export const setupAxios = () => {
 
   instance.interceptors.response.use(
     async (response) => {
-      await sleep(2000);
+      await sleep(100);
       return response;
     },
     async (error) => {
