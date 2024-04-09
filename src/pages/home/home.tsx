@@ -27,11 +27,9 @@ export function Home() {
 
   const handleToggleCount = () => {
     setCount(count + 1);
-    console.log(count);
   };
 
   const context = useContextTheme();
-  console.log(context);
 
   return (
     <>

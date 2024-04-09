@@ -17,6 +17,7 @@ import IconsPage from './icons/Icons';
 import ScrollUI from 'src/components/scroll/ScrollUI';
 import PaginationUI from 'src/components/base/Pagination/PaginationUI';
 import ChatDebug from './chat-debug/ChatDebug';
+import WhitePage from './white-page/WhitePage';
 
 export default function Router() {
   return (
@@ -39,6 +40,7 @@ export default function Router() {
         <Route path="scroll" element={<ScrollUI />} />
         <Route path="pagination" element={<PaginationUI />} />
         <Route path="chat" element={<ChatDebug />} />
+        <Route path="white-page" element={<WhitePage />} />
       </Route>
       {/* </Route> */}
 
