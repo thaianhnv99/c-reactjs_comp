@@ -1,19 +1,18 @@
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { fetchSeachListByTitle, type PostItem } from 'src/api/postApi';
 import useKeepScrollPosition from 'src/hooks/useKeepScrollPosition';
-import useOnScreen from 'src/hooks/useOnScreen';
 import MessageItem from './MessageItem';
 import ChatFooter from './ChatFooter';
+import { useIntersectionObserver } from 'src/hooks/useIntersectionObserver';
 
 const ChatDebug = () => {
   const [messages, setMessages] = useState<PostItem[]>([]);
-  const refFirstMessage = useRef<HTMLDivElement>(null);
-  const isIntersecting = useOnScreen(refFirstMessage);
   const { containerRef: refContainerMessageBox, scrollToBottom } = useKeepScrollPosition([
     messages,
   ]);
+  const [refFirstMessage, entry] = useIntersectionObserver();
 
   const getData = async () => {
     try {
@@ -30,19 +29,21 @@ const ChatDebug = () => {
     setTimeout(() => {
       const newMessageEmit: PostItem = {
         body: message,
-        id: Math.floor(Math.random() * 1000000),
+        id: Math.floor(Math.random() * 1000),
         title: message,
-        userId: Math.floor(Math.random() * 1000000),
+        userId: Math.floor(Math.random() * 1000),
       };
       setMessages((old) => [...old, newMessageEmit]);
     }, 100);
   };
 
   useEffect(() => {
-    if (isIntersecting) {
+    console.log(entry?.isIntersecting);
+
+    if (entry?.isIntersecting) {
       getData();
     }
-  }, [isIntersecting]);
+  }, [entry]);
 
   return (
     <Box>
@@ -56,6 +57,10 @@ const ChatDebug = () => {
           borderRadius: '12px',
         }}
       >
+        {(() => {
+          console.log('triiii');
+          return '';
+        })()}
         <Box ref={refContainerMessageBox} overflow="auto">
           <Box ref={refFirstMessage} />
           {messages.map((message) => (

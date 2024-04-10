@@ -18,6 +18,9 @@ import ScrollUI from 'src/components/scroll/ScrollUI';
 import PaginationUI from 'src/components/base/Pagination/PaginationUI';
 import ChatDebug from './chat-debug/ChatDebug';
 import WhitePage from './white-page/WhitePage';
+import IssuesForDev from './issues-for-dev/IssuesForDev';
+import ForDev from 'src/components/issues-for-dev/ForDev';
+import IssueFlickerLoading from './issues-for-dev/IssueFlickerLoading';
 
 export default function Router() {
   return (
@@ -41,6 +44,10 @@ export default function Router() {
         <Route path="pagination" element={<PaginationUI />} />
         <Route path="chat" element={<ChatDebug />} />
         <Route path="white-page" element={<WhitePage />} />
+        <Route path="issue" element={<IssuesForDev />}>
+          <Route index element={<ForDev />} />
+          <Route path="flicker-loading" element={<IssueFlickerLoading />} />
+        </Route>
       </Route>
       {/* </Route> */}
 

@@ -1,6 +1,6 @@
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
-import { useState } from 'react';
+import { type KeyboardEvent, useCallback, useState } from 'react';
 import TextFieldUI from 'src/components/base/TextFieldUI';
 
 type ChatFooterProps = {
@@ -9,10 +9,17 @@ type ChatFooterProps = {
 const ChatFooter = ({ sentMessage }: ChatFooterProps) => {
   const [value, setValue] = useState('');
 
-  const handleSendMessage = () => {
+  const handleSendMessage = useCallback(() => {
     setValue('');
     sentMessage(value);
+  }, [sentMessage, value]);
+
+  const handleKeyEnter = (e: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    if (e.key === 'Enter') {
+      handleSendMessage();
+    }
   };
+
   return (
     <Stack direction="row" gap={1} p={2} px={1.5}>
       <TextFieldUI
@@ -22,6 +29,7 @@ const ChatFooter = ({ sentMessage }: ChatFooterProps) => {
         fullWidth
         value={value}
         onChange={(e) => setValue(e.target.value)}
+        onKeyDown={handleKeyEnter}
       />
       <Button onClick={handleSendMessage}>Sent</Button>
     </Stack>
