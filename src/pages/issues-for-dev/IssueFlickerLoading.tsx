@@ -20,14 +20,25 @@ const IssueFlickerLoading = () => {
       setIsLoading(false);
     }
   };
+
   useLayoutEffect(() => {
     setIsLoading(true);
     console.log('runned');
   }, []);
 
+  //Practice should use useLayoutEffect instead of useEffect
   useEffect(() => {
     getData();
   }, []);
+
+  const [count, setCount] = useState(0);
+  useLayoutEffect(() => {
+    console.log('runned useLayoutEffect', count);
+  }, [count]);
+
+  useEffect(() => {
+    console.log('runned useEffect', count);
+  }, [count]);
 
   return (
     <Box>
@@ -50,6 +61,7 @@ const IssueFlickerLoading = () => {
       >
         Clicked
       </Button>
+      <button onClick={() => setCount((e) => e + 1)}>Click ({count})</button>
     </Box>
   );
 };

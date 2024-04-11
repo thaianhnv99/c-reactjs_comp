@@ -66,7 +66,7 @@ export const setupAxios = () => {
 
   instance.interceptors.response.use(
     async (response) => {
-      await sleep(2000);
+      await sleep(1000);
       return response;
     },
     async (error) => {

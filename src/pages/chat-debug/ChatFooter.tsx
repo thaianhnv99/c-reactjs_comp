@@ -10,11 +10,12 @@ const ChatFooter = ({ sentMessage }: ChatFooterProps) => {
   const [value, setValue] = useState('');
 
   const handleSendMessage = useCallback(() => {
+    if (!value) return;
     setValue('');
     sentMessage(value);
   }, [sentMessage, value]);
 
-  const handleKeyEnter = (e: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleKeyEnter = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       handleSendMessage();
     }
