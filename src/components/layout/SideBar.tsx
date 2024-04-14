@@ -7,11 +7,10 @@ import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { AppBox } from 'src/components/base';
 import ExpandLessIcon from 'src/icons/ExpandLessIcon';
 import ExpandMoreIcon from 'src/icons/ExpandMoreIcon';
 import StarIcon from 'src/icons/StarIcon';
-import IconUI from 'src/icons';
+import IconUI from 'src/icons/IconUI';
 import { type MenuItem } from 'src/types';
 
 interface MenuItemWrapperProps {
@@ -50,49 +49,47 @@ interface SideBarProps {
 }
 const SideBar = ({ menu }: SideBarProps) => {
   return (
-    <AppBox display="flex" flexDirection="column" maxWidth={360} width="100%">
-      <Box position="sticky" top={0}>
-        {menu.map((item, index) => {
-          if (!item.url) {
-            return (
-              <List
-                key={item.url || '' + index}
-                sx={{
-                  width: '100%',
-                  bgcolor: 'background.paper',
-                }}
-                component="nav"
-                subheader={
-                  <ListSubheader component="div" id="nested-list-subheader">
-                    {item?.title}
-                  </ListSubheader>
-                }
-              >
-                {item.subItem?.map((sub, index) => {
-                  return (
-                    <ListItemButton key={index} component={NavLink} to={sub?.url || ''}>
-                      <ListItemIcon>
-                        <IconUI name={sub.icon} />
-                      </ListItemIcon>
-                      <ListItemText primary={sub?.title} />
-                    </ListItemButton>
-                  );
-                })}
-              </List>
-            );
-          } else {
-            return (
-              <ListItemButton key={item.url || ''} component={NavLink} to={item.url}>
-                <ListItemIcon>
-                  <IconUI name={item.icon || 'icon_document'} />
-                </ListItemIcon>
-                <ListItemText primary={item?.title} />
-              </ListItemButton>
-            );
-          }
-        })}
-      </Box>
-    </AppBox>
+    <Box position="sticky" top={0} height="100vh" overflow="auto" width="100%">
+      {menu.map((item, index) => {
+        if (!item.url) {
+          return (
+            <List
+              key={item.url || '' + index}
+              sx={{
+                width: '100%',
+                bgcolor: 'background.paper',
+              }}
+              component="nav"
+              subheader={
+                <ListSubheader component="div" id="nested-list-subheader">
+                  {item?.name}
+                </ListSubheader>
+              }
+            >
+              {item.subItem?.map((sub, index) => {
+                return (
+                  <ListItemButton key={index} component={NavLink} to={sub?.url || ''}>
+                    <ListItemIcon>
+                      <IconUI name={sub.icon} />
+                    </ListItemIcon>
+                    <ListItemText primary={sub?.name} />
+                  </ListItemButton>
+                );
+              })}
+            </List>
+          );
+        } else {
+          return (
+            <ListItemButton key={item.url || ''} component={NavLink} to={item.url}>
+              <ListItemIcon>
+                <IconUI name={item.icon || 'icon_document'} />
+              </ListItemIcon>
+              <ListItemText primary={item?.name} />
+            </ListItemButton>
+          );
+        }
+      })}
+    </Box>
   );
 };
 

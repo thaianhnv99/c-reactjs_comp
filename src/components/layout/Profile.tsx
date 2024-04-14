@@ -1,6 +1,5 @@
 import { PersonAdd, Settings } from '@mui/icons-material';
 import Avatar from '@mui/material/Avatar';
-import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -10,6 +9,8 @@ import { useState } from 'react';
 import LogoutIcon from 'src/icons/LogoutIcon.tsx';
 import UserIcon from 'src/icons/UserIcon';
 import { useNavigate } from 'react-router-dom';
+import Typography from '@mui/material/Typography';
+import Stack from '@mui/material/Stack';
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -27,8 +28,9 @@ const Profile = () => {
   };
 
   return (
-    <Box>
-      <IconButton onClick={handleClick} size="large" sx={{ ml: 2 }}>
+    <Stack direction="row" alignItems="center">
+      <Typography>Jon</Typography>
+      <IconButton onClick={handleClick} size="large">
         <UserIcon color="primary" />
       </IconButton>
       <Menu
@@ -99,7 +101,7 @@ const Profile = () => {
           Logout
         </MenuItem>
       </Menu>
-    </Box>
+    </Stack>
   );
 };
 

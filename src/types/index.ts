@@ -1,8 +1,11 @@
-import { type IconNames } from 'src/icons/icons';
+import { type IconNames } from 'src/icons/listIcon';
 
-export type SubItems = Required<Omit<MenuItem, 'subItem'>>;
+type SubItemsWithoutItself = Omit<MenuItem, 'subItem' | 'title' | 'description'>;
+export type SubItems = Required<SubItemsWithoutItself> & Pick<MenuItem, 'title' | 'description'>;
 export interface MenuItem {
-  title: string;
+  name: string;
+  title?: string;
+  description?: string;
   url?: string;
   subItem?: SubItems[];
   icon?: IconNames;

@@ -11,7 +11,7 @@ import React, {
 } from 'react';
 import { mergeRef } from 'src/hooks/mergeRef';
 import { type TypeTypography } from 'src/shared/utils/theme';
-import IconUI from 'src/icons';
+import IconUI from 'src/icons/IconUI';
 import { setNativeValue } from 'src/hooks/setNativeValue';
 import { useClickOutside } from 'src/hooks/useClickOutside';
 import { type TextFieldVariant, type TextFieldSize, type TextFieldType } from './type';

@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box';
-import IconUI from 'src/icons';
+import IconUI from 'src/icons/IconUI';
 
 const IconsPage = () => {
   return (

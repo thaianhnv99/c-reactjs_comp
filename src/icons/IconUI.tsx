@@ -1,12 +1,12 @@
 import React, { type ForwardedRef, type SVGProps } from 'react';
-import icons, { type IconNames } from './icons';
+import icons, { type IconNames } from './listIcon';
 
 type IconProps = SVGProps<SVGSVGElement> & {
   name: IconNames;
-  size?: string;
+  size?: React.SVGAttributes<SVGSVGElement>['width'];
   color?: string;
 };
-const IconUI = ({ name, size = '28px', ...props }: IconProps, ref: ForwardedRef<SVGSVGElement>) => {
+const IconUI = ({ name, size = 28, ...props }: IconProps, ref: ForwardedRef<SVGSVGElement>) => {
   return icons[name]({ ref, size, ...props });
 };
 
