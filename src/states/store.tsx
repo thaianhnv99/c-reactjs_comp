@@ -2,6 +2,7 @@ import { type Action, type ThunkAction, combineReducers, configureStore } from '
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
 import info from './info/reducer';
 import auth from './auth/reducer';
+import popup from './ui/popupReducer';
 import {
   persistReducer,
   persistStore,
@@ -16,6 +17,7 @@ import {
 const rootReducer = combineReducers({
   info,
   auth,
+  popup,
 });
 
 const persisrConfig = {

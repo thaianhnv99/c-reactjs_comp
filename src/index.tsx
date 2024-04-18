@@ -17,6 +17,18 @@ import { apiClient } from './lib';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
+async function enableMocking() {
+  if (process.env.NODE_ENV !== 'development') {
+    return;
+  }
+
+  const { worker } = await import('./mocks/browser');
+
+  // `worker.start()` returns a Promise that resolves
+  // once the Service Worker is up and ready to intercept requests.
+  return worker.start();
+}
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -25,29 +37,32 @@ const queryClient = new QueryClient({
   },
 });
 
-root.render(
-  <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
-      <ThemeProvider theme={theme}>
-        <QueryClientProvider client={queryClient}>
-          <ReactQueryDevtools initialIsOpen={false} />
-          <ThemeContextProvider>
-            <Toaster position="top-right" reverseOrder={false} />
-            <SWRConfig
-              value={{
-                fetcher: (resource, init) => apiClient.get(resource, init).then((res) => res.data),
-              }}
-            >
-              <BrowserRouter>
-                <Router />
-              </BrowserRouter>
-            </SWRConfig>
-          </ThemeContextProvider>
-        </QueryClientProvider>
-      </ThemeProvider>
-    </PersistGate>
-  </Provider>
-);
+enableMocking().then(() => {
+  root.render(
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <ThemeProvider theme={theme}>
+          <QueryClientProvider client={queryClient}>
+            <ReactQueryDevtools initialIsOpen={false} />
+            <ThemeContextProvider>
+              <Toaster position="top-right" reverseOrder={false} />
+              <SWRConfig
+                value={{
+                  fetcher: (resource, init) =>
+                    apiClient.get(resource, init).then((res) => res.data),
+                }}
+              >
+                <BrowserRouter>
+                  <Router />
+                </BrowserRouter>
+              </SWRConfig>
+            </ThemeContextProvider>
+          </QueryClientProvider>
+        </ThemeProvider>
+      </PersistGate>
+    </Provider>
+  );
+});
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

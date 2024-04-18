@@ -11,13 +11,12 @@ const HeaderSubTitle = ({
   description,
   children,
 }: PropsWithChildren<HeaderSubTitleProps>) => {
+  if (!title) return null;
   return (
     <>
-      {title ? (
-        <Typography color="#1e293b" variant="h1" fontWeight="700" lineHeight={1.1}>
-          {title}
-        </Typography>
-      ) : null}
+      <Typography color="#1e293b" variant="h1" fontWeight="700" lineHeight={1.1}>
+        {title}
+      </Typography>
       {description ? (
         <Typography mt={2} color="#475569">
           {description}

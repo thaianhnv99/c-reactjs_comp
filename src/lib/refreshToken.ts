@@ -1,21 +1,20 @@
 import { apiClient } from './apiClient';
-import { getAuthorization, setUserProfile } from './authorization';
 
 const refreshToken = async () => {
-  const accessTokenOld = getAuthorization();
+  const refreshToken = localStorage.getItem('refreshToken') || 'mock';
+  if (!refreshToken) throw new Error('refresh token does not exist');
+  const refreshPayload = {
+    refreshToken: refreshToken,
+  };
 
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const credentials = await apiClient.post<any>('123', { refreshToken: accessTokenOld });
+  const response = await apiClient.post<{ authorizationToken: string; refreshToken: string }>(
+    '/authorization/refresh',
+    refreshPayload
+  );
 
-    if (credentials) {
-      setUserProfile(credentials.data.user);
-    }
-
-    return credentials.data.token;
-  } catch (error) {
-    console.log(error);
-  }
+  const token = response.data.authorizationToken;
+  const newRefreshToken = response.data.refreshToken;
+  return [token, newRefreshToken];
 };
 
 export default refreshToken;

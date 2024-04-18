@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios, { type AxiosRequestConfig, type AxiosResponse, type Method } from 'axios';
 // import {type AxiosResponseHeaders} from 'axios';
@@ -5,6 +6,9 @@ import qs from 'qs';
 import { getAuthorizationHeader } from './authorization';
 import Cookies from 'js-cookie';
 import { sleep } from 'src/shared/utils/util';
+import refreshToken from './refreshToken';
+import { handleError, isUnauthorizedError } from './handleApiClientError';
+import { type AxiosResponseError } from 'src/types/apiError';
 
 // function downloadAttachment(response: AxiosResponse, attachment: string) {
 //   const [, filename] = attachment.split('=')
@@ -29,7 +33,9 @@ import { sleep } from 'src/shared/utils/util';
 //   return matchedAttachedFile
 // }
 
-export const setupAxios = () => {
+function setupAxios() {
+  let refreshingFn: ReturnType<typeof refreshToken> | undefined = undefined;
+
   const instance = axios.create({
     baseURL: process.env.REACT_APP_API_END_POINT,
     headers: {
@@ -70,32 +76,65 @@ export const setupAxios = () => {
       return response;
     },
     async (error) => {
-      const config = error?.config;
-      if (!config?.response) {
+      const originalConfig = error?.config;
+      const responseError = error?.response;
+
+      console.log('config', responseError, originalConfig);
+
+      if (!responseError) {
         return Promise.reject({
           message: 'uncaught error',
         });
       }
-      if (config?.response.status === 401 || !config?.sent) {
-        // config.sent = true;
-        // const token = await refreshToken()
-        // if (token) {
-        //   config.headers = {
-        //     ...config.headers,
-        //     authorization: `Bearer ${token?.accessToken}`,
-        //   };
-        // }
-        // return instance(config)
-        //redirect to /login
-      }
 
-      if (config?.response.status === 404) {
-        return Promise.reject({
-          code: config?.response.status,
-          message: config?.response.statusText,
-        });
-      }
+      if (isUnauthorizedError(responseError)) {
+        console.log(isUnauthorizedError(responseError), responseError.data);
+        try {
+          if (!refreshingFn) {
+            refreshingFn = refreshToken();
+          }
 
+          originalConfig.sent = true;
+          const [token, refeshToken] = await refreshingFn;
+          console.log('refeshToken', refeshToken);
+
+          if (token) {
+            originalConfig.headers = {
+              ...originalConfig.headers,
+              authorization: `Bearer ${token}`,
+            };
+
+            // localStorage.setItem("token", JSON.stringify(token));
+            // localStorage.setItem("user", JSON.stringify(user));
+
+            // retry original request
+            try {
+              return await axios.request(originalConfig);
+            } catch (innerError) {
+              console.log('error inner');
+              // Bắt lỗi tại đây để nó không bắn lỗi ra ngoài catch nữa
+              // if original req failed with 401 again - it means server returned not valid token for refresh request
+              if (isUnauthorizedError(innerError as AxiosResponseError<unknown>)) {
+                throw innerError;
+              }
+              //  else {
+              //   handleError(error);
+              // }
+            }
+          }
+        } catch (error) {
+          console.log('error refesh');
+          localStorage.removeItem('token');
+          localStorage.removeItem('refreshToken');
+          // redirect to /login and clear token
+        } finally {
+          console.log('reset');
+          refreshingFn = undefined;
+        }
+      } else {
+        console.log('errrrr');
+        handleError(error);
+      }
       return Promise.reject(error);
     }
   );
@@ -168,6 +207,5 @@ export const setupAxios = () => {
   };
 
   return { apiClient };
-};
-
+}
 export const { apiClient } = setupAxios();

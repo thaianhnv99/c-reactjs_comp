@@ -1,14 +1,13 @@
 import { Outlet } from 'react-router-dom';
 import { Header } from './Header';
-import { Main } from './Main';
+import PopupProvider from './PopupProvider';
 
 const Layout = () => {
   return (
     <>
       <Header />
-      <Main>
-        <Outlet />
-      </Main>
+      <PopupProvider />
+      <Outlet />
     </>
   );
 };

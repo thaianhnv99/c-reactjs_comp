@@ -22,6 +22,8 @@ import IssueFlickerLoading from './issues-for-dev/IssueFlickerLoading';
 import ResponsiveLayout from './responsive-layout/ResponsiveLayout';
 import DemoUseTransition from 'src/components/component-for-hook/useTransition/Demo';
 import DemoUseDeferredValue from 'src/components/component-for-hook/useDeferredValue/Demo';
+import MainTemplate from 'src/components/layout/MainTemplate';
+import HeaderSubTitle from 'src/components/layout/HeaderSubTitle';
 
 export default function Router() {
   return (
@@ -29,28 +31,280 @@ export default function Router() {
       {/* <Route element={<PrivateRouter />}> */}
       <Route element={<Layout />}>
         <Route path="/" element={<Navigate to="/home" />} />
-        <Route path="home" element={<Home />} />
-        <Route path="example" element={<Example />} />
-        <Route path="slider" element={<SliderWrapper />} />
-        <Route path="accordion" element={<AccordionWrapper />} />
-        <Route path="/responsive-layout" element={<ResponsiveLayout />} />
-        <Route path="date" element={<DateWrapper />} />
-        <Route path="list-debounce" element={<SearchList />} />
-        <Route path="react-query" element={<List />} />
-        <Route path="swr" element={<SWR />} />
-        <Route path="toast" element={<Toast />} />
-        <Route path="icons" element={<IconsPage />} />
-        <Route path="scroll" element={<ScrollUI />} />
-        <Route path="pagination" element={<PaginationUI />} />
-        <Route path="chat" element={<ChatDebug />} />
-        <Route path="issue" element={<IssuesForDev />}>
+        <Route
+          path="home"
+          element={
+            <MainTemplate
+              headerTitle={
+                <HeaderSubTitle
+                  description="Serializing AdonisJS models to camelCase globally"
+                  title="Home"
+                />
+              }
+            >
+              <Home />
+            </MainTemplate>
+          }
+        />
+        <Route
+          path="example"
+          element={
+            <MainTemplate
+              headerTitle={
+                <HeaderSubTitle
+                  description="Serializing AdonisJS models to camelCase globally"
+                  title="Examle"
+                />
+              }
+            >
+              <Example />
+            </MainTemplate>
+          }
+        />
+        <Route
+          path="slider"
+          element={
+            <MainTemplate
+              headerTitle={
+                <HeaderSubTitle
+                  description="Serializing AdonisJS models to camelCase globally"
+                  title="Slider"
+                />
+              }
+            >
+              <SliderWrapper />
+            </MainTemplate>
+          }
+        />
+        <Route
+          path="accordion"
+          element={
+            <MainTemplate
+              headerTitle={
+                <HeaderSubTitle
+                  description="Serializing AdonisJS models to camelCase globally"
+                  title="Accordion"
+                />
+              }
+            >
+              <AccordionWrapper />
+            </MainTemplate>
+          }
+        />
+        <Route
+          path="/responsive-layout"
+          element={
+            <MainTemplate
+              headerTitle={
+                <HeaderSubTitle
+                  description="Serializing AdonisJS models to camelCase globally"
+                  title="Responsive layout"
+                />
+              }
+            >
+              <ResponsiveLayout />
+            </MainTemplate>
+          }
+        />
+        <Route
+          path="date"
+          element={
+            <MainTemplate
+              headerTitle={
+                <HeaderSubTitle
+                  description="Serializing AdonisJS models to camelCase globally"
+                  title="Date"
+                />
+              }
+            >
+              <DateWrapper />
+            </MainTemplate>
+          }
+        />
+        <Route
+          path="list-debounce"
+          element={
+            <MainTemplate
+              headerTitle={
+                <HeaderSubTitle
+                  description="Serializing AdonisJS models to camelCase globally"
+                  title="List debounce"
+                />
+              }
+            >
+              <SearchList />
+            </MainTemplate>
+          }
+        />
+        <Route
+          path="react-query"
+          element={
+            <MainTemplate
+              headerTitle={
+                <HeaderSubTitle
+                  description="Serializing AdonisJS models to camelCase globally"
+                  title="React query"
+                />
+              }
+            >
+              <List />
+            </MainTemplate>
+          }
+        />
+        <Route
+          path="swr"
+          element={
+            <MainTemplate
+              headerTitle={
+                <HeaderSubTitle
+                  description="Serializing AdonisJS models to camelCase globally"
+                  title="SWR"
+                />
+              }
+            >
+              <SWR />
+            </MainTemplate>
+          }
+        />
+        <Route
+          path="toast"
+          element={
+            <MainTemplate
+              headerTitle={
+                <HeaderSubTitle
+                  description="Serializing AdonisJS models to camelCase globally"
+                  title="Toast"
+                />
+              }
+            >
+              <Toast />
+            </MainTemplate>
+          }
+        />
+        <Route
+          path="icons"
+          element={
+            <MainTemplate
+              headerTitle={
+                <HeaderSubTitle
+                  description="Serializing AdonisJS models to camelCase globally"
+                  title="Icons"
+                />
+              }
+            >
+              <IconsPage />
+            </MainTemplate>
+          }
+        />
+        <Route
+          path="scroll"
+          element={
+            <MainTemplate
+              headerTitle={
+                <HeaderSubTitle
+                  description="Serializing AdonisJS models to camelCase globally"
+                  title="Scroll"
+                />
+              }
+            >
+              <ScrollUI />
+            </MainTemplate>
+          }
+        />
+        <Route
+          path="pagination"
+          element={
+            <MainTemplate
+              headerTitle={
+                <HeaderSubTitle
+                  description="Serializing AdonisJS models to camelCase globally"
+                  title="Pagination"
+                />
+              }
+            >
+              <PaginationUI />
+            </MainTemplate>
+          }
+        />
+        <Route
+          path="chat"
+          element={
+            <MainTemplate
+              headerTitle={
+                <HeaderSubTitle
+                  description="Serializing AdonisJS models to camelCase globally"
+                  title="Chat UI"
+                />
+              }
+            >
+              <ChatDebug />
+            </MainTemplate>
+          }
+        />
+        <Route
+          path="issue"
+          element={
+            <MainTemplate
+              headerTitle={
+                <HeaderSubTitle
+                  description="Serializing AdonisJS models to camelCase globally"
+                  title="Issue for dev"
+                />
+              }
+            >
+              <IssuesForDev />
+            </MainTemplate>
+          }
+        >
           <Route index element={<ForDev />} />
           <Route path="flicker-loading" element={<IssueFlickerLoading />} />
         </Route>
         {/* hooks */}
-        <Route path="use-transition" element={<DemoUseTransition />} />
-        <Route path="use-deferred-value" element={<DemoUseDeferredValue />} />
-        <Route path="white-page" element={<WhitePage />} />
+        <Route
+          path="use-transition"
+          element={
+            <MainTemplate
+              headerTitle={
+                <HeaderSubTitle
+                  description="Serializing AdonisJS models to camelCase globally"
+                  title="useTransition"
+                />
+              }
+            >
+              <DemoUseTransition />
+            </MainTemplate>
+          }
+        />
+        <Route
+          path="use-deferred-value"
+          element={
+            <MainTemplate
+              headerTitle={
+                <HeaderSubTitle
+                  description="Serializing AdonisJS models to camelCase globally"
+                  title="useDeferredValue"
+                />
+              }
+            >
+              <DemoUseDeferredValue />
+            </MainTemplate>
+          }
+        />
+        <Route
+          path="white-page"
+          element={
+            <MainTemplate
+              headerTitle={
+                <HeaderSubTitle
+                  description="Serializing AdonisJS models to camelCase globally"
+                  title="White page"
+                />
+              }
+            >
+              <WhitePage />
+            </MainTemplate>
+          }
+        />
       </Route>
       {/* </Route> */}
 

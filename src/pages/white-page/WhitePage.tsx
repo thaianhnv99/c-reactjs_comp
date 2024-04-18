@@ -1,72 +1,58 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import { useEffect } from 'react';
+import { useIdleSession } from 'src/hooks/idleSession/useIdleSession';
+import { apiClient } from 'src/lib';
+import { usePopup } from 'src/states/ui/usePopup';
 
 const WhitePage = () => {
+  const getUser = async () => {
+    try {
+      const res = await apiClient.get('/user');
+
+      console.log(res.data);
+    } catch {
+      console.log('error');
+    }
+  };
+
+  const getUser1 = async () => {
+    try {
+      const res = await apiClient.get('/user1');
+
+      console.log(res.data);
+    } catch (error) {
+      console.log('error', error);
+    }
+  };
+
+  useEffect(() => {
+    getUser();
+    getUser1();
+  }, []);
+
+  const { restartIdleTimer, stopIdleTimer } = useIdleSession();
+  const { state, openPopup, closePopup } = usePopup();
+
+  console.log(state);
+
   return (
-    <Box
-      sx={{
-        '& table, td, th': {
-          border: '1px solid',
-        },
-        '& th': {
-          whiteSpace: 'nowrap',
-        },
-        overflow: 'auto',
-      }}
-    >
-      <table
-        style={{
-          borderCollapse: 'collapse',
-        }}
+    <Box>
+      Timeout:
+      <Button onClick={stopIdleTimer}>Stop</Button>
+      <Button onClick={restartIdleTimer} variant="contained">
+        Restart
+      </Button>
+      <Button
+        onClick={() => openPopup({ title: 'Title', content: '11111', button: null })}
+        variant="contained"
       >
-        <thead>
-          <tr>
-            <th>결제ID</th>
-            <th>요기요ID</th>
-            <th>customer ID</th>
-            <th>휴대폰번호</th>
-            <th>휴대폰번호</th>
-            <th>휴대폰번호</th>
-            <th>휴대폰번호</th>
-            <th>휴대폰번호</th>
-            <th>휴대폰번호</th>
-            <th>휴대폰번호</th>
-            <th>휴대폰번호</th>
-            <th>휴대폰번호</th>
-            <th>휴대폰번호</th>
-            <th>휴대폰번호</th>
-            <th>휴대폰번호</th>
-            <th>휴대폰번호</th>
-            <th>휴대폰번호</th>
-            <th>휴대폰번호</th>
-            <th>휴대폰번호</th>
-            <th>휴대폰번호</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>2</td>
-            <td>3</td>
-          </tr>
-        </tbody>
-      </table>
+        open
+      </Button>
+      <Button onClick={closePopup} variant="contained">
+        close
+      </Button>
     </Box>
   );
 };

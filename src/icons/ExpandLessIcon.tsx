@@ -1,8 +1,8 @@
-import { SvgIcon, type SvgIconProps } from '@mui/material';
+import { type SVGProps } from 'react';
 
-const ExpandLessIcon = (props: SvgIconProps) => {
+const ExpandLessIcon = (props: SVGProps<SVGSVGElement>) => {
   return (
-    <SvgIcon
+    <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
@@ -12,7 +12,7 @@ const ExpandLessIcon = (props: SvgIconProps) => {
       {...props}
     >
       <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-    </SvgIcon>
+    </svg>
   );
 };
 

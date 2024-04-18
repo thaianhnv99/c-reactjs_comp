@@ -1,16 +1,15 @@
 import Box from '@mui/material/Box';
 import SideBar from './SideBar';
-import { type ReactNode } from 'react';
+import { type PropsWithChildren, type ReactNode } from 'react';
 import { menu } from 'src/shared/utils/constant';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import WrapperHeaderSubTitle from './WrapperHeaderSubTitle';
 
 type MainProps = {
-  children: ReactNode;
+  headerTitle?: ReactNode;
 };
 
-export function Main({ children }: MainProps) {
+export function Main({ children, headerTitle }: PropsWithChildren<MainProps>) {
   return (
     <Box component="main">
       <Box mt={6}>
@@ -20,7 +19,7 @@ export function Main({ children }: MainProps) {
             px: 2,
           }}
         >
-          <WrapperHeaderSubTitle />
+          {headerTitle}
           <Grid container>
             <Grid item xs={12} sm={8}>
               {children}

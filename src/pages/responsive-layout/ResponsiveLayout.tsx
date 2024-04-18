@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import TableNativeDebug from 'src/components/common/table/debug/TableNative';
 
 const ResponsiveLayout = () => {
   return (
@@ -32,6 +33,7 @@ const ResponsiveLayout = () => {
         <Box className="item"></Box>
         <Box className="item"></Box>
       </Box>
+      <TableNativeDebug />
     </>
   );
 };

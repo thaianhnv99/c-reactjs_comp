@@ -99,6 +99,7 @@
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.6.0",
     "mini-css-extract-plugin": "^2.8.0",
+    "msw": "^2.2.13",
     "prettier": "^3.2.5",
     "sass-loader": "^14.1.1",
     "serve": "^14.2.1",
@@ -106,5 +107,10 @@
     "webpack-bundle-analyzer": "^4.10.1",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.0.2"
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
   }
 }
