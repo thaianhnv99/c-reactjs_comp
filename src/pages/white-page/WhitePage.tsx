@@ -1,8 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import Divider from '@mui/material/Divider';
 import { useEffect } from 'react';
-import { useIdleSession } from 'src/hooks/idleSession/useIdleSession';
+import { ShiftingDropDown } from 'src/components/layout/DropdownMenu';
 import { apiClient } from 'src/lib';
 import { usePopup } from 'src/states/ui/usePopup';
 
@@ -32,18 +32,11 @@ const WhitePage = () => {
     getUser1();
   }, []);
 
-  const { restartIdleTimer, stopIdleTimer } = useIdleSession();
   const { state, openPopup, closePopup } = usePopup();
-
   console.log(state);
 
   return (
     <Box>
-      Timeout:
-      <Button onClick={stopIdleTimer}>Stop</Button>
-      <Button onClick={restartIdleTimer} variant="contained">
-        Restart
-      </Button>
       <Button
         onClick={() => openPopup({ title: 'Title', content: '11111', button: null })}
         variant="contained"
@@ -53,6 +46,8 @@ const WhitePage = () => {
       <Button onClick={closePopup} variant="contained">
         close
       </Button>
+      <Divider />
+      <ShiftingDropDown />
     </Box>
   );
 };

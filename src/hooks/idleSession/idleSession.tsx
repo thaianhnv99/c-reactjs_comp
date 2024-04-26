@@ -1,7 +1,7 @@
 import Button from '@mui/material/Button';
 import { _openPopup, store } from 'src/states';
 
-const DEFAULT_TIMEOUT = 2000;
+const DEFAULT_TIMEOUT = 30 * 60 * 1000;
 let timeoutId: ReturnType<typeof window.setTimeout> | undefined = undefined;
 
 function initIdleTimer() {
