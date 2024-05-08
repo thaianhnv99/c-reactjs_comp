@@ -6,6 +6,7 @@ import Stack from '@mui/material/Stack';
 import TextFieldUI from '../base/TextFieldUI';
 import { type TextFieldVariant } from '../base/TextFieldUI/type';
 import { useForm, useWatch } from 'react-hook-form';
+import EditableTextField from '../base/TextFieldUI/EditableTextField';
 
 const Inputs = () => {
   const [value, setValue] = useState('123');
@@ -25,6 +26,7 @@ const Inputs = () => {
 
   const { a } = useWatch({ control });
   console.log(a);
+  const [text, setText] = useState('');
 
   return (
     <Box>
@@ -147,6 +149,16 @@ const Inputs = () => {
           fullWidth
         />
       </Stack>
+
+      <EditableTextField
+        containerProps={{
+          sx: {
+            width: 200,
+          },
+        }}
+        text={text}
+        onChange={(e) => setText(e.target.value)}
+      />
     </Box>
   );
 };

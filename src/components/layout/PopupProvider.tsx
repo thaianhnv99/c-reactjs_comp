@@ -30,7 +30,7 @@ const PopupProvider = () => {
       document.documentElement.style.overflow = 'hidden';
     } else {
       document.documentElement.style.scrollbarGutter = 'unset';
-      document.documentElement.style.overflow = 'auto';
+      document.documentElement.style.overflow = 'unset';
     }
   }, [state.open]);
 

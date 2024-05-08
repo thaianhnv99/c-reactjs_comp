@@ -8,6 +8,7 @@ import React, {
   type MouseEvent,
   useEffect,
   forwardRef,
+  useMemo,
 } from 'react';
 import { mergeRef } from 'src/hooks/mergeRef';
 import { type TypeTypography } from 'src/shared/utils/theme';
@@ -23,6 +24,7 @@ export type TextFieldBaseProps = Omit<InputBaseProps, 'error' | 'size' | 'type'>
   error?: string | null | boolean;
   suffix?: string;
   isShowClear?: boolean;
+  height?: React.CSSProperties['height'];
 };
 
 function TextFieldBase(
@@ -37,6 +39,7 @@ function TextFieldBase(
     size = 'medium',
     variant = 'outlined',
     isShowClear = false,
+    height,
     onChange,
     ...props
   }: TextFieldBaseProps,
@@ -54,6 +57,17 @@ function TextFieldBase(
   // const [isFocus, setIsFocus] = useState(false);
   const [isDisabled, setIsDisabled] = useState(disabled);
   // const [isStyleDisabled, setIsStyleDisabled] = useState(disabled || readOnly);
+
+  const heightInit = useMemo(() => {
+    if (height) return height;
+    if (size === 'small') {
+      return '48px';
+    }
+    if (size === 'medium') {
+      return '56px';
+    }
+    return '64px';
+  }, [height, size]);
 
   useEffect(() => {
     setIsDisabled(disabled);
@@ -117,7 +131,7 @@ function TextFieldBase(
           //   theme.palette.mode === 'light' ? '#fcfcfb' : '#2b2b2b',
           // width: 'auto',
           padding: 0,
-          minWidth: '120px',
+          minWidth: 0,
           // transition: theme.transitions.create([
           //   'border-color',
           //   'background-color',
@@ -126,7 +140,7 @@ function TextFieldBase(
           '&::placeholder': {
             color: '#0000004d',
           },
-          height: size === 'small' ? '48px' : size === 'medium' ? '56px' : '64px',
+          height: heightInit,
           typography:
             size === 'small' ? 'label' : size === 'medium' ? 'body' : ('copy' as TypeTypography),
         },

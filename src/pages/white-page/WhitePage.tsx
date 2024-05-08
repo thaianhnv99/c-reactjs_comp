@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
-import { useEffect } from 'react';
+import { type ReactNode, useEffect } from 'react';
 import { ShiftingDropDown } from 'src/components/layout/DropdownMenu';
 import { apiClient } from 'src/lib';
 import { usePopup } from 'src/states/ui/usePopup';
@@ -48,8 +49,16 @@ const WhitePage = () => {
       </Button>
       <Divider />
       <ShiftingDropDown />
+      {/* <MenuUI>
+        <Box>112</Box>
+        <Box>112</Box>
+      </MenuUI> */}
     </Box>
   );
 };
 
 export default WhitePage;
+
+const MenuUI = ({ children }: { children: ReactNode }) => {
+  return <>{children}</>;
+};
