@@ -35,7 +35,6 @@ const WhitePage = () => {
 
   const { state, openPopup, closePopup } = usePopup();
   console.log(state);
-
   return (
     <Box>
       <Button

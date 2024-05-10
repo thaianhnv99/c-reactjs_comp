@@ -50,7 +50,7 @@ function TextFieldBase(
   const baseRef = mergeRef(outerRef, innerRef);
 
   const theme = useTheme();
-  const colors = theme.color || {};
+  const colors = theme.color;
   const isSearch = type === 'search';
 
   const [isShowClearBtn, setIsShowClearBtn] = useState(false);
