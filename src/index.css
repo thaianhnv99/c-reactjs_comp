@@ -17,3 +17,12 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+html {
+  //Cấu hình hành vi scroll của trang.
+  /* scroll-behavior: smooth; */
+
+  /* kết hợp với:
+  <a href="#top">TOP</a>
+  <div id="top">Point</div> */
+}

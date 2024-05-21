@@ -27,7 +27,7 @@ const Tabs = () => {
 
   return (
     <div
-      onMouseLeave={() => handleSetSelected(null)}
+      // onMouseLeave={() => handleSetSelected(null)}
       style={{
         position: 'relative',
         height: 'fit-content',
